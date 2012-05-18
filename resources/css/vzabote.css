@@ -8574,7 +8574,7 @@ a.x-tab-close-btn:hover {
   vertical-align: middle;
   *vertical-align: auto;
   overflow: hidden; }
-  /* line 7, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+  /* line 7, ../../../../../../usr/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
   .x-surface {
     *display: inline; }
 
@@ -9813,3 +9813,106 @@ svg, vml {
   .x-html BDO[DIR="rtl"] {
     direction: rtl;
     unicode-bidi: bidi-override; }
+
+/* line 4, ../sass/vzabote.scss */
+html {
+  height: 100%;
+  background: url(../images/pattern_bg.png); }
+
+/* line 8, ../sass/vzabote.scss */
+header, nav, section, article, aside, footer {
+  display: block; }
+
+@font-face {
+  font-family: 'HelveticaNeueCyrRoman';
+  src: url("../fonts/helveticaneuecyr-roman-webfont.eot");
+  src: url("../fonts/helveticaneuecyr-roman-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/helveticaneuecyr-roman-webfont.woff") format("woff"), url("../fonts/helveticaneuecyr-roman-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'HelveticaNeueCyrHeavy';
+  src: url("../fonts/helveticaneuecyr-heavy-webfont.eot");
+  src: url("../fonts/helveticaneuecyr-heavy-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/helveticaneuecyr-heavy-webfont.woff") format("woff"), url("../fonts/helveticaneuecyr-heavy-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'HelveticaNeueCyrBold';
+  src: url("../fonts/helveticaneuecyr-bold-webfont.eot");
+  src: url("../fonts/helveticaneuecyr-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/helveticaneuecyr-bold-webfont.woff") format("woff"), url("../fonts/helveticaneuecyr-bold-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'ALSRublRegular';
+  src: url("../fonts/rouble-webfont.eot");
+  src: url("../fonts/rouble-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/rouble-webfont.woff") format("woff"), url("../fonts/rouble-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'NoteworthyLight';
+  src: url("../fonts/noteworthy-webfont.eot");
+  src: url("../fonts/noteworthy-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/noteworthy-webfont.woff") format("woff"), url("../fonts/noteworthy-webfont.ttf") format("truetype");
+  src: local("NoteworthyLight");
+  font-weight: normal;
+  font-style: normal; }
+
+/* line 62, ../sass/vzabote.scss */
+.x-body {
+  color: black;
+  height: 100%;
+  font-size: 12px;
+  line-height: 18px;
+  font-family: HelveticaNeueCyr; }
+
+/* line 70, ../sass/vzabote.scss */
+a {
+  color: blue;
+  outline: none;
+  text-decoration: underline; }
+
+/* line 75, ../sass/vzabote.scss */
+a:hover {
+  text-decoration: none; }
+
+/* line 78, ../sass/vzabote.scss */
+p {
+  margin: 0 0 18px; }
+
+/* line 81, ../sass/vzabote.scss */
+img {
+  border: none; }
+
+/* line 84, ../sass/vzabote.scss */
+input {
+  vertical-align: middle; }
+
+/* line 88, ../sass/vzabote.scss */
+.x-panel-default {
+  border: none; }
+
+/* line 91, ../sass/vzabote.scss */
+.x-panel-body-default {
+  background: none;
+  border: none;
+  color: black; }
+  /* line 95, ../sass/vzabote.scss */
+  .x-panel-body-default .category-name {
+    font-size: 24px;
+    margin-top: -20px;
+    color: #68113e; }
+    /* line 99, ../sass/vzabote.scss */
+    .x-panel-body-default .category-name a {
+      color: #68113e;
+      text-decoration: none; }
+
+/* line 103, ../sass/vzabote.scss */
+#panel-1014-body {
+  font-family: Noteworthy;
+  font-size: 24px;
+  text-align: center;
+  width: 310px;
+  line-height: 28px;
+  margin: 0 auto; }

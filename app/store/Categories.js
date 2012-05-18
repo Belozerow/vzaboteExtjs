@@ -3,7 +3,7 @@ Ext.define('Vzabote.store.Categories',{
     requires: 'Vzabote.model.Category',
     model: 'Vzabote.model.Category',
     data: [
-        {'id': 0, 'name': 'Продукты','image': 'resources/categories/products.jpg', 'subname': 'Продуктовая корзина', 'categoryitems':[{
+        {'id': 0, 'name': 'Продукты','image': 'resources/categories/products.png', 'subname': 'Продуктовая корзина', 'categoryitems':[{
                 'name': 'Пятерочка',
                 'price': 1101,
                 'pricechange': 'down'
@@ -17,7 +17,7 @@ Ext.define('Vzabote.store.Categories',{
                 'pricechange': 'down'
             }
         ]},
-        {'id': 1, 'name': 'Лекарства','image': 'resources/categories/med.jpg', 'subname': 'Популярные лекарства', 'categoryitems':[{
+        {'id': 1, 'name': 'Лекарства','image': 'resources/categories/med.png', 'subname': 'Популярные лекарства', 'categoryitems':[{
                 'name': 'Классика',
                 'price': 1421,
                 'pricechange': 'up'
@@ -31,7 +31,7 @@ Ext.define('Vzabote.store.Categories',{
                 'pricechange': 'up'
             }
         ]},
-        {'id': 2, 'name': 'Топливо','image': 'resources/categories/gas.jpg', 'subname': '92 бензин', 'categoryitems':[{
+        {'id': 2, 'name': 'Топливо','image': 'resources/categories/gas.png', 'subname': '92 бензин', 'categoryitems':[{
                 'name': 'Пятерочка',
                 'price': 1101,
                 'pricechange': 'up'
