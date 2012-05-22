@@ -25,6 +25,7 @@ Ext.define('Vzabote.view.Viewport',{
                 },templates.viewport.header),
                 {
                     xtype: 'panel',
+                    cls: 'login-panel',
                     flex: 1,
                     layout: {
                         type: 'hbox',
@@ -33,18 +34,11 @@ Ext.define('Vzabote.view.Viewport',{
                     items: [
                         Ext.apply({
                             xtype: 'button',
+                            id: 'login-button',
                         },templates.viewport.login)
                     ]
                 },
             ]
-            // listeners: {
-                // el:{
-                    // click: function(e,node){
-                        // this.fireEvent('tab-active',node.id);
-                    // },
-                    // scope: this
-                // }                
-            // }
         })
         this.cards = this.add({
             xtype: 'panel',
@@ -74,6 +68,7 @@ Ext.define('Vzabote.view.Viewport',{
                 },templates.viewport.footer),
                 {
                     xtype: 'panel',
+                    cls: 'add-shop-panel',
                     flex: 1,
                     layout: {
                         type: 'hbox',

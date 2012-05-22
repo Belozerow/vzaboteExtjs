@@ -1,4 +1,5 @@
 #project
 .project
 #cache
-.sass-cache
+/resources/sass/.sass-cache/
+

@@ -6,7 +6,6 @@ Ext.define('Vzabote.view.SimplePopup',{
     closable: false,
     draggable: false,
     resizable: false,
-    closeAfterAnimation: false,
     anim: {
         from: {opacity: 0},
         duration: 700

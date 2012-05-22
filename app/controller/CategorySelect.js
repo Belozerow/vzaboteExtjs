@@ -13,7 +13,7 @@ Ext.define('Vzabote.controller.CategorySelect',{
                          }
                      },this)
                  } 
-          } 
+          }
        });
    },
    showPopup: function(element){
@@ -28,7 +28,7 @@ Ext.define('Vzabote.controller.CategorySelect',{
                 html = templates.popups.medSelect.html;  
                 break;
             case 2:
-                html = templates.popups.gasSelect.html
+                html = templates.popups.gasSelect.html;
                 break;
        }
        this.popup = Ext.create('widget.simplepopup',{

@@ -9,14 +9,14 @@ Ext.define('Vzabote.view.MainPage',{
        this.callParent();
        var categoryButtons = [];
        var categoriesPanel = Ext.create('Ext.panel.Panel',{
+           cls: 'categories-panel',
            layout: {
                type: 'vbox',
                align: 'stretch',
            },
-           items: [{
-                   html: 'Простой и удобный инструмент для ежедневных покупок',
+           items: [Ext.apply({
                    flex: 2
-           }],
+           },templates.mainpage.title)],
            flex: 3
        });
        var catIndex = 0;
@@ -42,6 +42,7 @@ Ext.define('Vzabote.view.MainPage',{
        });
         categoriesPanel.add({
             xtype: 'panel',
+            cls: 'price-stat-panel',
             layout: {
                 type: 'vbox',
                 align: 'center'   
@@ -52,6 +53,7 @@ Ext.define('Vzabote.view.MainPage',{
                 },templates.mainpage.pricestat)]
         });
        var contentPanel = Ext.create('Ext.panel.Panel',{
+           cls: 'categories-content',
            layout: {
                type: 'hbox',
                align: 'stretch'

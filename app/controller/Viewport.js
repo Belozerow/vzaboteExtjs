@@ -13,6 +13,11 @@ Ext.define('Vzabote.controller.Viewport',{
                    this.setActiveTab(node.id); 
                 },this);
               }                  
+          },
+          '#login-button': {
+              click: function(){
+                  this.showLogin();
+              }
           } 
        });
    },
@@ -25,5 +30,13 @@ Ext.define('Vzabote.controller.Viewport',{
         cardPanel.layout.setActiveItem(2)
       else 
         cardPanel.layout.setActiveItem(0)
+   },
+   showLogin: function(){
+       if(this.loginPopup) 
+            this.loginPopup.close();
+       
+       this.loginPopup = Ext.create('widget.loginpopup',{
+       });
+       this.loginPopup.show()
    }
 });

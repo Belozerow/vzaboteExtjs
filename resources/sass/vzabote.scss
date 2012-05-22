@@ -1,2 +1,262 @@
 @import 'compass';
 @import 'ext4/default/all';
+
+html {
+  height: 100%;
+  background: url(../images/pattern_bg.png);
+}
+header, nav, section, article, aside, footer {
+  display: block;
+}
+@font-face {
+    font-family: 'HelveticaNeueCyrRoman';
+    src: url('../fonts/helveticaneuecyr-roman-webfont.eot');
+    src: url('../fonts/helveticaneuecyr-roman-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneuecyr-roman-webfont.woff') format('woff'),
+         url('../fonts/helveticaneuecyr-roman-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNeueCyrHeavy';
+    src: url('../fonts/helveticaneuecyr-heavy-webfont.eot');
+    src: url('../fonts/helveticaneuecyr-heavy-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneuecyr-heavy-webfont.woff') format('woff'),
+         url('../fonts/helveticaneuecyr-heavy-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNeueCyrBold';
+    src: url('../fonts/helveticaneuecyr-bold-webfont.eot');
+    src: url('../fonts/helveticaneuecyr-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneuecyr-bold-webfont.woff') format('woff'),
+         url('../fonts/helveticaneuecyr-bold-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ALSRublRegular';
+    src: url('../fonts/rouble-webfont.eot');
+    src: url('../fonts/rouble-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/rouble-webfont.woff') format('woff'),
+         url('../fonts/rouble-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NoteworthyLight';
+    src: url('../fonts/noteworthy-webfont.eot');
+    src: url('../fonts/noteworthy-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/noteworthy-webfont.woff') format('woff'),
+         url('../fonts/noteworthy-webfont.ttf') format('truetype');
+    src: local('NoteworthyLight');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.x-body {
+  color: black;
+  height: 100%;
+  font-size: 12px;
+  line-height: 18px;
+  font-family: HelveticaNeueCyr;
+}
+
+a {
+  color: blue;
+  outline: none;
+  text-decoration: underline;
+}
+a:hover {
+  text-decoration: none;
+}
+p {
+  margin: 0 0 18px
+}
+img {
+  border: none;
+}
+input {
+  vertical-align: middle;
+}
+
+.x-panel-default {
+  border: none;
+}
+.x-panel-body-default {
+  background: none;
+  border: none;
+  color: black;
+  .category-name {
+    font-size: 24px;
+    margin-top: -20px;
+    color: #68113e;
+    a {color: #68113e; text-decoration: none;}
+  }
+  .category-sub-name {
+    font-size: 16px;
+    height: 34px;
+    margin: 20px 0;
+    width: 130px;
+  }
+  .x-container {
+    padding-right: 25px;
+    .list {
+      font-size: 14px;
+      li {
+        border-bottom: 1px dotted #abaaa8;
+        height: 14px;
+        margin-bottom: 10px;
+        span {height: 15px; background: #f0eeef;}
+        .price {
+          float: right;
+          .rub {font-family: ALSRublRegular; font-weight: lighter;}
+          .price-change-down {
+            width: 10px;
+            height: 12px;
+            display: inline-block;
+            background: url(../images/greenarr.gif) no-repeat right;
+          }
+          .price-change-up {
+            width: 10px;
+            height: 12px;
+            display: inline-block;
+            background: url(../images/redarr.gif) no-repeat right;
+          }
+        }
+      }
+    }
+  }
+}
+
+#panel-1014-body {
+  font-family: Noteworthy;
+  font-size: 24px;
+  text-align: center;
+  width: 310px;
+  line-height: 28px;
+  margin: 0 auto;
+}
+
+#panel-1015 {
+  padding: 0 30px;
+}
+
+.x-panel {
+  .x-panel-body {
+    .x-box-inner {
+      .x-btn-default-small {
+        background-color: transparent;
+        background-image: none;
+        border: none;
+        margin: 20px 30px 0 0;
+      }
+      .login {
+        display: inline-block;
+        
+        width: 36px;
+        height: 35px;
+        background: url(../images/profile.png) no-repeat;
+      }
+    }
+  }
+}
+nav {
+  position: absolute;
+  z-index: 1;
+  margin-top: 7px;
+  a{
+    display: inline-block;
+    height: 36px;
+    padding-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    font-family: Helvetica;
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .home-tab {
+    width: 171px;
+    height: 71px;
+    z-index: 3;
+    position: absolute;
+    background: url(../images/home.png) center right no-repeat;
+  }
+  .choose-tab {
+    width: 142px;
+    z-index: 4;
+    position: absolute;
+    left: 161px;
+    top: 12px;
+    background: url(../images/choose-tab.png) center right no-repeat;
+  }
+  .list-tab {
+    width: 137px;
+    z-index: 5;
+    top: 12px;
+    position: absolute;
+    left: 295px;
+    background: url(../images/list-tab.png) center right no-repeat;
+  }
+  .shops-tab {
+    width: 133px;
+    z-index: 6;
+    position: absolute;
+    left: 424px;
+    top: 12px;
+    background: url(../images/shops-tab.png) center right no-repeat;
+  }
+}
+
+#panel-1019 {
+  #panel-1019-body {
+    margin-left: 3%;
+    @include box-shadow(0px 1px 0px #fff inset);
+    border-top: 1px solid #c5c1c0;
+    position: relative;
+    .x-box-inner {
+      width: 97% !important;
+    }
+    button.x-btn-center {
+      //display: block;
+      width: 154px;
+      height: 30px !important;
+      position: absolute;
+      //top: -17px;
+      border: 1px solid #acacaa;
+      text-decoration: none;
+      //text-align: center;
+      color: #18181a;
+      // needs latest Compass, add '@import "compass"' to your scss
+      background-color: #ffffff; // Old browsers
+      @include filter-gradient(#ffffff, #f5f4f0, vertical); // IE6-9
+      @include background-image(linear-gradient(top,  #ffffff 0%,#ded9d3 4%,#e8e5e0 50%,#f5f4f0 100%));
+      @include border-radius(3px);
+      @include text-shadow(0px 1px 0px #fff);
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
