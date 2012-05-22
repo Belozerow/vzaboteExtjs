@@ -4,7 +4,7 @@ Ext.application({
     autoCreateViewport: true,
     models: ['Category'],
     stores: ['Categories'],
-    controllers: ['Viewport'],
+    controllers: ['Viewport','CategorySelect'],
     launch: function(){
         Ext.getStore('Categories').load();
     }

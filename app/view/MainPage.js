@@ -19,16 +19,20 @@ Ext.define('Vzabote.view.MainPage',{
            }],
            flex: 3
        });
+       var catIndex = 0;
        Ext.getStore('Categories').each(function(item){
+          
           categoryButtons.push(Ext.apply({
               xtype: 'container',
               data: item.data,
               layout: 'fit',
-              flex: 1
+              flex: 1,
+              index: catIndex++
           },templates.mainpage.categoryitem)) 
        });
        categoriesPanel.add({
            xtype: 'panel',
+           id: 'category-panel',
            items: categoryButtons,
            layout: {
                type: 'hbox',
