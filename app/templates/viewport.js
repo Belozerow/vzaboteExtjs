@@ -1,17 +1,20 @@
 templates.viewport = {
     header: {
-        html: '<div id="home-tab" class="home-tab"></div>'+
-                '<div id="choose-tab" class="choose-tab">Выбор товаров</div>'+
-                '<div id="list-tab" class="list-tab">Список покупок</div>'+
-                '<div id="shops-tab" class="shops-tab">Выбор магазина</div>'
+        html:
+             '<nav>'+
+				'<a id="home-tab" class="home-tab" href="#"></a>'+
+				'<a id="choose-tab" class="choose-tab" href="#">Выбор товаров</a>'+
+				'<a id="list-tab" class="list-tab" href="#">Список покупок</a>'+
+				'<a id="shops-tab" class="shops-tab" href="#">Выбор магазина</a>'+
+			'</nav>'
     },
     footer: {
-        html: '<div class="copyright">© neiron.com, 2011-2012</div>'
+        html: '<div class="copyright">&copy; neiron.com, 2011-2012</div>'
     },
     addshop: {
         text: '<div class="add-shop-button">Добавить предприятие</div>'
     },
     login: {
-        text: '<div class="login">Человечек</div>'   
+        text: '<div class="login"></div>'   
     }
 }

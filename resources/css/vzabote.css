@@ -9907,8 +9907,48 @@ input {
     .x-panel-body-default .category-name a {
       color: #68113e;
       text-decoration: none; }
+  /* line 101, ../sass/vzabote.scss */
+  .x-panel-body-default .category-sub-name {
+    font-size: 16px;
+    height: 34px;
+    margin: 20px 0;
+    width: 130px; }
+  /* line 107, ../sass/vzabote.scss */
+  .x-panel-body-default .x-container {
+    padding-right: 25px; }
+    /* line 109, ../sass/vzabote.scss */
+    .x-panel-body-default .x-container .list {
+      font-size: 14px; }
+      /* line 111, ../sass/vzabote.scss */
+      .x-panel-body-default .x-container .list li {
+        border-bottom: 1px dotted #abaaa8;
+        height: 14px;
+        margin-bottom: 10px; }
+        /* line 115, ../sass/vzabote.scss */
+        .x-panel-body-default .x-container .list li span {
+          height: 15px;
+          background: #f0eeef; }
+        /* line 116, ../sass/vzabote.scss */
+        .x-panel-body-default .x-container .list li .price {
+          float: right; }
+          /* line 118, ../sass/vzabote.scss */
+          .x-panel-body-default .x-container .list li .price .rub {
+            font-family: ALSRublRegular;
+            font-weight: lighter; }
+          /* line 119, ../sass/vzabote.scss */
+          .x-panel-body-default .x-container .list li .price .price-change-down {
+            width: 10px;
+            height: 12px;
+            display: inline-block;
+            background: url(../images/greenarr.gif) no-repeat right; }
+          /* line 125, ../sass/vzabote.scss */
+          .x-panel-body-default .x-container .list li .price .price-change-up {
+            width: 10px;
+            height: 12px;
+            display: inline-block;
+            background: url(../images/redarr.gif) no-repeat right; }
 
-/* line 103, ../sass/vzabote.scss */
+/* line 137, ../sass/vzabote.scss */
 #panel-1014-body {
   font-family: Noteworthy;
   font-size: 24px;
@@ -9916,3 +9956,105 @@ input {
   width: 310px;
   line-height: 28px;
   margin: 0 auto; }
+
+/* line 146, ../sass/vzabote.scss */
+#panel-1015 {
+  padding: 0 30px; }
+
+/* line 153, ../sass/vzabote.scss */
+.x-panel .x-panel-body .x-box-inner .x-btn-default-small {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  margin: 20px 30px 0 0; }
+/* line 159, ../sass/vzabote.scss */
+.x-panel .x-panel-body .x-box-inner .login {
+  display: inline-block;
+  width: 36px;
+  height: 35px;
+  background: url(../images/profile.png) no-repeat; }
+
+/* line 169, ../sass/vzabote.scss */
+nav {
+  position: absolute;
+  z-index: 1;
+  margin-top: 7px; }
+  /* line 173, ../sass/vzabote.scss */
+  nav a {
+    display: inline-block;
+    height: 36px;
+    padding-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    font-family: Helvetica;
+    font-size: 13px;
+    font-weight: bold; }
+  /* line 184, ../sass/vzabote.scss */
+  nav .home-tab {
+    width: 171px;
+    height: 71px;
+    z-index: 3;
+    position: absolute;
+    background: url(../images/home.png) center right no-repeat; }
+  /* line 191, ../sass/vzabote.scss */
+  nav .choose-tab {
+    width: 142px;
+    z-index: 4;
+    position: absolute;
+    left: 161px;
+    top: 12px;
+    background: url(../images/choose-tab.png) center right no-repeat; }
+  /* line 199, ../sass/vzabote.scss */
+  nav .list-tab {
+    width: 137px;
+    z-index: 5;
+    top: 12px;
+    position: absolute;
+    left: 295px;
+    background: url(../images/list-tab.png) center right no-repeat; }
+  /* line 207, ../sass/vzabote.scss */
+  nav .shops-tab {
+    width: 133px;
+    z-index: 6;
+    position: absolute;
+    left: 424px;
+    top: 12px;
+    background: url(../images/shops-tab.png) center right no-repeat; }
+
+/* line 218, ../sass/vzabote.scss */
+#panel-1019 #panel-1019-body {
+  margin-left: 3%;
+  -moz-box-shadow: 0px 1px 0px white inset;
+  -webkit-box-shadow: 0px 1px 0px white inset;
+  -o-box-shadow: 0px 1px 0px white inset;
+  box-shadow: 0px 1px 0px white inset;
+  border-top: 1px solid #c5c1c0;
+  position: relative; }
+  /* line 223, ../sass/vzabote.scss */
+  #panel-1019 #panel-1019-body .x-box-inner {
+    width: 97% !important; }
+  /* line 226, ../sass/vzabote.scss */
+  #panel-1019 #panel-1019-body button.x-btn-center {
+    width: 154px;
+    height: 30px !important;
+    position: absolute;
+    border: 1px solid #acacaa;
+    text-decoration: none;
+    color: #18181a;
+    background-color: #ffffff;
+    *zoom: 1;
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFFFFFFF', endColorstr='#FFF5F4F0');
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(4%, #ded9d3), color-stop(50%, #e8e5e0), color-stop(100%, #f5f4f0));
+    background-image: -webkit-linear-gradient(top, #ffffff 0%, #ded9d3 4%, #e8e5e0 50%, #f5f4f0 100%);
+    background-image: -moz-linear-gradient(top, #ffffff 0%, #ded9d3 4%, #e8e5e0 50%, #f5f4f0 100%);
+    background-image: -o-linear-gradient(top, #ffffff 0%, #ded9d3 4%, #e8e5e0 50%, #f5f4f0 100%);
+    background-image: -ms-linear-gradient(top, #ffffff 0%, #ded9d3 4%, #e8e5e0 50%, #f5f4f0 100%);
+    background-image: linear-gradient(top, #ffffff 0%, #ded9d3 4%, #e8e5e0 50%, #f5f4f0 100%);
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -o-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    text-shadow: 0px 1px 0px white; }
