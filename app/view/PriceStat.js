@@ -22,7 +22,9 @@ Ext.define('Vzabote.view.PriceStat',{
            xtype: 'panel',
            dock: 'bottom',
            items: Ext.apply({
-               xtype: 'button',               
+               xtype: 'button',
+               href: '#/index',
+               hrefTarget: '_self'
            },templates.pricestat.goback)
        })
    }

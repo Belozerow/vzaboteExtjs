@@ -1,5 +1,9 @@
 Ext.define('Vzabote.controller.CategorySelect',{
    extend: 'Ext.app.Controller',
+   refs: [{
+       ref: 'cardPanel',
+       selector: '#cardpanel'
+   }],
    init: function(){
        this.control({
           '#category-panel > container': {
@@ -21,11 +25,6 @@ Ext.define('Vzabote.controller.CategorySelect',{
                  },this)
              }
           },
-          '#price-stat-button': {
-              click: function(){
-                  Vzabote.router.dispatch('/pricestat');
-              }
-          },
           'pricestat container': {
               afterrender: function(me){
                   me.getTargetEl().on('click',function(e,node){
@@ -35,13 +34,26 @@ Ext.define('Vzabote.controller.CategorySelect',{
                      }
                  },this)
               }
-          },
-          'pricestat button': {
-              click: function(){
-                  Vzabote.router.dispatch('/index');
-              }
           }
        });
+   },
+   index: function(query){
+       var cardPanel = this.getCardPanel();
+       if(cardPanel.layout.getActiveItem().xtype!='mainpage'){
+           this.getController('Viewport').closeAllWindows();
+           cardPanel.layout.setActiveItem(0)
+       }
+   },
+   pricestat: function(){
+       var cardPanel = this.getCardPanel();
+       if(cardPanel.layout.getActiveItem().xtype!='pricestat'){
+            this.getController('Viewport').closeAllWindows();
+            if(!this.pricestatView){
+                this.pricestatView = Ext.create('Vzabote.view.PriceStat',{
+                });
+            }
+            cardPanel.layout.setActiveItem(this.pricestatView)
+       }
    },
    showInfoPopup: function(element,index){
         if(this.infoPopup)

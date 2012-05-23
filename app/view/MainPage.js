@@ -51,6 +51,8 @@ Ext.define('Vzabote.view.MainPage',{
                 Ext.apply({
                    xtype: 'button',
                    id: 'price-stat-button',
+                   hrefTarget: '_self',
+                   href: '#/pricestat'
                 },templates.mainpage.pricestat)]
         });
        var contentPanel = Ext.create('Ext.panel.Panel',{
