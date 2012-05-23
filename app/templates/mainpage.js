@@ -3,7 +3,7 @@ templates.mainpage = {
         //name, subname, categoryitems {name,price,pricechange}
         tpl: '<img src="{image}" style="max-width: 220px; max-height: 1000px;" class="category-image"/>'+
              '<div class="category-name">{name}</div>'+
-             '<div class="category-sub-name">{subname}</div><div class="info-icon"></div>'+
+             '<div class="category-sub-name">{subname}</div><a href="#" class="info-icon">i</a>'+
              '<ul class="list">'+
              '<tpl for="categoryitems">'+
              	'<li><span class="name">{name}</span> <span class="price">{price} <b class="rub">a</b><b class="price-change-{pricechange}"></b></span></li>'+

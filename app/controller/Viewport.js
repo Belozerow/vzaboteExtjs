@@ -7,17 +7,12 @@ Ext.define('Vzabote.controller.Viewport',{
    init: function(){
        this.control({
            //tabs active
-          'viewport > #header': {
+          '#header': {
               afterrender: function(me){
                 me.getEl().on('click',function(e,node){
                    this.setActiveTab(node.id); 
                 },this);
               }                  
-          },
-          '#login-button': {
-              click: function(){
-                  this.showLogin();
-              }
           } 
        });
    },
@@ -31,12 +26,5 @@ Ext.define('Vzabote.controller.Viewport',{
       else 
         cardPanel.layout.setActiveItem(0)
    },
-   showLogin: function(){
-       if(this.loginPopup) 
-            this.loginPopup.close();
-       
-       this.loginPopup = Ext.create('widget.loginpopup',{
-       });
-       this.loginPopup.show()
-   }
+   
 });

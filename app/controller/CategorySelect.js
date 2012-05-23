@@ -1,20 +1,40 @@
 Ext.define('Vzabote.controller.CategorySelect',{
    extend: 'Ext.app.Controller',
-   requires: [
-        'Vzabote.view.SimplePopup'
-   ],
    init: function(){
        this.control({
           '#category-panel > container': {
-                 afterrender:function(me){
-                     me.getEl().on('click',function(){
-                         if(typeof me.index != 'undefined'){
-                             this.showPopup(me);
-                         }
-                     },this)
-                 } 
+             afterlayout:function(me){
+                 //для первой, не совсем понятно как должно быть
+                 if(me.index == 0){
+                     this.showPopup(me);
+                 }
+                 me.getTargetEl().on('click',function(e,node){
+                     var el = Ext.get(e.getTarget());
+                     if(el.hasCls('category-image')){
+                         console.log('category-select');
+                     } 
+                     if(el.hasCls('info-icon')){
+                         this.showInfoPopup(el,me.index);
+                     }
+                 },this)
+             }
           }
        });
+   },
+   showInfoPopup: function(element,index){
+        if(this.infoPopup)
+            this.infoPopup.close();
+        this.infoPopup = Ext.create('widget.simplepopup',Ext.apply({
+           ownerEl: element,
+           id: 'info-popup',
+           alignPosition: 'l-tr?',
+           cls: 'info-popup',
+           data: Ext.getStore('CategoryInfo').data
+        },templates.popups.categoryInfo));
+        Ext.util.Observable.capture(this.infoPopup,function(e){
+            console.log(e)
+        });
+        this.infoPopup.show();
    },
    showPopup: function(element){
        if(this.popup) 
