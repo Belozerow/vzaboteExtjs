@@ -8,6 +8,8 @@ Ext.define('Vzabote.controller.CategorySelect',{
                  if(me.index == 0){
                      this.showPopup(me);
                  }
+             },
+             afterrender: function(me){
                  me.getTargetEl().on('click',function(e,node){
                      var el = Ext.get(e.getTarget());
                      if(el.hasCls('category-image')){
@@ -31,30 +33,31 @@ Ext.define('Vzabote.controller.CategorySelect',{
            cls: 'info-popup',
            data: Ext.getStore('CategoryInfo').data
         },templates.popups.categoryInfo));
-        Ext.util.Observable.capture(this.infoPopup,function(e){
-            console.log(e)
-        });
         this.infoPopup.show();
    },
    showPopup: function(element){
-       if(this.popup) 
+       if(!this.popup){
+           var html = '';
+           switch(element.index){
+                case 0:
+                    html = templates.popups.productSelect.html;
+                    break;
+                case 1:
+                    html = templates.popups.medSelect.html;  
+                    break;
+                case 2:
+                    html = templates.popups.gasSelect.html;
+                    break;
+           }
+           this.popup = Ext.create('widget.simplepopup',{
+              html: html,
+              id: 'hint-popup',
+              ownerEl: element.getEl().down('.category-name')
+           });
+           this.popup.show()    
+       } 
+       else
             this.popup.close();
-       var html = '';
-       switch(element.index){
-            case 0:
-                html = templates.popups.productSelect.html;
-                break;
-            case 1:
-                html = templates.popups.medSelect.html;  
-                break;
-            case 2:
-                html = templates.popups.gasSelect.html;
-                break;
-       }
-       this.popup = Ext.create('widget.simplepopup',{
-          html: html,
-          ownerEl: element.getEl().down('.category-name')
-       });
-       this.popup.show()
+       
    }
 });

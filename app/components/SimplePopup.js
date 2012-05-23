@@ -2,6 +2,7 @@ Ext.define('Vzabote.view.SimplePopup',{
     extend: 'Ext.window.Window',
     alias: 'widget.simplepopup',
     cls: 'simple-popup',
+    closeOnViewportClick: true,
     header: false,
     border: false,
     closable: false,

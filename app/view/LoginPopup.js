@@ -3,6 +3,7 @@ Ext.define('Vzabote.view.LoginPopup',{
     alias: 'widget.loginpopup',
     width: 440,
     height: 300,
+    closeOnViewportClick: false,
     layout: {
         type: 'vbox',
         align: 'stretch'   

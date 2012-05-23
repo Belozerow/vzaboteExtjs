@@ -4,16 +4,30 @@ Ext.define('Vzabote.controller.Viewport',{
        ref: 'cardpanel',
        selector: '#cardpanel'
    }], 
+   windowsExceptions: ['loginpopup'],
    init: function(){
        this.control({
            //tabs active
-          '#header': {
+            '#header': {
               afterrender: function(me){
                 me.getEl().on('click',function(e,node){
                    this.setActiveTab(node.id); 
                 },this);
               }                  
-          } 
+            },
+            'viewport': {
+               afterrender: function(me){
+                    me.getTargetEl().on('mousedown',function(e,node){
+                        if(Ext.WindowMgr.front){
+                            var windowEl = Ext.WindowMgr.front.getEl();
+                            if(!windowEl.contains(node) && Ext.WindowMgr.front.closeOnViewportClick){
+                                    Ext.WindowMgr.front.close();
+                            }    
+                        }
+                        
+                    },this);
+               }
+            } 
        });
    },
    setActiveTab: function(id){
