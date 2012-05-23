@@ -20,6 +20,26 @@ Ext.define('Vzabote.controller.CategorySelect',{
                      }
                  },this)
              }
+          },
+          '#price-stat-button': {
+              click: function(){
+                  this.getController('Viewport').setActiveTab('pricestat');
+              }
+          },
+          'pricestat container': {
+              afterrender: function(me){
+                  me.getTargetEl().on('click',function(e,node){
+                     var el = Ext.get(e.getTarget());
+                     if(el.hasCls('info-icon')){
+                         this.showInfoPopup(el,me.index);
+                     }
+                 },this)
+              }
+          },
+          'pricestat button': {
+              click: function(){
+                  this.getController('Viewport').setActiveTab('mainpage')
+              }
           }
        });
    },

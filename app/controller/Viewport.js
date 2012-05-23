@@ -1,20 +1,15 @@
 Ext.define('Vzabote.controller.Viewport',{
    extend: 'Ext.app.Controller',
    refs: [{
-       ref: 'cardpanel',
+       ref: 'cardPanel',
        selector: '#cardpanel'
+   },{
+       ref: 'mainPage',
+       selector: 'mainpage'
    }], 
    windowsExceptions: ['loginpopup'],
    init: function(){
        this.control({
-           //tabs active
-            '#header': {
-              afterrender: function(me){
-                me.getEl().on('click',function(e,node){
-                   this.setActiveTab(node.id); 
-                },this);
-              }                  
-            },
             'viewport': {
                afterrender: function(me){
                     me.getTargetEl().on('mousedown',function(e,node){
@@ -30,15 +25,20 @@ Ext.define('Vzabote.controller.Viewport',{
             } 
        });
    },
-   setActiveTab: function(id){
-      var cardPanel = this.getCardpanel();
-      if(id=="list-tab"){
-          cardPanel.layout.setActiveItem(1)
-      }
-      else if(id == 'shops-tab')
-        cardPanel.layout.setActiveItem(2)
-      else 
-        cardPanel.layout.setActiveItem(0)
-   },
-   
+   setActiveTab: function(tab){
+       var cardPanel = this.getCardPanel();
+       console.log(this.getMainPage())
+       switch(tab){
+            case 'pricestat':
+                if(!this.pricestat){
+                    this.pricestat = Ext.create('Vzabote.view.PriceStat',{
+                    });
+                }            
+                cardPanel.layout.setActiveItem(this.pricestat)
+                break;
+            case 'mainpage':
+                cardPanel.layout.setActiveItem(0);
+            
+       }
+   }   
 });

@@ -46,10 +46,6 @@ Ext.define('Vzabote.view.Viewport',{
             layout: 'card',
             items: [{
                 xtype: 'mainpage'
-            },{
-                html: 'something'
-            },{
-                html: 'something else'
             }],
             flex: 4
         })
