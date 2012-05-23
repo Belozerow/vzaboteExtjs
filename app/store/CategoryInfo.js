@@ -1,0 +1,30 @@
+Ext.define('Vzabote.store.CategoryInfo',{
+    extend: 'Ext.data.Store',
+    requires: 'Vzabote.model.CategoryInfo',
+    model: 'Vzabote.model.CategoryInfo',
+    data: [
+        {name: 'Капуста', titleextra: '1 кг'},
+        {name: 'Соль', titleextra: '100 г'},
+        {name: 'Картофель', titleextra: '3 кг'},
+        {name: 'Морковь', titleextra: '1 кг'},
+        {name: 'Хлеб ржаной', titleextra: '500 г'},
+        {name: 'Пшено', titleextra: '500 г'},
+        {name: 'Масло сливочное', titleextra: '250 г'},
+        {name: 'Лук репчатый', titleextra: '500 г'},
+        {name: 'Вермишель', titleextra: '500 г'},
+        {name: 'Хлеб пшеничный', titleextra: '500 г'},
+        {name: 'Мука', titleextra: '1 кг'},
+        {name: 'Яйцо', titleextra: '10 шт.'},
+        {name: 'Куры', titleextra: '1 кг'},
+        {name: 'Рис', titleextra: '1 кг'},
+        {name: 'Крупа гречневая', titleextra: '1 кг'},
+        {name: 'Чай черный байховый', titleextra: '250 г'},
+        {name: 'Сахар-песок', titleextra: '500 г'},
+        {name: 'Молоко', titleextra: '1 л'},
+        {name: 'Яблоки', titleextra: '1 кг'},
+        {name: 'Масло подсолнечное', titleextra: '0.5 л'},
+        {name: 'Рыба', titleextra: '1 кг'},
+        {name: 'Говядина', titleextra: '1 кг'},
+        {name: 'Свинина', titleextra: '1 кг'}
+    ]
+})
