@@ -8574,7 +8574,7 @@ a.x-tab-close-btn:hover {
   vertical-align: middle;
   *vertical-align: auto;
   overflow: hidden; }
-  /* line 7, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+  /* line 7, ../../../../../../usr/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
   .x-surface {
     *display: inline; }
 
@@ -10035,10 +10035,12 @@ nav {
   #panel-1019 #panel-1019-body .x-box-inner {
     width: 97% !important; }
   /* line 226, ../sass/vzabote.scss */
+  #panel-1019 #panel-1019-body #button-1020 {
+    margin: 0px; }
+  /* line 229, ../sass/vzabote.scss */
   #panel-1019 #panel-1019-body button.x-btn-center {
     width: 154px;
     height: 30px !important;
-    position: absolute;
     border: 1px solid #acacaa;
     text-decoration: none;
     color: #18181a;

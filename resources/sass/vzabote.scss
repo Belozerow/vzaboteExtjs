@@ -223,11 +223,14 @@ nav {
     .x-box-inner {
       width: 97% !important;
     }
+    #button-1020 {
+      margin: 0px;
+    }
     button.x-btn-center {
       //display: block;
       width: 154px;
       height: 30px !important;
-      position: absolute;
+      //position: absolute !important;
       //top: -17px;
       border: 1px solid #acacaa;
       text-decoration: none;
