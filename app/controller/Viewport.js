@@ -6,7 +6,8 @@ Ext.define('Vzabote.controller.Viewport',{
    },{
        ref: 'mainPage',
        selector: 'mainpage'
-   }], 
+   }],
+   activeTab: 'mainpage',
    windowsExceptions: ['loginpopup'],
    init: function(){
        this.control({
@@ -18,27 +19,32 @@ Ext.define('Vzabote.controller.Viewport',{
                             if(!windowEl.contains(node) && Ext.WindowMgr.front.closeOnViewportClick){
                                     Ext.WindowMgr.front.close();
                             }    
-                        }
-                        
+                        }                        
                     },this);
                }
             } 
        });
-   },
+   },   
    setActiveTab: function(tab){
-       var cardPanel = this.getCardPanel();
-       console.log(this.getMainPage())
-       switch(tab){
-            case 'pricestat':
-                if(!this.pricestat){
-                    this.pricestat = Ext.create('Vzabote.view.PriceStat',{
-                    });
-                }            
-                cardPanel.layout.setActiveItem(this.pricestat)
-                break;
-            case 'mainpage':
-                cardPanel.layout.setActiveItem(0);
-            
+//        close all windows
+       if(this.activeTab!=tab){
+           this.activeTab = tab;
+           while(Ext.WindowMgr.front){
+                Ext.WindowMgr.front.close();
+           } 
+           var cardPanel = this.getCardPanel();
+           switch(tab){
+                case 'pricestat':
+                    if(!this.pricestat){
+                        this.pricestat = Ext.create('Vzabote.view.PriceStat',{
+                        });
+                    }            
+                    cardPanel.layout.setActiveItem(this.pricestat)
+                    break;
+                case 'mainpage':
+                    cardPanel.layout.setActiveItem(0);
+                    break;
+           }   
        }
    }   
 });

@@ -23,7 +23,7 @@ Ext.define('Vzabote.controller.CategorySelect',{
           },
           '#price-stat-button': {
               click: function(){
-                  this.getController('Viewport').setActiveTab('pricestat');
+                  Vzabote.router.dispatch('/pricestat');
               }
           },
           'pricestat container': {
@@ -38,7 +38,7 @@ Ext.define('Vzabote.controller.CategorySelect',{
           },
           'pricestat button': {
               click: function(){
-                  this.getController('Viewport').setActiveTab('mainpage')
+                  Vzabote.router.dispatch('/index');
               }
           }
        });
@@ -57,23 +57,22 @@ Ext.define('Vzabote.controller.CategorySelect',{
    },
    showPopup: function(element){
        if(!this.popup){
-           var html = '';
+           var tpl = '';
            switch(element.index){
                 case 0:
-                    html = templates.popups.productSelect.html;
+                    tpl = templates.popups.productSelect;
                     break;
                 case 1:
-                    html = templates.popups.medSelect.html;  
+                    tpl = templates.popups.medSelect;  
                     break;
                 case 2:
-                    html = templates.popups.gasSelect.html;
+                    tpl = templates.popups.gasSelect;
                     break;
            }
-           this.popup = Ext.create('widget.simplepopup',{
-              html: html,
+           this.popup = Ext.create('widget.simplepopup',Ext.apply({
               id: 'hint-popup',
               ownerEl: element.getEl().down('.category-name')
-           });
+           },tpl));
            this.popup.show()    
        } 
        else
