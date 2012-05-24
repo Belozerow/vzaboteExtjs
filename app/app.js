@@ -2,8 +2,8 @@ Ext.require('Ext.container.Viewport');
 Ext.application({
     name: 'Vzabote',
     autoCreateViewport: true,
-    models: ['Category','CategoryInfo'],
-    stores: ['Categories','CategoryInfo'],
+    models: ['Category','CategoryInfo','Product'],
+    stores: ['Categories','CategoryInfo','Products'],
     controllers: ['Viewport','CategorySelect','Login'],
     launch: function(){
         Ext.getStore('Categories').load();

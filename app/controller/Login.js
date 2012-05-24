@@ -6,12 +6,12 @@ Ext.define('Vzabote.controller.Login',{
    }],
    init: function(){
        this.control({
-          '#header #login-button': {
+          '#header #viewport-loginbutton': {
               click: function(){
                   this.showLogin();
               }
           },
-          'loginpopup #login-button-on-popup': {
+          'loginpopup #loginpopup-login-button': {
                 click: function(){
                     this.getLoginPopup().close(true);
                 }
