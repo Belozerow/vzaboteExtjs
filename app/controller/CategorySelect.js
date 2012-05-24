@@ -6,7 +6,7 @@ Ext.define('Vzabote.controller.CategorySelect',{
    }],
    init: function(){
        this.control({
-          '#category-panel > container': {
+          '#mainpage-categoriespanel > container': {
              afterlayout:function(me){
                  //для первой, не совсем понятно как должно быть
                  if(me.index == 0){

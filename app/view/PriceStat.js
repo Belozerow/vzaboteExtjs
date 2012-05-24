@@ -8,6 +8,7 @@ Ext.define('Vzabote.view.PriceStat',{
        this.addDocked(Ext.apply({
            id: 'pricestat-title'
        },templates.pricestat.title))
+       //Можно/нужно было dataview использовать
        var index = 0;
        Ext.getStore('Categories').each(function(item){
           this.add(Ext.apply({
