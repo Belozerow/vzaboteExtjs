@@ -23,10 +23,30 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             var itemEl = this.dataView.getEl().first('.scrollable-dataview-item');
             this.itemElWidth = itemEl.getWidth() + itemEl.getMargin().left + itemEl.getMargin().right;
             this.dataView.setWidth(this.store.getCount()*this.itemElWidth);
+            
+            this.ddTracker = new Ext.dd.DragTracker({
+                el: this.dataView.getEl(),
+                prevPos: 0,
+                listeners: {
+                    dragstart: function(e){
+                        this.ddTracker.prevPos = e.startXY[0];
+                        console.log('dragstart');
+                    },
+                    dragend: function(e){
+                        console.log('dragend')
+                    },
+                    drag: function(e){
+                        this.scrollTo(this.ddTracker.prevPos - e.lastXY[0])
+                        this.ddTracker.prevPos = e.lastXY[0];
+                    },
+                    scope: this
+                }
+            });
+            // Ext.util.Observable.capture(ddTracker,function(e){
+                // console.log(arguments)
+            // },this)
         },this);
-        Ext.util.Observable.capture(this.dataView,function(){
-            console.log(arguments)
-        },this)
+        
         this.addDocked({
             xtype: 'panel',
             height: 50,
@@ -65,15 +85,15 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         })
         
     },
-    scrollLeft: function(){
-        // if(this.getWidth()+this.dataView.getX())
+    scrollTo: function(diff){
         var el = this.dataView.getEl();
-        el.scrollBy(100,100,true)
-    },
-    scrollRight: function(){
-        this.dataView.getEl().animate({
-            to: {x:this.dataView.getEl().getX()-100}
-        })
-                
+        el.setX(el.getX()-diff)
+        // if(el.getActiveAnimation()){
+            // el.getActiveAnimation().end()
+        // }
+        // el.animate({
+            // to: {x: el.getX()+diff},
+            // duration: 20
+        // });                
     }
 })
