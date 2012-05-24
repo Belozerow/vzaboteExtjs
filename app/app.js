@@ -7,6 +7,9 @@ Ext.application({
     controllers: ['Viewport','CategorySelect','Login'],
     launch: function(){
         Ext.getStore('Categories').load();
+        Vzabote.router.initRoutes(this);
+        
     }
 })
 Ext.ns('templates');
+Ext.ns('Vzabote.router');

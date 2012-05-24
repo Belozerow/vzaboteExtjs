@@ -33,9 +33,9 @@ Ext.define('Vzabote.view.SimplePopup',{
         this.getEl().fadeIn(this.anim);
     },
     close: function(withAnimation){
-        if(this.getActiveAnimation().running)
+        if(this.getActiveAnimation())
             this.getActiveAnimation().end();
-        if(withAnimation){
+        if(withAnimation&&this.getEl()){
             this.getEl().fadeOut(this.closeAnim)
         } 
         else

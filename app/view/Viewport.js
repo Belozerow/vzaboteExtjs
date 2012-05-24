@@ -26,6 +26,7 @@ Ext.define('Vzabote.view.Viewport',{
                 {
                     xtype: 'panel',
                     cls: 'login-panel',
+                    id: 'viewport-loginpanel',
                     flex: 1,
                     layout: {
                         type: 'hbox',
@@ -34,7 +35,7 @@ Ext.define('Vzabote.view.Viewport',{
                     items: [
                         Ext.apply({
                             xtype: 'button',
-                            id: 'login-button',
+                            id: 'viewport-loginbutton',
                         },templates.viewport.login)
                     ]
                 },
@@ -46,10 +47,6 @@ Ext.define('Vzabote.view.Viewport',{
             layout: 'card',
             items: [{
                 xtype: 'mainpage'
-            },{
-                html: 'something'
-            },{
-                html: 'something else'
             }],
             flex: 4
         })
@@ -64,11 +61,13 @@ Ext.define('Vzabote.view.Viewport',{
             },
             items: [
                 Ext.apply({
-                  flex: 3  
+                  flex: 3,
+                  id: 'viewport-copyright'  
                 },templates.viewport.footer),
                 {
                     xtype: 'panel',
                     cls: 'add-shop-panel',
+                    id: 'viewport-addshop',
                     flex: 1,
                     layout: {
                         type: 'hbox',
@@ -76,6 +75,7 @@ Ext.define('Vzabote.view.Viewport',{
                     },
                     items: [
                         Ext.apply({
+                            id: 'viewport-addshop-button',
                             xtype: 'button',
                         },templates.viewport.addshop)
                     ]
