@@ -9814,12 +9814,16 @@ svg, vml {
     direction: rtl;
     unicode-bidi: bidi-override; }
 
-/* line 4, ../sass/vzabote.scss */
+/* line 1, ../sass/scrollabledataview.scss */
+.scrollable-dataview-item {
+  display: inline-block; }
+
+/* line 5, ../sass/vzabote.scss */
 html {
   height: 100%;
   background: url(../images/pattern_bg.png); }
 
-/* line 8, ../sass/vzabote.scss */
+/* line 9, ../sass/vzabote.scss */
 header, nav, section, article, aside, footer {
   display: block; }
 
@@ -9859,7 +9863,7 @@ header, nav, section, article, aside, footer {
   font-weight: normal;
   font-style: normal; }
 
-/* line 66, ../sass/vzabote.scss */
+/* line 67, ../sass/vzabote.scss */
 .x-body {
   color: black;
   height: 100%;
@@ -9867,97 +9871,97 @@ header, nav, section, article, aside, footer {
   line-height: 18px;
   font-family: HelveticaNeueCyr; }
 
-/* line 74, ../sass/vzabote.scss */
+/* line 75, ../sass/vzabote.scss */
 a {
   color: blue;
   outline: none;
   text-decoration: underline; }
 
-/* line 79, ../sass/vzabote.scss */
+/* line 80, ../sass/vzabote.scss */
 a:hover {
   text-decoration: none; }
 
-/* line 82, ../sass/vzabote.scss */
+/* line 83, ../sass/vzabote.scss */
 p {
   margin: 0 0 18px; }
 
-/* line 85, ../sass/vzabote.scss */
+/* line 86, ../sass/vzabote.scss */
 img {
   border: none; }
 
-/* line 88, ../sass/vzabote.scss */
+/* line 89, ../sass/vzabote.scss */
 input {
   vertical-align: middle; }
 
-/* line 92, ../sass/vzabote.scss */
+/* line 93, ../sass/vzabote.scss */
 .x-panel-default {
   border: none; }
 
-/* line 95, ../sass/vzabote.scss */
+/* line 96, ../sass/vzabote.scss */
 .x-panel-body-default {
   background: none;
   border: none;
   color: black; }
-  /* line 99, ../sass/vzabote.scss */
+  /* line 100, ../sass/vzabote.scss */
   .x-panel-body-default .category-name {
     font-size: 24px;
     margin-top: -20px;
     color: #68113e; }
-    /* line 103, ../sass/vzabote.scss */
+    /* line 104, ../sass/vzabote.scss */
     .x-panel-body-default .category-name a {
       color: #68113e;
       text-decoration: none; }
-  /* line 105, ../sass/vzabote.scss */
+  /* line 106, ../sass/vzabote.scss */
   .x-panel-body-default .category-sub-name {
     font-size: 16px;
     height: 34px;
     margin: 20px 0;
     width: 130px;
     float: left; }
-  /* line 112, ../sass/vzabote.scss */
+  /* line 113, ../sass/vzabote.scss */
   .x-panel-body-default .info-icon {
     width: 26px;
     height: 26px;
     float: right;
     margin-top: 20px;
     background: url(../images/info-icon.png); }
-  /* line 119, ../sass/vzabote.scss */
+  /* line 120, ../sass/vzabote.scss */
   .x-panel-body-default .x-container {
     padding-right: 25px; }
-    /* line 121, ../sass/vzabote.scss */
+    /* line 122, ../sass/vzabote.scss */
     .x-panel-body-default .x-container .list {
       font-size: 14px;
       clear: both; }
-      /* line 124, ../sass/vzabote.scss */
+      /* line 125, ../sass/vzabote.scss */
       .x-panel-body-default .x-container .list li {
         border-bottom: 1px dotted #abaaa8;
         height: 14px;
         margin-bottom: 10px; }
-        /* line 128, ../sass/vzabote.scss */
+        /* line 129, ../sass/vzabote.scss */
         .x-panel-body-default .x-container .list li span {
           height: 15px;
           background: #f0eeef; }
-        /* line 129, ../sass/vzabote.scss */
+        /* line 130, ../sass/vzabote.scss */
         .x-panel-body-default .x-container .list li .price {
           float: right; }
-          /* line 131, ../sass/vzabote.scss */
+          /* line 132, ../sass/vzabote.scss */
           .x-panel-body-default .x-container .list li .price .rub {
             font-family: ALSRublRegular;
             font-weight: lighter; }
-          /* line 132, ../sass/vzabote.scss */
+          /* line 133, ../sass/vzabote.scss */
           .x-panel-body-default .x-container .list li .price .price-change-down {
             width: 10px;
             height: 12px;
             display: inline-block;
             background: url(../images/greenarr.gif) no-repeat right; }
-          /* line 138, ../sass/vzabote.scss */
+          /* line 139, ../sass/vzabote.scss */
           .x-panel-body-default .x-container .list li .price .price-change-up {
             width: 10px;
             height: 12px;
             display: inline-block;
             background: url(../images/redarr.gif) no-repeat right; }
 
-/* line 151, ../sass/vzabote.scss */
+/* line 152, ../sass/vzabote.scss */
 #mainpage-title #mainpage-title-body {
   font-family: Noteworthy;
   font-size: 24px;
@@ -9967,29 +9971,29 @@ input {
   margin: 0 auto;
   margin-top: 16px; }
 
-/* line 162, ../sass/vzabote.scss */
+/* line 163, ../sass/vzabote.scss */
 #mainpage-categoriespanel {
   padding: 0 30px; }
 
-/* line 169, ../sass/vzabote.scss */
+/* line 170, ../sass/vzabote.scss */
 .x-panel .x-panel-body .x-box-inner .x-btn-default-small {
   background-color: transparent;
   background-image: none;
   border: none;
   margin: 20px 30px 0 0; }
-/* line 175, ../sass/vzabote.scss */
+/* line 176, ../sass/vzabote.scss */
 .x-panel .x-panel-body .x-box-inner .login {
   display: inline-block;
   width: 36px;
   height: 35px;
   background: url(../images/profile.png) no-repeat; }
 
-/* line 185, ../sass/vzabote.scss */
+/* line 186, ../sass/vzabote.scss */
 nav {
   position: absolute;
   z-index: 1;
   margin-top: 7px; }
-  /* line 189, ../sass/vzabote.scss */
+  /* line 190, ../sass/vzabote.scss */
   nav a {
     display: inline-block;
     height: 36px;
@@ -10000,14 +10004,14 @@ nav {
     font-family: HelveticaNeueCyr;
     font-size: 13px;
     font-weight: bold; }
-  /* line 200, ../sass/vzabote.scss */
+  /* line 201, ../sass/vzabote.scss */
   nav .home-tab {
     width: 171px;
     height: 71px;
     z-index: 3;
     position: absolute;
     background: url(../images/home.png) center right no-repeat; }
-  /* line 207, ../sass/vzabote.scss */
+  /* line 208, ../sass/vzabote.scss */
   nav .choose-tab {
     width: 142px;
     z-index: 4;
@@ -10015,7 +10019,7 @@ nav {
     left: 161px;
     top: 12px;
     background: url(../images/choose-tab.png) center right no-repeat; }
-  /* line 215, ../sass/vzabote.scss */
+  /* line 216, ../sass/vzabote.scss */
   nav .list-tab {
     width: 137px;
     z-index: 5;
@@ -10023,7 +10027,7 @@ nav {
     position: absolute;
     left: 295px;
     background: url(../images/list-tab.png) center right no-repeat; }
-  /* line 223, ../sass/vzabote.scss */
+  /* line 224, ../sass/vzabote.scss */
   nav .shops-tab {
     width: 133px;
     z-index: 6;
@@ -10032,11 +10036,11 @@ nav {
     top: 12px;
     background: url(../images/shops-tab.png) center right no-repeat; }
 
-/* line 233, ../sass/vzabote.scss */
+/* line 234, ../sass/vzabote.scss */
 #mainpage-pricestat {
   margin: 0 30px;
   background: url(../images/hr.gif) center right repeat-x; }
-  /* line 238, ../sass/vzabote.scss */
+  /* line 239, ../sass/vzabote.scss */
   #mainpage-pricestat #mainpage-pricestat-body #mainpage-pricestat-button {
     top: 5px !important;
     font-size: 16px;
@@ -10062,7 +10066,7 @@ nav {
     border-radius: 3px;
     text-shadow: 0px 1px 0px white; }
 
-/* line 256, ../sass/vzabote.scss */
+/* line 257, ../sass/vzabote.scss */
 #panel-1019 #panel-1019-body {
   margin-left: 3%;
   -moz-box-shadow: 0px 1px 0px white inset;
@@ -10071,13 +10075,13 @@ nav {
   box-shadow: 0px 1px 0px white inset;
   border-top: 1px solid #c5c1c0;
   position: relative; }
-  /* line 261, ../sass/vzabote.scss */
+  /* line 262, ../sass/vzabote.scss */
   #panel-1019 #panel-1019-body .x-box-inner {
     width: 97% !important; }
-  /* line 264, ../sass/vzabote.scss */
+  /* line 265, ../sass/vzabote.scss */
   #panel-1019 #panel-1019-body #button-1020 {
     margin: 0px; }
-  /* line 267, ../sass/vzabote.scss */
+  /* line 268, ../sass/vzabote.scss */
   #panel-1019 #panel-1019-body button.x-btn-center {
     color: #18181a;
     border: 1px solid #acacaa;

@@ -46,6 +46,7 @@ Ext.define('Vzabote.view.Viewport',{
             xtype: 'panel',
             id: 'cardpanel',
             layout: 'card',
+            cls: 'cardpanel',
             items: [{
                 xtype: 'mainpage'
             }],

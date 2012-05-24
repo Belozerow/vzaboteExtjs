@@ -4,7 +4,7 @@ Ext.application({
     autoCreateViewport: true,
     models: ['Category','CategoryInfo','Product'],
     stores: ['Categories','CategoryInfo','Products'],
-    controllers: ['Viewport','CategorySelect','Login'],
+    controllers: ['Viewport','CategorySelect','Login','Product'],
     launch: function(){
         Ext.getStore('Categories').load();
         Vzabote.router.initRoutes(this);
