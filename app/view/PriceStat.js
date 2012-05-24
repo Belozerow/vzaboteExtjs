@@ -6,6 +6,7 @@ Ext.define('Vzabote.view.PriceStat',{
        this.callParent();
        
        this.addDocked(Ext.apply({
+           id: 'pricestat-title'
        },templates.pricestat.title))
        var index = 0;
        Ext.getStore('Categories').each(function(item){
@@ -13,6 +14,7 @@ Ext.define('Vzabote.view.PriceStat',{
               xtype: 'container',
               data: item.data,
               columnWidth: .25,
+              id: 'pricestat-cat-'+index,
               index: index
           },templates.pricestat.stat))
           index++; 
@@ -21,9 +23,11 @@ Ext.define('Vzabote.view.PriceStat',{
        this.addDocked({
            xtype: 'panel',
            dock: 'bottom',
+           id: 'pricestat-bottom',
            items: Ext.apply({
                xtype: 'button',
                href: '#/index',
+               id: 'pricestat-back',
                hrefTarget: '_self'
            },templates.pricestat.goback)
        })

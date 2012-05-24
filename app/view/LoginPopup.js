@@ -1,6 +1,7 @@
 Ext.define('Vzabote.view.LoginPopup',{
     extend: 'Vzabote.view.SimplePopup',
     alias: 'widget.loginpopup',
+    id: 'loginpopup',
     width: 440,
     height: 300,
     closeOnViewportClick: false,
@@ -12,6 +13,7 @@ Ext.define('Vzabote.view.LoginPopup',{
         this.callParent();
         this.add({
             xtype: 'panel',
+            id: 'loginpopup-tabpanel',
             cls: 'login-tab-panel',
             flex: 1,
             layout: {
@@ -26,6 +28,7 @@ Ext.define('Vzabote.view.LoginPopup',{
                 },templates.login.tabs),
                 {
                     xtype: 'panel',
+                    id: 'loginpopup-button-panel',
                     flex: 1,
                     layout: {
                         type: 'hbox',
@@ -34,7 +37,7 @@ Ext.define('Vzabote.view.LoginPopup',{
                     items: [
                         Ext.apply({
                             xtype: 'button',
-                            id: 'login-button-on-popup',
+                            id: 'loginpopup-login-button',
                         },templates.viewport.login)
                     ]
                 }
@@ -43,6 +46,7 @@ Ext.define('Vzabote.view.LoginPopup',{
         });
         this.cardPanel = this.add({
             xtype: 'panel',
+            id: 'loginpopup-cards',
             layout: 'card',
             id: 'login-card',
             flex: 3            
@@ -52,7 +56,7 @@ Ext.define('Vzabote.view.LoginPopup',{
         this.loginForm = Ext.create('Ext.form.Panel',{
                     xtype: 'form',
                     flex: 5,
-                    id: 'login-form',
+                    id: 'loginpopup-loginform',
                     items: [
                     Ext.apply({},templates.login.neironLogin),
                     {
@@ -72,6 +76,7 @@ Ext.define('Vzabote.view.LoginPopup',{
                     },
                     {
                         xtype: 'button',
+                        id: 'loginpopup-loginbutton',
                         text: 'Вход',
                         handler: function(){
                             this.loginForm.submit();
@@ -82,7 +87,8 @@ Ext.define('Vzabote.view.LoginPopup',{
                     ]
                 })
         this.loginBy = Ext.create('Ext.form.Panel',Ext.apply({
-            flex: 4
+            flex: 4,
+            id: 'loginpopup-loginby'
         },templates.login.loginBy));
         this.loginCardItem = Ext.create('Ext.panel.Panel',{
             layout: {
@@ -90,6 +96,7 @@ Ext.define('Vzabote.view.LoginPopup',{
                 align: 'stretch',
                 pack: 'center'
             },
+            id: 'loginpopup-logincard',
             items: [
                 this.loginForm,
                 this.loginBy
@@ -100,7 +107,7 @@ Ext.define('Vzabote.view.LoginPopup',{
         this.regCardItem = Ext.create('Ext.form.Panel',{
                     xtype: 'form',
                     flex: 5,
-                    id: 'reg-form',
+                    id: 'loginpopup-regform',
                     items: [
                     Ext.apply({},templates.login.neironReg),
                     {
@@ -120,6 +127,7 @@ Ext.define('Vzabote.view.LoginPopup',{
                     },
                     {
                         xtype: 'button',
+                        id: 'loginpopup-regbutton',
                         text: 'Зарегистрироваться',
                         handler: function(){
                             this.regCardItem.submit();
