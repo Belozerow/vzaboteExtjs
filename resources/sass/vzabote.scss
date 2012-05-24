@@ -59,6 +59,10 @@ header, nav, section, article, aside, footer {
     font-style: normal;
 }
 
+#header {
+
+}
+
 .x-body {
   color: black;
   height: 100%;
@@ -103,11 +107,20 @@ input {
     height: 34px;
     margin: 20px 0;
     width: 130px;
+    float: left;
+  }
+  .info-icon {
+    width: 26px;
+    height: 26px;
+    float: right;
+    margin-top: 20px;
+    background: url(../images/info-icon.png);
   }
   .x-container {
     padding-right: 25px;
     .list {
       font-size: 14px;
+      clear: both;
       li {
         border-bottom: 1px dotted #abaaa8;
         height: 14px;
@@ -134,16 +147,19 @@ input {
   }
 }
 
-#panel-1014-body {
-  font-family: Noteworthy;
-  font-size: 24px;
-  text-align: center;
-  width: 310px;
-  line-height: 28px;
-  margin: 0 auto;
+#mainpage-title {
+  #mainpage-title-body {
+    font-family: Noteworthy;
+    font-size: 24px;
+    text-align: center;
+    width: 310px !important;
+    line-height: 28px;
+    margin: 0 auto;
+    margin-top: 16px;
+  }
 }
 
-#panel-1015 {
+#mainpage-categoriespanel {
   padding: 0 30px;
 }
 
@@ -177,7 +193,7 @@ nav {
     text-align: center;
     text-decoration: none;
     color: #fff;
-    font-family: Helvetica;
+    font-family: HelveticaNeueCyr;
     font-size: 13px;
     font-weight: bold;
   }
@@ -214,6 +230,28 @@ nav {
   }
 }
 
+#mainpage-pricestat {
+  margin: 0 30px;
+  background: url(../images/hr.gif) center right repeat-x;
+  #mainpage-pricestat-body {
+    
+    #mainpage-pricestat-button {
+      top: 5px !important;
+      font-size: 16px;
+      color: #18181a;
+      border: 1px solid #acacaa;
+      text-decoration: none;
+      width: 154px;
+      height: 30px !important;
+      background-color: #ffffff; // Old browsers
+      @include filter-gradient(#ffffff, #f5f4f0, vertical); // IE6-9
+      @include background-image(linear-gradient(top,  #ffffff 0%,#ded9d3 4%,#e8e5e0 50%,#f5f4f0 100%));
+      @include border-radius(3px);
+      @include text-shadow(0px 1px 0px #fff);
+    }
+  }
+}
+
 #panel-1019 {
   #panel-1019-body {
     margin-left: 3%;
@@ -228,15 +266,16 @@ nav {
     }
     button.x-btn-center {
       //display: block;
-      width: 154px;
-      height: 30px !important;
+      
       //position: absolute !important;
       //top: -17px;
-      border: 1px solid #acacaa;
-      text-decoration: none;
+      
       //text-align: center;
       color: #18181a;
-      // needs latest Compass, add '@import "compass"' to your scss
+      border: 1px solid #acacaa;
+      text-decoration: none;
+      width: 154px;
+      height: 30px !important;
       background-color: #ffffff; // Old browsers
       @include filter-gradient(#ffffff, #f5f4f0, vertical); // IE6-9
       @include background-image(linear-gradient(top,  #ffffff 0%,#ded9d3 4%,#e8e5e0 50%,#f5f4f0 100%));

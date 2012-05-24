@@ -9859,7 +9859,7 @@ header, nav, section, article, aside, footer {
   font-weight: normal;
   font-style: normal; }
 
-/* line 62, ../sass/vzabote.scss */
+/* line 66, ../sass/vzabote.scss */
 .x-body {
   color: black;
   height: 100%;
@@ -9867,119 +9867,129 @@ header, nav, section, article, aside, footer {
   line-height: 18px;
   font-family: HelveticaNeueCyr; }
 
-/* line 70, ../sass/vzabote.scss */
+/* line 74, ../sass/vzabote.scss */
 a {
   color: blue;
   outline: none;
   text-decoration: underline; }
 
-/* line 75, ../sass/vzabote.scss */
+/* line 79, ../sass/vzabote.scss */
 a:hover {
   text-decoration: none; }
 
-/* line 78, ../sass/vzabote.scss */
+/* line 82, ../sass/vzabote.scss */
 p {
   margin: 0 0 18px; }
 
-/* line 81, ../sass/vzabote.scss */
+/* line 85, ../sass/vzabote.scss */
 img {
   border: none; }
 
-/* line 84, ../sass/vzabote.scss */
+/* line 88, ../sass/vzabote.scss */
 input {
   vertical-align: middle; }
 
-/* line 88, ../sass/vzabote.scss */
+/* line 92, ../sass/vzabote.scss */
 .x-panel-default {
   border: none; }
 
-/* line 91, ../sass/vzabote.scss */
+/* line 95, ../sass/vzabote.scss */
 .x-panel-body-default {
   background: none;
   border: none;
   color: black; }
-  /* line 95, ../sass/vzabote.scss */
+  /* line 99, ../sass/vzabote.scss */
   .x-panel-body-default .category-name {
     font-size: 24px;
     margin-top: -20px;
     color: #68113e; }
-    /* line 99, ../sass/vzabote.scss */
+    /* line 103, ../sass/vzabote.scss */
     .x-panel-body-default .category-name a {
       color: #68113e;
       text-decoration: none; }
-  /* line 101, ../sass/vzabote.scss */
+  /* line 105, ../sass/vzabote.scss */
   .x-panel-body-default .category-sub-name {
     font-size: 16px;
     height: 34px;
     margin: 20px 0;
-    width: 130px; }
-  /* line 107, ../sass/vzabote.scss */
+    width: 130px;
+    float: left; }
+  /* line 112, ../sass/vzabote.scss */
+  .x-panel-body-default .info-icon {
+    width: 26px;
+    height: 26px;
+    float: right;
+    margin-top: 20px;
+    background: url(../images/info-icon.png); }
+  /* line 119, ../sass/vzabote.scss */
   .x-panel-body-default .x-container {
     padding-right: 25px; }
-    /* line 109, ../sass/vzabote.scss */
+    /* line 121, ../sass/vzabote.scss */
     .x-panel-body-default .x-container .list {
-      font-size: 14px; }
-      /* line 111, ../sass/vzabote.scss */
+      font-size: 14px;
+      clear: both; }
+      /* line 124, ../sass/vzabote.scss */
       .x-panel-body-default .x-container .list li {
         border-bottom: 1px dotted #abaaa8;
         height: 14px;
         margin-bottom: 10px; }
-        /* line 115, ../sass/vzabote.scss */
+        /* line 128, ../sass/vzabote.scss */
         .x-panel-body-default .x-container .list li span {
           height: 15px;
           background: #f0eeef; }
-        /* line 116, ../sass/vzabote.scss */
+        /* line 129, ../sass/vzabote.scss */
         .x-panel-body-default .x-container .list li .price {
           float: right; }
-          /* line 118, ../sass/vzabote.scss */
+          /* line 131, ../sass/vzabote.scss */
           .x-panel-body-default .x-container .list li .price .rub {
             font-family: ALSRublRegular;
             font-weight: lighter; }
-          /* line 119, ../sass/vzabote.scss */
+          /* line 132, ../sass/vzabote.scss */
           .x-panel-body-default .x-container .list li .price .price-change-down {
             width: 10px;
             height: 12px;
             display: inline-block;
             background: url(../images/greenarr.gif) no-repeat right; }
-          /* line 125, ../sass/vzabote.scss */
+          /* line 138, ../sass/vzabote.scss */
           .x-panel-body-default .x-container .list li .price .price-change-up {
             width: 10px;
             height: 12px;
             display: inline-block;
             background: url(../images/redarr.gif) no-repeat right; }
 
-/* line 137, ../sass/vzabote.scss */
-#panel-1014-body {
+/* line 151, ../sass/vzabote.scss */
+#mainpage-title #mainpage-title-body {
   font-family: Noteworthy;
   font-size: 24px;
   text-align: center;
-  width: 310px;
+  width: 310px !important;
   line-height: 28px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  margin-top: 16px; }
 
-/* line 146, ../sass/vzabote.scss */
-#panel-1015 {
+/* line 162, ../sass/vzabote.scss */
+#mainpage-categoriespanel {
   padding: 0 30px; }
 
-/* line 153, ../sass/vzabote.scss */
+/* line 169, ../sass/vzabote.scss */
 .x-panel .x-panel-body .x-box-inner .x-btn-default-small {
   background-color: transparent;
   background-image: none;
   border: none;
   margin: 20px 30px 0 0; }
-/* line 159, ../sass/vzabote.scss */
+/* line 175, ../sass/vzabote.scss */
 .x-panel .x-panel-body .x-box-inner .login {
   display: inline-block;
   width: 36px;
   height: 35px;
   background: url(../images/profile.png) no-repeat; }
 
-/* line 169, ../sass/vzabote.scss */
+/* line 185, ../sass/vzabote.scss */
 nav {
   position: absolute;
   z-index: 1;
   margin-top: 7px; }
-  /* line 173, ../sass/vzabote.scss */
+  /* line 189, ../sass/vzabote.scss */
   nav a {
     display: inline-block;
     height: 36px;
@@ -9987,17 +9997,17 @@ nav {
     text-align: center;
     text-decoration: none;
     color: #fff;
-    font-family: Helvetica;
+    font-family: HelveticaNeueCyr;
     font-size: 13px;
     font-weight: bold; }
-  /* line 184, ../sass/vzabote.scss */
+  /* line 200, ../sass/vzabote.scss */
   nav .home-tab {
     width: 171px;
     height: 71px;
     z-index: 3;
     position: absolute;
     background: url(../images/home.png) center right no-repeat; }
-  /* line 191, ../sass/vzabote.scss */
+  /* line 207, ../sass/vzabote.scss */
   nav .choose-tab {
     width: 142px;
     z-index: 4;
@@ -10005,7 +10015,7 @@ nav {
     left: 161px;
     top: 12px;
     background: url(../images/choose-tab.png) center right no-repeat; }
-  /* line 199, ../sass/vzabote.scss */
+  /* line 215, ../sass/vzabote.scss */
   nav .list-tab {
     width: 137px;
     z-index: 5;
@@ -10013,7 +10023,7 @@ nav {
     position: absolute;
     left: 295px;
     background: url(../images/list-tab.png) center right no-repeat; }
-  /* line 207, ../sass/vzabote.scss */
+  /* line 223, ../sass/vzabote.scss */
   nav .shops-tab {
     width: 133px;
     z-index: 6;
@@ -10022,7 +10032,37 @@ nav {
     top: 12px;
     background: url(../images/shops-tab.png) center right no-repeat; }
 
-/* line 218, ../sass/vzabote.scss */
+/* line 233, ../sass/vzabote.scss */
+#mainpage-pricestat {
+  margin: 0 30px;
+  background: url(../images/hr.gif) center right repeat-x; }
+  /* line 238, ../sass/vzabote.scss */
+  #mainpage-pricestat #mainpage-pricestat-body #mainpage-pricestat-button {
+    top: 5px !important;
+    font-size: 16px;
+    color: #18181a;
+    border: 1px solid #acacaa;
+    text-decoration: none;
+    width: 154px;
+    height: 30px !important;
+    background-color: #ffffff;
+    *zoom: 1;
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFFFFFFF', endColorstr='#FFF5F4F0');
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(4%, #ded9d3), color-stop(50%, #e8e5e0), color-stop(100%, #f5f4f0));
+    background-image: -webkit-linear-gradient(top, #ffffff 0%, #ded9d3 4%, #e8e5e0 50%, #f5f4f0 100%);
+    background-image: -moz-linear-gradient(top, #ffffff 0%, #ded9d3 4%, #e8e5e0 50%, #f5f4f0 100%);
+    background-image: -o-linear-gradient(top, #ffffff 0%, #ded9d3 4%, #e8e5e0 50%, #f5f4f0 100%);
+    background-image: -ms-linear-gradient(top, #ffffff 0%, #ded9d3 4%, #e8e5e0 50%, #f5f4f0 100%);
+    background-image: linear-gradient(top, #ffffff 0%, #ded9d3 4%, #e8e5e0 50%, #f5f4f0 100%);
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -o-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    border-radius: 3px;
+    text-shadow: 0px 1px 0px white; }
+
+/* line 256, ../sass/vzabote.scss */
 #panel-1019 #panel-1019-body {
   margin-left: 3%;
   -moz-box-shadow: 0px 1px 0px white inset;
@@ -10031,19 +10071,19 @@ nav {
   box-shadow: 0px 1px 0px white inset;
   border-top: 1px solid #c5c1c0;
   position: relative; }
-  /* line 223, ../sass/vzabote.scss */
+  /* line 261, ../sass/vzabote.scss */
   #panel-1019 #panel-1019-body .x-box-inner {
     width: 97% !important; }
-  /* line 226, ../sass/vzabote.scss */
+  /* line 264, ../sass/vzabote.scss */
   #panel-1019 #panel-1019-body #button-1020 {
     margin: 0px; }
-  /* line 229, ../sass/vzabote.scss */
+  /* line 267, ../sass/vzabote.scss */
   #panel-1019 #panel-1019-body button.x-btn-center {
-    width: 154px;
-    height: 30px !important;
+    color: #18181a;
     border: 1px solid #acacaa;
     text-decoration: none;
-    color: #18181a;
+    width: 154px;
+    height: 30px !important;
     background-color: #ffffff;
     *zoom: 1;
     filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFFFFFFF', endColorstr='#FFF5F4F0');

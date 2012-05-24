@@ -18,6 +18,7 @@ Ext.define('Vzabote.view.MainPage',{
            },
            items: [Ext.apply({
                    flex: 2,
+                   //height: 105,
                    id: 'mainpage-title'
            },templates.mainpage.title)],
            flex: 3
