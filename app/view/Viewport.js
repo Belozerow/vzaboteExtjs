@@ -13,7 +13,8 @@ Ext.define('Vzabote.view.Viewport',{
         this.header = this.add({
             xtype: 'panel',
             id: 'header',
-            flex: 1,
+            // flex: 1,
+            height: 70,
             layout: {
                 type: 'hbox',
                 align: 'stretch',
@@ -45,15 +46,17 @@ Ext.define('Vzabote.view.Viewport',{
             xtype: 'panel',
             id: 'cardpanel',
             layout: 'card',
+            cls: 'cardpanel',
             items: [{
                 xtype: 'mainpage'
             }],
-            flex: 4
+            flex: 10
         })
         this.footer = this.add({
             xtype: 'panel',
             id: 'footer',
-            flex: 1,
+            // flex: 1,
+            height: 100,
             layout: {
                 type: 'hbox',
                 align: 'stretch',

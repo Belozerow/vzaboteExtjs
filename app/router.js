@@ -5,7 +5,10 @@ Vzabote.router = {
         });
         Path.map('#/pricestat').to(function(){
             app.getController('CategorySelect').pricestat(this.params)
-        })
+        });
+        Path.map('#/products').to(function(){
+            app.getController('Product').index(this.params); 
+        });
         Path.root('#/index');
         Path.listen();
     },
