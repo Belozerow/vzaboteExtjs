@@ -17,7 +17,8 @@ Ext.define('Vzabote.view.MainPage',{
                align: 'stretch',
            },
            items: [Ext.apply({
-                   flex: 2
+                   flex: 2,
+                   id: 'mainpage-title'
            },templates.mainpage.title)],
            flex: 3
        });
