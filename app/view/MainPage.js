@@ -23,7 +23,6 @@ Ext.define('Vzabote.view.MainPage',{
            },templates.mainpage.title)],
            flex: 3
        });
-       //может стоит использовать dataview
        var catIndex = 0;
        Ext.getStore('Categories').each(function(item){
           categoryButtons.push(Ext.apply({
@@ -44,7 +43,7 @@ Ext.define('Vzabote.view.MainPage',{
                type: 'hbox',
                align: 'stretch'
            },
-           flex: 10
+           flex: 8
        });
         categoriesPanel.add({
             xtype: 'panel',
@@ -69,11 +68,27 @@ Ext.define('Vzabote.view.MainPage',{
                type: 'hbox',
                align: 'stretch'
            },
-           items: [categoriesPanel,Ext.apply({
+           items: [categoriesPanel,{
+               xtype: 'panel',
+               layout: {
+                   type: 'vbox',
+                   align: 'stretch',
+               },
                cls: 'info-panel',
                id: 'mainpage-info',
+               items: [
+                   Ext.apply({
+                        flex: 1   
+                   },templates.mainpage.infopanelfirst),
+                   Ext.apply({
+                        flex: 1   
+                   },templates.mainpage.infopanelsecond),
+                   Ext.apply({
+                        flex: 1   
+                   },templates.mainpage.infopanelthird)
+               ],
                flex: 1
-           },templates.mainpage.infopanel)]
+           }]
            
        })
        this.add(contentPanel);       
