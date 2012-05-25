@@ -1,3 +1,4 @@
 /* line 1, ../sass/scrollabledataview.scss */
 .scrollable-dataview-item {
-  display: inline-block; }
+  display: inline-block;
+  margin: 20px; }

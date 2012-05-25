@@ -4,13 +4,15 @@ Ext.define('Vzabote.view.ScrollableDataView',{
     cls: 'scrollable-dataview',
     tpl: '',
     height: 200,
-    itemElWidth: 0,
+    scrollOverWidth: 300,
+    animSpeed: 7,
+    animDuration: 700,
     initComponent: function(){
         this.callParent();
         if(!this.store){
             console.error('store is required')
         }
-
+        this.itemElWidth = 0;
         this.store = Ext.getStore(this.store);
         this.dataView = this.add({
             xtype: 'dataview',
@@ -22,20 +24,22 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         this.mon(this.store,'load',function(){
             var itemEl = this.dataView.getEl().first('.scrollable-dataview-item');
             this.itemElWidth = itemEl.getWidth() + itemEl.getMargin().left + itemEl.getMargin().right;
-            this.dataView.setWidth(this.store.getCount()*this.itemElWidth);
+            this.dataView.setWidth(this.store.getCount()*this.itemElWidth+itemEl.getMargin().right);
             
             this.ddTracker = new Ext.dd.DragTracker({
                 el: this.dataView.getEl(),
                 prevPos: 0,
+                speed: 0,
                 listeners: {
                     dragstart: function(e){
                         this.ddTracker.prevPos = e.startXY[0];
                         console.log('dragstart');
                     },
                     dragend: function(e){
-                        console.log('dragend')
+                        this.dragEnd(this.ddTracker.speed)
                     },
                     drag: function(e){
+                        this.ddTracker.speed = this.ddTracker.prevPos - e.lastXY[0];
                         this.scrollTo(this.ddTracker.prevPos - e.lastXY[0])
                         this.ddTracker.prevPos = e.lastXY[0];
                     },
@@ -46,54 +50,71 @@ Ext.define('Vzabote.view.ScrollableDataView',{
                 // console.log(arguments)
             // },this)
         },this);
-        
-        this.addDocked({
-            xtype: 'panel',
-            height: 50,
-            dock: 'bottom',
-            cls: 'scrollabledataview-controller',
-            layout: {
-                type: 'hbox',
-                align: 'stretch'
-            },
-            items: [{
-                xtype: 'button',
-                text: 'left',
-                cls: 'scrollabledataview-left',
-                flex: 1,
-                handler: function(){
-                    this.scrollLeft()
-                },
-                scope: this
-            },{
-                xtype: 'slider',
-                flex: 1,
-                hideLabel: true,
-                useTips: false,
-                minValue: 0,
-                maxValue: 100
-            },{
-                text: 'right',
-                xtype: 'button',
-                cls: 'scrollabledataview-right',
-                flex: 1,
-                handler: function(){
-                    this.scrollRight()
-                },
-                scope: this
-            }]
-        })
+        // this.addDocked({
+            // xtype: 'panel',
+            // height: 50,
+            // dock: 'bottom',
+            // cls: 'scrollabledataview-controller',
+            // layout: 'column'
+        // })
+        // this.addDocked({
+            // xtype: 'panel',
+            // height: 50,
+            // dock: 'bottom',
+            // cls: 'scrollabledataview-controller',
+            // layout: {
+                // type: 'hbox',
+                // align: 'stretch'
+            // },
+            // items: [{
+                // xtype: 'button',
+                // text: 'left',
+                // cls: 'scrollabledataview-left',
+                // flex: 1,
+                // handler: function(){
+                    // this.scrollLeft()
+                // },
+                // scope: this
+            // },{
+                // xtype: 'slider',
+                // flex: 1,
+                // hideLabel: true,
+                // useTips: false,
+                // minValue: 0,
+                // maxValue: 100
+            // },{
+                // text: 'right',
+                // xtype: 'button',
+                // cls: 'scrollabledataview-right',
+                // flex: 1,
+                // handler: function(){
+                    // this.scrollRight()
+                // },
+                // scope: this
+            // }]
+        // })
         
     },
     scrollTo: function(diff){
+        var el = this.dataView.getEl(),
+            leftOver = (el.getX() >= this.scrollOverWidth),
+            rightOver = (el.getX() - (this.getWidth()-el.getWidth())<-this.scrollOverWidth);
+        
+        if((!leftOver&&!rightOver) || (leftOver && !rightOver && diff > 0) || (rightOver && !leftOver && diff < 0)){
+            if(el.getActiveAnimation()){
+                el.getActiveAnimation().end()
+            }
+            el.setX(el.getX()-diff)    
+        }        
+    },
+    dragEnd: function(speed){
         var el = this.dataView.getEl();
-        el.setX(el.getX()-diff)
-        // if(el.getActiveAnimation()){
-            // el.getActiveAnimation().end()
-        // }
-        // el.animate({
-            // to: {x: el.getX()+diff},
-            // duration: 20
-        // });                
+        if(el.getActiveAnimation()){
+            el.getActiveAnimation().end()
+        }
+        el.animate({
+            to: {x: Math.max(Math.min(el.getX() - speed*this.animSpeed,0),this.getWidth()-el.getWidth())},
+            duration: this.animDuration
+        });
     }
 })
