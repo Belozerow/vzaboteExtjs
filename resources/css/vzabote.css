@@ -8574,7 +8574,7 @@ a.x-tab-close-btn:hover {
   vertical-align: middle;
   *vertical-align: auto;
   overflow: hidden; }
-  /* line 7, ../../../../../../usr/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+  /* line 7, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
   .x-surface {
     *display: inline; }
 
@@ -9816,7 +9816,8 @@ svg, vml {
 
 /* line 1, ../sass/scrollabledataview.scss */
 .scrollable-dataview-item {
-  display: inline-block; }
+  display: inline-block;
+  margin: 20px; }
 
 /* line 5, ../sass/vzabote.scss */
 html {
