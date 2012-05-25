@@ -23,6 +23,7 @@ Ext.define('Vzabote.view.MainPage',{
            },templates.mainpage.title)],
            flex: 3
        });
+       //может стоит использовать dataview
        var catIndex = 0;
        Ext.getStore('Categories').each(function(item){
           categoryButtons.push(Ext.apply({
@@ -33,7 +34,7 @@ Ext.define('Vzabote.view.MainPage',{
               id: 'mainpage-cat-'+catIndex,
               index: catIndex
           },templates.mainpage.categoryitem))
-          catIndex++; 
+          catIndex++;
        });
        categoriesPanel.add({
            xtype: 'panel',
@@ -43,7 +44,7 @@ Ext.define('Vzabote.view.MainPage',{
                type: 'hbox',
                align: 'stretch'
            },
-           flex: 8
+           flex: 10
        });
         categoriesPanel.add({
             xtype: 'panel',
@@ -51,7 +52,7 @@ Ext.define('Vzabote.view.MainPage',{
             id: 'mainpage-pricestat',
             layout: {
                 type: 'vbox',
-                align: 'center'   
+                align: 'center'
             },
             items: [
                 Ext.apply({
@@ -68,29 +69,13 @@ Ext.define('Vzabote.view.MainPage',{
                type: 'hbox',
                align: 'stretch'
            },
-           items: [categoriesPanel,{
-               xtype: 'panel',
-               layout: {
-                   type: 'vbox',
-                   align: 'stretch',
-               },
+           items: [categoriesPanel,Ext.apply({
                cls: 'info-panel',
                id: 'mainpage-info',
-               items: [
-                   Ext.apply({
-                        flex: 1   
-                   },templates.mainpage.infopanelfirst),
-                   Ext.apply({
-                        flex: 1   
-                   },templates.mainpage.infopanelsecond),
-                   Ext.apply({
-                        flex: 1   
-                   },templates.mainpage.infopanelthird)
-               ],
-               flex: 1
-           }]
+               width: 226,
+           },templates.mainpage.infopanel)]
            
        })
-       this.add(contentPanel);       
+       this.add(contentPanel);
    }
 });
