@@ -17,6 +17,12 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         this.scrollWidth = 0;
         this.store = Ext.getStore(this.store);
         
+        this.mon(this.cardParent,'deactivate',function(){
+            this.stopAnimation();
+        },this);
+        this.mon(this.cardParent,'activate',function(){
+            this.dragEnd(0);
+        },this);
         this.dataView = this.add({
             xtype: 'dataview',
             store: this.store,
@@ -42,7 +48,14 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         })
         this.mon(this.store,'load',this.refresh,this);
         this.on('afterrender',this.initElements);
-        
+        this.mon(this.store,'datachanged',this.refresh,this)
+        this.scrollerContainer = Ext.create('Ext.container.Container',{
+            cls: 'scroll-bar',
+            html: '<div class="scroller-container">'+ //scrollerEl
+                            '<div class="scroller"></div>'+ //scrollEl
+                  '</div>',
+            width: 800
+        })
         this.scroller = Ext.create('Ext.panel.Panel',{
             // height: 50,
             dock: 'bottom',
@@ -61,14 +74,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
                         this.scrollLeft();
                     },
                     scope: this
-                },{
-                    xtype: 'container',
-                    cls: 'scroll-bar',
-                    html: '<div class="scroller-container">'+ //scrollerEl
-                                    '<div class="scroller"></div>'+ //scrollEl
-                          '</div>',
-                    width: 800
-                },{
+                },this.scrollerContainer,{
                     xtype: 'button',
                     text: 'right',
                     cls: 'scrollabledataview-right',
@@ -80,22 +86,25 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             }]   
         })
         this.addDocked(this.scroller)
-        
     },
-    initElements: function(){
+    onScrollerClick: function(e,node){
+        var scroller = this.scrollEl;
+        if(!this.scrollEl.contains(node)){
+            this.dragEnd(((e.getX() - this.scrollConstrainX[0]) - (scroller.getX() - this.scrollConstrainX[0] + scroller.getWidth()/2))/(this.scrollerSizeRatio*this.animSpeed))
+        }
+    },
+    initElements: function(scrollerHtml){
         
-        this.mon(this.store,'datachanged',this.refresh,this)
-        
-        this.scrollerEl = this.scroller.getEl().down('.scroller-container');
+        if(Ext.isString(scrollerHtml))
+            this.scrollerContainer.update(scrollerHtml)
+        if(this.scrollerEl) 
+            this.scrollerEl.un('click',this.onScrollerClick,this);
+        this.scrollerEl = this.scrollerContainer.getEl().down('.scroller-container');
         this.scrollEl = this.scrollerEl.down('.scroller');
         
-        this.scrollerEl.on('click',function(e,node){
-            var scroller = this.scrollEl;
-            if(!this.scrollEl.contains(node)){
-                this.dragEnd(((e.getX() - this.scrollConstrainX[0]) - (scroller.getX() - this.scrollConstrainX[0] + scroller.getWidth()/2))/(this.scrollerSizeRatio*this.animSpeed))
-            }
-        },this)
+        this.scrollerEl.on('click',this.onScrollerClick,this)
         
+        if(this.ddTracker) this.ddTracker.destroy()
         this.ddTracker = new Ext.dd.DragTracker({
             el: this.dataView.getEl(),
             prevPos: 0,
@@ -115,14 +124,13 @@ Ext.define('Vzabote.view.ScrollableDataView',{
                 scope: this
             }
         });
-        
+        if(this.scrollerDDTracker) this.scrollerDDTracker.destroy()
         this.scrollerDDTracker = new Ext.dd.DragTracker({
             el: this.scrollEl,
             prevPos: 0,
             speed: 0,
             listeners: {
                 dragstart: function(e){
-                    console.log('dragstart')
                     this.scrollerDDTracker.prevPos = e.startXY[0];
                 },
                 dragend: function(e){
@@ -145,14 +153,37 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             
             this.dataViewConstrainX = [this.getEl().getX(),(this.getWidth()-this.dataView.getWidth())];
             
+            this.scrollerSizeRatio = ((this.getWidth()*this.scrollerEl.getWidth())/this.dataView.getWidth())/this.getWidth();
+            if(this.metaData){
+                var metaData = this.metaData,
+                    i=0,
+                    ln = metaData.length,
+                    scrollerContainer = this.scrollerContainer,
+                    width = 0,
+                    scrollerHtml = '<div class="scroller-container"><div class="scroller"></div>',
+                    scrollerMetaHtml = '<div class="scroller-meta">',
+                    fullWidth = 0;
+                for(; i < ln; i++){
+                    width = metaData[i].count*this.itemElWidth*this.scrollerSizeRatio;
+                    if(i+1==ln){
+                        width = this.scrollerEl.getWidth() - fullWidth;
+                    }
+                    fullWidth+=width;
+                    scrollerHtml += '<div class="scroller-part scroller-part-'+i+' '+((i+1==ln)?'scroller-part-last ':'')+'" style="width:'+width+'px"></div>';
+                    scrollerMetaHtml += '<div class="scroller-meta-part scroller-meta-part-'+i+'" style="width:'+width+'px">'+metaData[i].name+'</div>'
+                }
+                scrollerHtml += '</div>' + scrollerMetaHtml + '</div>'
+                this.initElements(scrollerHtml)
+            }
+            
             if(this.dataView.getEl().getWidth() < this.getEl().getWidth())
                 this.scrollWidth = -1;
             else
                 this.scrollWidth = (this.getWidth()*this.scrollerEl.getWidth())/this.dataView.getWidth()
             this.scrollEl.setWidth(this.scrollWidth);
             this.scrollConstrainX = [this.scrollerEl.getX()+this.constrainMargin,this.scrollerEl.getX()+this.scrollerEl.getWidth()-this.constrainMargin]
-            this.scrollerSizeRatio = this.scrollEl.getWidth()/this.getWidth();
-            this.scrollEl.setX(this.scrollConstrainX[0])    
+            // this.scrollerSizeRatio = this.scrollEl.getWidth()/this.getWidth();
+            this.scrollEl.setX(this.scrollConstrainX[0])
         }
                 
     },
@@ -235,7 +266,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             return true;
         return false;
     },
-    animationStop: function(){
+    stopAnimation: function(){
         var el = this.dataView.getEl(),
                     scroller = this.scrollEl;
         if(el.getActiveAnimation())

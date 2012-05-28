@@ -9,9 +9,19 @@
   display: -webkit-box;
   -webkit-box-align: center;
   .scroller{
+    position: absolute;
     background: rgb(187,51,70);
     border-radius: 5px;
     height: 16px;
+    top: 2px;
     width: 0px;
   }
+  .scroller-part{
+    border: 1px solid black;
+    height: 20px;
+  }
+}
+.scroller-meta-part{
+  float: left;
+  text-align: center;
 }

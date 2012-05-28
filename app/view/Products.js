@@ -10,10 +10,17 @@ Ext.define('Vzabote.view.Products',{
        this.callParent();
        this.add({
            html: 'products Page'
-       })
+       });
+       
        this.add(Ext.apply({
            xtype: 'scrollabledataview',
-           store: this.store
+           store: this.store,
+           cardParent: this,
+           metaData: [
+                {name: 'Свежая свинина', count: 10},
+                {name: 'Полуфабрикаты', count: 5},
+                {name: 'Копченая', count: 8},
+           ]
        },templates.products.dataview))
        
        this.add(Ext.apply({

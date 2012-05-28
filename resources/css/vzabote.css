@@ -9828,10 +9828,21 @@ svg, vml {
   -webkit-box-align: center; }
   /* line 11, ../sass/scrollabledataview.scss */
   .scroller-container .scroller {
+    position: absolute;
     background: #bb3346;
     border-radius: 5px;
     height: 16px;
+    top: 2px;
     width: 0px; }
+  /* line 19, ../sass/scrollabledataview.scss */
+  .scroller-container .scroller-part {
+    border: 1px solid black;
+    height: 20px; }
+
+/* line 24, ../sass/scrollabledataview.scss */
+.scroller-meta-part {
+  float: left;
+  text-align: center; }
 
 /* line 5, ../sass/vzabote.scss */
 html {
