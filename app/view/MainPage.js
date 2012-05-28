@@ -73,6 +73,21 @@ Ext.define('Vzabote.view.MainPage',{
                cls: 'info-panel',
                id: 'mainpage-info',
                width: 226,
+               layout: {
+                   type: 'vbox',
+                   align: 'stretch'
+               },
+               items: [
+                    Ext.apply({
+                        flex: 1
+                    },templates.mainpage.infopanelfirst),
+                    Ext.apply({
+                        flex: 1
+                    },templates.mainpage.infopanelsecond),
+                    Ext.apply({
+                        flex: 1
+                    },templates.mainpage.infopanelthird)
+               ] 
            },templates.mainpage.infopanel)]
            
        })

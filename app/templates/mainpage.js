@@ -19,7 +19,7 @@ templates.mainpage = {
         text: '<div class="price-stat-button">Полная статистика цен</div>',
         cls: 'price-stat'
     },
-    infopanel: {
+    infopanelfirst: {
         html: '<div class="first">'+
         		'<div class="check-image"></div>'+
         		'<div class="sub-title">Выбирайте товары</div>'+
@@ -27,17 +27,20 @@ templates.mainpage = {
         	  '</div>'+
         	  '<div class="second">'+
         	  	'<div class="list-image"></div>'+
-        	  '</div>'+
-        	  '<div class="third">'+
-			  	'<div class="sub-title">Добавляйте в список</div>'+
-			  	'<div class="info">Система сама подскажет<br />где выгодней покупать<br />по деньгам и по времени</div>'+
-        	  '</div>'+
-
-			  //'<div class="location-image"></div>'+
-			  '<div class="sb-bottom">'+
-				  //'<div class="sub-title">Покупайте близко и дешего!</div>'+
-				  //'<div class="info">Мы найдем для вас лучшее!</div>'+
-			  '</div>'                        
+        	  '</div>'                      
     },
+    infopanelsecond:{
+        html: '<div class="third">'+
+                '<div class="sub-title">Добавляйте в список</div>'+
+                '<div class="info">Система сама подскажет<br />где выгодней покупать<br />по деньгам и по времени</div>'+
+              '</div>'
+    },
+    infopanelthird:{
+        html: //'<div class="location-image"></div>'+
+              '<div class="sb-bottom">'+
+                  //'<div class="sub-title">Покупайте близко и дешего!</div>'+
+                  //'<div class="info">Мы найдем для вас лучшее!</div>'+
+              '</div>'  
+    }
     
 }
