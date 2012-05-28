@@ -34,7 +34,7 @@ Ext.define('Vzabote.view.MainPage',{
               id: 'mainpage-cat-'+catIndex,
               index: catIndex
           },templates.mainpage.categoryitem))
-          catIndex++; 
+          catIndex++;
        });
        categoriesPanel.add({
            xtype: 'panel',
@@ -52,7 +52,7 @@ Ext.define('Vzabote.view.MainPage',{
             id: 'mainpage-pricestat',
             layout: {
                 type: 'vbox',
-                align: 'center'   
+                align: 'center'
             },
             items: [
                 Ext.apply({
@@ -72,10 +72,10 @@ Ext.define('Vzabote.view.MainPage',{
            items: [categoriesPanel,Ext.apply({
                cls: 'info-panel',
                id: 'mainpage-info',
-               flex: 1
+               width: 226,
            },templates.mainpage.infopanel)]
            
        })
-       this.add(contentPanel);       
+       this.add(contentPanel);
    }
 });
