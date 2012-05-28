@@ -15,6 +15,7 @@ Ext.define('Vzabote.view.Products',{
            xtype: 'scrollabledataview',
            store: this.store
        },templates.products.dataview))
+       
        this.add(Ext.apply({
            xtype: 'button',
            href: '#/index',

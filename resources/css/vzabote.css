@@ -9819,6 +9819,20 @@ svg, vml {
   display: inline-block;
   margin: 20px; }
 
+/* line 5, ../sass/scrollabledataview.scss */
+.scroller-container {
+  height: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: -webkit-box;
+  -webkit-box-align: center; }
+  /* line 11, ../sass/scrollabledataview.scss */
+  .scroller-container .scroller {
+    background: #bb3346;
+    border-radius: 5px;
+    height: 16px;
+    width: 0px; }
+
 /* line 5, ../sass/vzabote.scss */
 html {
   height: 100%;

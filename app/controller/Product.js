@@ -6,6 +6,11 @@ Ext.define('Vzabote.controller.Product',{
    }],
    init: function(){
        this.control({
+          'scrollabledataview': {
+              afterrender: function(){
+                  console.log('ads')
+              }
+          }
           
        });
    },
@@ -14,6 +19,7 @@ Ext.define('Vzabote.controller.Product',{
        if(cardPanel.layout.getActiveItem().xtype!='products'){
             this.getController('Viewport').closeAllWindows();
             var store = Ext.getStore('Products');
+            if(store.getCount()==0)
             store.load();
             if(!this.productsView){
                 this.productsView = Ext.create('Vzabote.view.Products',{

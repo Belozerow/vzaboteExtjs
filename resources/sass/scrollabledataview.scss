@@ -2,9 +2,16 @@
   display: inline-block;
   margin: 20px;
 }
-// .scrollable-dataview{
-  // overflow: visible;
-  // >.x-panel-body{
-    // overflow: visible;
-  // }
-// }
+.scroller-container{
+  height: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  .scroller{
+    background: rgb(187,51,70);
+    border-radius: 5px;
+    height: 16px;
+    width: 0px;
+  }
+}
