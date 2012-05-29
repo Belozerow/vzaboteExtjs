@@ -186,6 +186,7 @@ input {
     }
   }
 }
+
 nav {
   position: absolute;
   z-index: 1;
@@ -235,29 +236,49 @@ nav {
 }
 
 #mainpage-info {
-  padding: 4px;
-  padding-bottom: 175px;
-  background: url(../images/sb-bottom.png) bottom no-repeat;
+  padding-bottom: 25px;
   #mainpage-info-body {
-    border: 1px dashed #999;
-    border-bottom: none;
-    @include border-radius(5px);
     text-align: center;
-    .first, .second, .third {
-      display: table-row;
-      height: 30%;
+    overflow: visible;
+    #sidebar-f {
+      margin: 0 4px;
+      border-top: 1px dashed #999;
+      border-left: 1px dashed #999;
+      border-right: 1px dashed #999;
+      @include border-radius(5px);
+      .check-image {
+        width: 43px;
+        height: 36px;
+        margin: 18px auto;
+        background: url(../images/check.png) no-repeat;
+      }
     }
-    .check-image {
-      width: 43px;
-      height: 36px;
-      margin: 18px auto;
-      background: url(../images/check.png) no-repeat;
+    #sidebar-s{
+      margin: 0 4px;
+      border-left: 1px dashed #999;
+      border-right: 1px dashed #999;
+      .list-image {
+        width: 198px;
+        height: 76px;
+        margin: 10% auto;
+        background: url(../images/srarr.png) no-repeat;
+      }
     }
-    .list-image {
-      width: 198px;
-      height: 76px;
-      margin: 10% auto;
-      background: url(../images/srarr.png) no-repeat;
+     #sidebar-t{
+      padding-top: 41px;
+      background: url(../images/sb-bottom.png) bottom no-repeat;
+      .location-image {
+        width: 36px;
+        height: 36px;
+        margin: 0 auto 18px;
+        background: url(../images/c.png) top no-repeat;
+      }
+      .sub-title {
+        color: #fff;
+        width: 190px;
+        margin: 0 auto 12px;;
+      }
+      .info {color: #fff;}
     }
     .sub-title {
       font-size: 16px;
@@ -267,19 +288,34 @@ nav {
       font: 12px/16px Helvetica;
       color: #9a9192;
     }
-    .sb-bottom {
-      width: 226px;
-      height: 179px;
-      position: absolute;
-      overflow: visible;
-      left: -4px;
-    }
   }
 }
 
+#info-popup {
+  background: #fff;
+  border: none;
+  .x-window-body-default {
+    background: transparent;
+    padding: 18px 15px 10px;
+  }
+  .product-info-title {
+    font-size: 16px;
+    font-weight: bold;
+    width: 230px;
+    margin-bottom: 5px;
+  }
+  .product-info {
+    margin: 3px 0px;
+    .product-name, .product-title-extra {
+      display: inline;
+      font-size: 14px;
+    }
+    .product-title-extra {color: #999; margin-left: 4px;}
+  }
+}
 
 #mainpage-pricestat {
-  margin: 0 30px;
+  margin-right: 30px;
   background: url(../images/hr.gif) center right repeat-x;
   #mainpage-pricestat-body {
     #mainpage-pricestat-button {
@@ -303,9 +339,27 @@ nav {
   }
 }
 
-#footer {
+// Pricestat
+
+#cardpanel-body {
+  //padding: 0 30px;
+}
+
+.pricestat-title {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 28px;
   margin: 0 30px;
+}
+#pricestat-1011-body {
+  padding: 0 30px;
+}
+
+
+#footer {
+  //margin: 0 30px;
   margin-top: 30px;
+  padding-left: 30px;
   @include box-shadow(0px 1px 0px #fff inset);
   border-top: 1px solid #c5c1c0;
   #footer-body {

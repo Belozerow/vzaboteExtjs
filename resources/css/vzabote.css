@@ -8574,7 +8574,7 @@ a.x-tab-close-btn:hover {
   vertical-align: middle;
   *vertical-align: auto;
   overflow: hidden; }
-  /* line 7, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+  /* line 7, ../../../../../../usr/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
   .x-surface {
     *display: inline; }
 
@@ -10006,12 +10006,12 @@ input {
   height: 35px;
   background: url(../images/profile.png) no-repeat; }
 
-/* line 189, ../sass/vzabote.scss */
+/* line 190, ../sass/vzabote.scss */
 nav {
   position: absolute;
   z-index: 1;
   margin-top: 7px; }
-  /* line 193, ../sass/vzabote.scss */
+  /* line 194, ../sass/vzabote.scss */
   nav a {
     display: inline-block;
     height: 36px;
@@ -10022,14 +10022,14 @@ nav {
     font-family: HelveticaNeueCyr;
     font-size: 13px;
     font-weight: bold; }
-  /* line 204, ../sass/vzabote.scss */
+  /* line 205, ../sass/vzabote.scss */
   nav .home-tab {
     width: 171px;
     height: 71px;
     z-index: 3;
     position: absolute;
     background: url(../images/home.png) center right no-repeat; }
-  /* line 211, ../sass/vzabote.scss */
+  /* line 212, ../sass/vzabote.scss */
   nav .choose-tab {
     width: 142px;
     z-index: 4;
@@ -10037,7 +10037,7 @@ nav {
     left: 161px;
     top: 12px;
     background: url(../images/choose-tab.png) center right no-repeat; }
-  /* line 219, ../sass/vzabote.scss */
+  /* line 220, ../sass/vzabote.scss */
   nav .list-tab {
     width: 137px;
     z-index: 5;
@@ -10045,7 +10045,7 @@ nav {
     position: absolute;
     left: 295px;
     background: url(../images/list-tab.png) center right no-repeat; }
-  /* line 227, ../sass/vzabote.scss */
+  /* line 228, ../sass/vzabote.scss */
   nav .shops-tab {
     width: 133px;
     z-index: 6;
@@ -10054,62 +10054,103 @@ nav {
     top: 12px;
     background: url(../images/shops-tab.png) center right no-repeat; }
 
-/* line 237, ../sass/vzabote.scss */
+/* line 238, ../sass/vzabote.scss */
 #mainpage-info {
-  padding: 4px;
-  padding-bottom: 175px;
-  background: url(../images/sb-bottom.png) bottom no-repeat; }
-  /* line 241, ../sass/vzabote.scss */
+  padding-bottom: 25px; }
+  /* line 240, ../sass/vzabote.scss */
   #mainpage-info #mainpage-info-body {
-    border: 1px dashed #999;
-    border-bottom: none;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -o-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -khtml-border-radius: 5px;
-    border-radius: 5px;
-    text-align: center; }
-    /* line 246, ../sass/vzabote.scss */
-    #mainpage-info #mainpage-info-body .first, #mainpage-info #mainpage-info-body .second, #mainpage-info #mainpage-info-body .third {
-      display: table-row;
-      height: 30%; }
-    /* line 250, ../sass/vzabote.scss */
-    #mainpage-info #mainpage-info-body .check-image {
-      width: 43px;
-      height: 36px;
-      margin: 18px auto;
-      background: url(../images/check.png) no-repeat; }
+    text-align: center;
+    overflow: visible; }
+    /* line 243, ../sass/vzabote.scss */
+    #mainpage-info #mainpage-info-body #sidebar-f {
+      margin: 0 4px;
+      border-top: 1px dashed #999;
+      border-left: 1px dashed #999;
+      border-right: 1px dashed #999;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -o-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -khtml-border-radius: 5px;
+      border-radius: 5px; }
+      /* line 249, ../sass/vzabote.scss */
+      #mainpage-info #mainpage-info-body #sidebar-f .check-image {
+        width: 43px;
+        height: 36px;
+        margin: 18px auto;
+        background: url(../images/check.png) no-repeat; }
     /* line 256, ../sass/vzabote.scss */
-    #mainpage-info #mainpage-info-body .list-image {
-      width: 198px;
-      height: 76px;
-      margin: 10% auto;
-      background: url(../images/srarr.png) no-repeat; }
-    /* line 262, ../sass/vzabote.scss */
+    #mainpage-info #mainpage-info-body #sidebar-s {
+      margin: 0 4px;
+      border-left: 1px dashed #999;
+      border-right: 1px dashed #999; }
+      /* line 260, ../sass/vzabote.scss */
+      #mainpage-info #mainpage-info-body #sidebar-s .list-image {
+        width: 198px;
+        height: 76px;
+        margin: 10% auto;
+        background: url(../images/srarr.png) no-repeat; }
+    /* line 267, ../sass/vzabote.scss */
+    #mainpage-info #mainpage-info-body #sidebar-t {
+      padding-top: 41px;
+      background: url(../images/sb-bottom.png) bottom no-repeat; }
+      /* line 270, ../sass/vzabote.scss */
+      #mainpage-info #mainpage-info-body #sidebar-t .location-image {
+        width: 36px;
+        height: 36px;
+        margin: 0 auto 18px;
+        background: url(../images/c.png) top no-repeat; }
+      /* line 276, ../sass/vzabote.scss */
+      #mainpage-info #mainpage-info-body #sidebar-t .sub-title {
+        color: #fff;
+        width: 190px;
+        margin: 0 auto 12px; }
+      /* line 281, ../sass/vzabote.scss */
+      #mainpage-info #mainpage-info-body #sidebar-t .info {
+        color: #fff; }
+    /* line 283, ../sass/vzabote.scss */
     #mainpage-info #mainpage-info-body .sub-title {
       font-size: 16px;
       margin-bottom: 5px; }
-    /* line 266, ../sass/vzabote.scss */
+    /* line 287, ../sass/vzabote.scss */
     #mainpage-info #mainpage-info-body .info {
       font: 12px/16px Helvetica;
       color: #9a9192; }
-    /* line 270, ../sass/vzabote.scss */
-    #mainpage-info #mainpage-info-body .sb-bottom {
-      width: 226px;
-      height: 179px;
-      position: absolute;
-      overflow: visible;
-      left: -4px; }
 
-/* line 281, ../sass/vzabote.scss */
+/* line 294, ../sass/vzabote.scss */
+#info-popup {
+  background: #fff;
+  border: none; }
+  /* line 297, ../sass/vzabote.scss */
+  #info-popup .x-window-body-default {
+    background: transparent;
+    padding: 18px 15px 10px; }
+  /* line 301, ../sass/vzabote.scss */
+  #info-popup .product-info-title {
+    font-size: 16px;
+    font-weight: bold;
+    width: 230px;
+    margin-bottom: 5px; }
+  /* line 307, ../sass/vzabote.scss */
+  #info-popup .product-info {
+    margin: 3px 0px; }
+    /* line 309, ../sass/vzabote.scss */
+    #info-popup .product-info .product-name, #info-popup .product-info .product-title-extra {
+      display: inline;
+      font-size: 14px; }
+    /* line 313, ../sass/vzabote.scss */
+    #info-popup .product-info .product-title-extra {
+      color: #999;
+      margin-left: 4px; }
+
+/* line 317, ../sass/vzabote.scss */
 #mainpage-pricestat {
-  margin: 0 30px;
+  margin-right: 30px;
   background: url(../images/hr.gif) center right repeat-x; }
-  /* line 285, ../sass/vzabote.scss */
+  /* line 321, ../sass/vzabote.scss */
   #mainpage-pricestat #mainpage-pricestat-body #mainpage-pricestat-button {
     top: 9px !important; }
-  /* line 288, ../sass/vzabote.scss */
+  /* line 324, ../sass/vzabote.scss */
   #mainpage-pricestat #mainpage-pricestat-body .price-stat-button {
     font-size: 12px !important;
     color: #18181a;
@@ -10135,23 +10176,34 @@ nav {
     border-radius: 3px;
     text-shadow: 0px 1px 0px white; }
 
-/* line 306, ../sass/vzabote.scss */
+/* line 348, ../sass/vzabote.scss */
+.pricestat-title {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 28px;
+  margin: 0 30px; }
+
+/* line 354, ../sass/vzabote.scss */
+#pricestat-1011-body {
+  padding: 0 30px; }
+
+/* line 359, ../sass/vzabote.scss */
 #footer {
-  margin: 0 30px;
   margin-top: 30px;
+  padding-left: 30px;
   -moz-box-shadow: 0px 1px 0px white inset;
   -webkit-box-shadow: 0px 1px 0px white inset;
   -o-box-shadow: 0px 1px 0px white inset;
   box-shadow: 0px 1px 0px white inset;
   border-top: 1px solid #c5c1c0; }
-  /* line 311, ../sass/vzabote.scss */
+  /* line 365, ../sass/vzabote.scss */
   #footer #footer-body {
     padding-top: 20px;
     font-size: 12px; }
-    /* line 314, ../sass/vzabote.scss */
+    /* line 368, ../sass/vzabote.scss */
     #footer #footer-body #viewport-addshop-button {
       top: 0px !important; }
-      /* line 316, ../sass/vzabote.scss */
+      /* line 370, ../sass/vzabote.scss */
       #footer #footer-body #viewport-addshop-button .add-shop-button {
         width: 154px;
         float: right;
