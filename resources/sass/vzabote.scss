@@ -174,14 +174,6 @@ input {
         background-color: transparent;
         background-image: none;
         border: none;
-        margin: 20px 30px 0 0;
-      }
-      .login {
-        display: inline-block;
-        
-        width: 36px;
-        height: 35px;
-        background: url(../images/profile.png) no-repeat;
       }
     }
   }
@@ -291,6 +283,52 @@ nav {
   }
 }
 
+// login
+
+#viewport-loginbutton {
+  margin: 20px 28px 0 0;
+  .login {
+    display: inline-block;
+    width: 36px;
+    height: 35px;
+    background: url(../images/profile.png) no-repeat;
+  }
+}
+
+#loginpopup {
+  background: #fff;
+  border: none;
+  #loginpopup-body {
+    border: none;
+    background: transparent;
+  }
+}
+
+#loginpopup-login-button {
+  margin: 19px 21px 0 0;
+  .login {
+    display: inline-block;
+    width: 36px;
+    height: 35px;
+    background: url(../images/profile-active.png) no-repeat;
+  }
+}
+
+#login-tabs {
+  #signintab, #signuptab {
+    float: left;
+    margin: 15px 0 0 15px;
+    border: 1px solid #989294;
+    @include border-radius(3px);
+    padding: 12px 13px;
+  }
+  #signintab.active, #signuptab.active {
+    border: 1px solid #dbd6d0;
+    @include box-shadow(0px 0px 4px 0px #dcd7d1 inset);
+  }
+}
+
+//-----//
 #info-popup {
   background: #fff;
   border: none;
@@ -322,7 +360,6 @@ nav {
       top: 9px !important;
     }
     .price-stat-button {
-
       font-size: 12px !important;
       color: #18181a;
       border: 1px solid #acacaa;
@@ -339,20 +376,32 @@ nav {
   }
 }
 
-// Pricestat
-
-#cardpanel-body {
-  //padding: 0 30px;
-}
-
 .pricestat-title {
   font-size: 24px;
   font-weight: bold;
   line-height: 28px;
   margin: 0 30px;
 }
-#pricestat-1011-body {
-  padding: 0 30px;
+
+#pricestat-1011 {
+  #pricestat-1011-body {
+    padding: 0 30px;
+  }
+}
+
+#pricestat-bottom {
+  padding-top: 8px;
+  border-top: 1px solid #c5c1c0 !important;
+  @include box-shadow(0px 1px 0px #fff inset);
+  #pricestat-back {
+    width: 126px;
+    height: 37px !important;
+    border: 0px;
+    margin-left: 18px;
+    padding-top: 8px;
+    background: url(../images/pricestat-back.png) top no-repeat;
+    .x-btn-inner {font-size: 14px !important;}
+  }
 }
 
 
