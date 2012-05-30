@@ -214,7 +214,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             this.scrollEl.setWidth(this.scrollWidth);
             this.scrollConstrainX = [this.scrollerEl.getX()+this.constrainMargin,this.scrollerEl.getX()+this.scrollerEl.getWidth()-this.constrainMargin]
             // this.scrollerSizeRatio = this.scrollEl.getWidth()/this.getWidth();
-            this.scrollEl.setX(this.scrollConstrainX[0])
+            this.scrollEl.setX(Math.min(this.scrollConstrainX[0] - this.dataView.getEl().getX()*this.scrollerSizeRatio,this.scrollConstrainX[1]-this.scrollWidth))
         }
                 
     },
@@ -316,6 +316,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         this.scrollerIsActive = true;
     },
     disableDataView: function(elementId){
+        this.stopAnimation();
         this.dataView.getTargetEl().mask()
         if(!this.store.isLoading()){
             this.activeElement = Ext.get(this.dataView.getNode(this.store.getById(elementId)));
