@@ -323,8 +323,11 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         }
         else{
             this.mon(this.store,'load',function(){
-                this.activeElement = Ext.get(this.dataView.getNode(this.store.getById(elementId)));
-                this.activeElement.addCls('scrollable-dataview-item-selected')
+                this.dataView.on('refresh',function(){
+                    this.dataView.getTargetEl().mask()
+                    this.activeElement = Ext.get(this.dataView.getNode(this.store.getById(elementId)));
+                    this.activeElement.addCls('scrollable-dataview-item-selected')
+                },this,{single: true})                
             },this,{single: true})
         }        
         this.hideScrollBar();
@@ -335,5 +338,6 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         this.activeElement.removeCls('scrollable-dataview-item-selected')
         this.showScrollBar();
         this.enableScroller();
+        this.refresh();
     }
 })

@@ -141,5 +141,9 @@ Ext.define('Vzabote.view.Products',{
                 scope: scope||this
             }
         })
-   }, 
+   },
+   refresh: function(){
+       this.productTypesPanel.refresh();
+       this.productsData.refresh();       
+   }
 });

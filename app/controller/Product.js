@@ -34,8 +34,7 @@ Ext.define('Vzabote.controller.Product',{
                       this.getProductTypesSlider().enableDataView(query.id)
                       this.productsView.cngButton('main');    
                   },this);
-           });
-           
+           });           
        }
        if(cardPanel.layout.getActiveItem().xtype!='products'){
             this.getController('Viewport').closeAllWindows();
