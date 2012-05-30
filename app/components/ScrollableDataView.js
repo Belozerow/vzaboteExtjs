@@ -50,6 +50,16 @@ Ext.define('Vzabote.view.ScrollableDataView',{
                 
             }
         })
+        if(this.store.isLoading()){
+            this.dataView.hide();
+            this.loadingPanel = Ext.create('Ext.container.Container',Ext.apply({
+            },templates.scrollabledataview.empty))
+            this.add(this.loadingPanel);
+            this.store.on('load',function(){
+                this.dataView.show();
+                this.loadingPanel.hide();
+            },this)
+        }
         this.mon(this.store,'load',this.refresh,this);
         this.mon(this.store,'datachanged',this.refresh,this);
         

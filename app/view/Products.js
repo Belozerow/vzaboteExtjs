@@ -7,6 +7,7 @@ Ext.define('Vzabote.view.Products',{
        align: 'stretch',
        pack: 'center'
    },
+   animDuration: 1000,
    initComponent: function(){
        this.callParent();
        
@@ -108,28 +109,37 @@ Ext.define('Vzabote.view.Products',{
         }
         
    },
-   showProducts: function(){
-        // this.productsDataPanel.suspendLayout = true
+   showProducts: function(callback,scope){
         this.productsDataPanel.animate({
-            to: {height: 500},
+            to: {height: this.getHeight()-this.productTypesPanel.getHeight()},
             from: {height: 0},
-            duration: 1500
+            duration: this.animDuration
         });
-        // this.productsDataPanel.show();
+        
         this.productsData.refresh();
         this.cartsPanel.animate({
-            to: {y: 800},
-            from: {y:300},
-            duration: 1500,
+            to: {y: Ext.getBody().getHeight()-70},
+            from: {y:this.productsDataPanel.getEl().getY()},
+            duration: this.animDuration,
             listeners: {
-                afteranimate: function(){
-                    // this.productsDataPanel.suspendLayout = false;
-                },
-                scope: this
+                afteranimate: callback||Ext.emptyFn,
+                scope: scope||this
             }
         })         
    },
-   hideProducts: function(){
-       
+   hideProducts: function(callback,scope){
+        this.productsDataPanel.animate({
+            to: {height: 0},
+            duration: this.animDuration
+        });
+        // this.productsData.refresh();
+        this.cartsPanel.animate({
+            to: {y: this.productsDataPanel.getEl().getY()},
+            duration: this.animDuration,
+            listeners: {
+                afteranimate: callback||Ext.emptyFn,
+                scope: scope||this
+            }
+        })
    }, 
 });
