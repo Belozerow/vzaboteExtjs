@@ -327,8 +327,13 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             this.mon(this.store,'load',function(){
                 this.dataView.on('refresh',function(){
                     this.dataView.getTargetEl().mask()
-                    this.activeElement = Ext.get(this.dataView.getNode(this.store.getById(elementId)));
+                    var node = this.dataView.getNode(this.store.getById(elementId)),
+                        index = this.dataView.indexOf(node);
+                    this.activeElement = Ext.get(node);
                     this.activeElement.addCls('scrollable-dataview-item-selected')
+                    
+                    this.dataView.getEl().setX(Math.max((-this.itemElWidth)*(index),this.dataViewConstrainX[1]));
+                    
                 },this,{single: true})                
             },this,{single: true})
         }        
@@ -336,7 +341,12 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         this.disableScroller();
     },
     enableDataView: function(){
+        var prevX = this.dataView.getEl().getX();
         this.dataView.getTargetEl().unmask()
+        if(this.dataView.getEl().getX()!=prevX){
+            var index = this.dataView.indexOf(this.activeElement);
+            this.dataView.getEl().setX(Math.max((-this.itemElWidth)*(index),this.dataViewConstrainX[1]));
+        }
         this.activeElement.removeCls('scrollable-dataview-item-selected')
         this.showScrollBar();
         this.enableScroller();
