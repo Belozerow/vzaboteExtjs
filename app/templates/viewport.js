@@ -2,7 +2,7 @@ templates.viewport = {
     header: {
         html:
              '<nav>'+
-				'<a id="home-tab" class="home-tab" href="#"></a>'+
+				'<a id="home-tab" class="home-tab" href="#/index"></a>'+
 				'<a id="choose-tab" class="choose-tab" href="#">Выбор товаров</a>'+
 				'<a id="list-tab" class="list-tab" href="#">Список покупок</a>'+
 				'<a id="shops-tab" class="shops-tab" href="#">Выбор магазина</a>'+

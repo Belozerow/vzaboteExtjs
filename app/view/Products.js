@@ -4,8 +4,7 @@ Ext.define('Vzabote.view.Products',{
    id: 'products',
    layout: {
        type: 'vbox',
-       align: 'stretch',
-       pack: 'center'
+       align: 'stretch'
    },
    animDuration: 500,
    initComponent: function(){
@@ -19,7 +18,7 @@ Ext.define('Vzabote.view.Products',{
                 {name: 'Свежая свинина', count: 10},
                 {name: 'Полуфабрикаты', count: 5},
                 {name: 'Копченая', count: 8},
-           ],
+           ]
        },templates.products.dataview))
        
        this.add(this.productTypesPanel);
@@ -40,9 +39,15 @@ Ext.define('Vzabote.view.Products',{
        this.productsDataPanel.add(this.productsData);
        
        this.add(this.productsDataPanel);
-
+       this.cartsDataView = Ext.create('Ext.view.View',Ext.apply({
+                   id: 'products-carts',
+                   itemCls: 'products-carts-dataview',
+                   store: Ext.getStore('Carts'),
+                   bubbleEvents: ['itemclick']
+       },templates.products.cart)) 
        this.cartsPanel = Ext.create('Ext.panel.Panel',{
            xtype: 'panel',
+           id: 'products-cartspanel',
            layout: {
                type: 'vbox',
                align: 'stretch'
@@ -50,12 +55,7 @@ Ext.define('Vzabote.view.Products',{
            items: [
                 Ext.apply({
                 },templates.products.cartsTitle),
-                Ext.apply({
-                   xtype: 'dataview',
-                   id: 'products-carts',
-                   itemCls: 'products-carts-dataview',
-                   store: Ext.getStore('Carts')
-                },templates.products.cart)
+                this.cartsDataView
            ]
        })
        // this.add(this.productsPanel)
@@ -132,7 +132,6 @@ Ext.define('Vzabote.view.Products',{
             to: {height: 0},
             duration: this.animDuration
         });
-        // this.productsData.refresh();
         this.cartsPanel.animate({
             to: {y: this.productsDataPanel.getEl().getY()},
             duration: this.animDuration,
@@ -142,8 +141,42 @@ Ext.define('Vzabote.view.Products',{
             }
         })
    },
+   showCartContent: function(cart){
+       if(!this.cartContent||this.cartContent.isDestroyed){
+            this.cartContent = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
+               store: cart.products(),
+               cardParent: this
+            },templates.products.cartcontent))
+            this.add(this.cartContent)    
+       }
+       
+   },
+   hideCartContent: function(){
+       this.remove(this.cartContent)
+   },
    refresh: function(){
        this.productTypesPanel.refresh();
        this.productsData.refresh();       
+   },
+   getInner: function(){
+       return this.getEl().down('#products-innerCt');
+   },
+   disableCartsDataView: function(cart){
+       if(this.cartsDataView.viewReady){
+            this.cartsDataView.mask();
+            this.activeElement = Ext.get(this.cartsDataView.getNode(cart));
+            this.activeElement.addCls('scrollable-dataview-item-selected')    
+       }
+       else{
+            this.cartsDataView.on('viewready',function(){
+                this.cartsDataView.mask();
+                this.activeElement = Ext.get(this.cartsDataView.getNode(cart));
+                this.activeElement.addCls('scrollable-dataview-item-selected')    
+            },this,{single: true})    
+       }
+   },
+   enableCartsDataView: function(){
+       this.cartsDataView.getTargetEl().unmask()
+       this.activeElement.removeCls('scrollable-dataview-item-selected')
    }
 });

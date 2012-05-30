@@ -9853,7 +9853,7 @@ svg, vml {
   z-index: 0; }
 
 /* line 1, ../sass/animation.scss */
-#cardpanel, #products, #cardpanel-body {
+#cardpanel, #products, #products-body, #cardpanel-body {
   overflow: visible; }
 
 /* line 4, ../sass/animation.scss */
@@ -9863,6 +9863,16 @@ svg, vml {
 /* line 7, ../sass/animation.scss */
 .scrollable-dataview-item {
   position: relative; }
+
+/* line 10, ../sass/animation.scss */
+.products-carts-dataview {
+  display: inline-block;
+  padding: 20px;
+  position: relative; }
+
+/* line 15, ../sass/animation.scss */
+#products-cartspanel .x-mask {
+  z-index: 0; }
 
 /* line 6, ../sass/vzabote.scss */
 html {

@@ -1,5 +1,9 @@
 templates.scrollabledataview = {
     empty: {
-        html: '<p style="font-size: 2em;">Какое-то сообщение о загрузке или какие-нибудь заглушки</p>'
+        html: '<div style="float: left; height: 100px; border: 1px solid black; width: 100px;"></div>'+
+        '<div style="float: left; height: 100px; border: 1px solid black; width: 100px;"></div>'+
+        '<div style="float: left; height: 100px; border: 1px solid black; width: 100px;"></div>'+
+        '<div style="float: left; height: 100px; border: 1px solid black; width: 100px;"></div>'+
+        '<div style="float: left; height: 100px; border: 1px solid black; width: 100px;"></div>'
     }
 }

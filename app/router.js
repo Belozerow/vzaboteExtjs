@@ -12,6 +12,9 @@ Vzabote.router = {
         Path.map('#/products/:id').to(function(){
             app.getController('Product').product(this.params); 
         });
+        Path.map('#/products/carts/:id').to(function(){
+            app.getController('Product').carts(this.params); 
+        });
         Path.root('#/index');
         Path.listen();
     },
