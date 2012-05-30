@@ -294,9 +294,10 @@ Ext.define('Vzabote.view.ScrollableDataView',{
     stopAnimation: function(){
         var el = this.dataView.getEl(),
                     scroller = this.scrollEl;
-        if(el.getActiveAnimation())
+        
+        if(el&&el.getActiveAnimation())
             el.getActiveAnimation().end()
-        if(scroller.getActiveAnimation())
+        if(scroller&&scroller.getActiveAnimation())
             scroller.getActiveAnimation().end();
     },
     hideScrollBar: function(){

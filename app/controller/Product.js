@@ -2,7 +2,7 @@ Ext.define('Vzabote.controller.Product',{
    extend: 'Ext.app.Controller',
    productsY: -100,
    productsIsHidden: false,
-   animDuration: 1000,
+   animDuration: 700,
    refs: [{
        ref: 'cardPanel',
        selector: '#cardpanel'
@@ -43,7 +43,15 @@ Ext.define('Vzabote.controller.Product',{
                 store.load();
             if(!this.productsView){
                 this.productsView = Ext.create('Vzabote.view.Products',{
-                    store: store
+                    store: store,
+                    animDuration: this.animDuration,
+                    listeners: {
+                        productsData: {
+                            itemclick: function(){
+                                console.log('add to cart')
+                            }
+                        }
+                    }
                 });
                 this.productsView.on('afterlayout',this.saveStateAfterLayout,this);
             }

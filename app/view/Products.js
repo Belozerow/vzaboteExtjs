@@ -7,7 +7,7 @@ Ext.define('Vzabote.view.Products',{
        align: 'stretch',
        pack: 'center'
    },
-   animDuration: 1000,
+   animDuration: 500,
    initComponent: function(){
        this.callParent();
        
