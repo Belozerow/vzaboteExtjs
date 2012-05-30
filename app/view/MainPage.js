@@ -79,13 +79,16 @@ Ext.define('Vzabote.view.MainPage',{
                },
                items: [
                     Ext.apply({
-                        flex: 1
+                        flex: 1,
+                        id: 'sidebar-f',
                     },templates.mainpage.infopanelfirst),
                     Ext.apply({
-                        flex: 1
+                        flex: 1,
+                        id: 'sidebar-s',
                     },templates.mainpage.infopanelsecond),
                     Ext.apply({
-                        flex: 1
+                        height: 179,
+                        id: 'sidebar-t',
                     },templates.mainpage.infopanelthird)
                ] 
            },templates.mainpage.infopanel)]

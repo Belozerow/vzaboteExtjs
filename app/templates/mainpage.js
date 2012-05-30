@@ -20,27 +20,29 @@ templates.mainpage = {
         cls: 'price-stat'
     },
     infopanelfirst: {
-        html: '<div class="first">'+
+        html:
+        	'<div class="first">'+
         		'<div class="check-image"></div>'+
         		'<div class="sub-title">Выбирайте товары</div>'+
-			  	'<div class="info">В каталоге представлены<br />товары большинства<br />магазинов города</div>'+
-        	  '</div>'+
-        	  '<div class="second">'+
-        	  	'<div class="list-image"></div>'+
-        	  '</div>'                      
+				'<div class="info">В каталоге представлены<br />товары большинства<br />магазинов города</div>'+
+        	'</div>'
     },
     infopanelsecond:{
-        html: '<div class="third">'+
-                '<div class="sub-title">Добавляйте в список</div>'+
-                '<div class="info">Система сама подскажет<br />где выгодней покупать<br />по деньгам и по времени</div>'+
-              '</div>'
+        html:
+        	'<div class="second">'+
+        		'<div class="list-image"></div>'+
+        		'<div class="sub-title">Добавляйте в список</div>'+
+        		'<div class="info">Система сама подскажет<br />'+
+        		'где выгодней покупать<br />по деньгам и по времени</div>'+
+        	'</div>'
     },
     infopanelthird:{
-        html: //'<div class="location-image"></div>'+
-              '<div class="sb-bottom">'+
-                  //'<div class="sub-title">Покупайте близко и дешего!</div>'+
-                  //'<div class="info">Мы найдем для вас лучшее!</div>'+
-              '</div>'  
+        html:
+            '<div class="third">'+
+            	'<div class="location-image"></div>'+
+                '<div class="sub-title">Покупайте близко и дешего!</div>'+
+                '<div class="info">Мы найдем для вас лучшее!</div>'+
+            '</div>'  
     }
     
 }
