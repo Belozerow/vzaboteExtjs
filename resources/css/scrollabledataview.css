@@ -27,3 +27,11 @@
 .scroller-meta-part {
   float: left;
   text-align: center; }
+
+/* line 28, ../sass/scrollabledataview.scss */
+.scrollable-dataview-item-selected {
+  z-index: 1; }
+
+/* line 31, ../sass/scrollabledataview.scss */
+.scrollable-dataview-dataview .x-mask {
+  z-index: 0; }

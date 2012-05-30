@@ -2,13 +2,13 @@ Ext.require('Ext.container.Viewport');
 Ext.application({
     name: 'Vzabote',
     autoCreateViewport: true,
-    models: ['Category','CategoryInfo','Product'],
-    stores: ['Categories','CategoryInfo','Products'],
+    models: ['Category','CategoryInfo','ProductType','Cart','Product'],
+    stores: ['Categories','CategoryInfo','ProductTypes','Carts','Products'],
     controllers: ['Viewport','CategorySelect','Login','Product'],
     launch: function(){
-        Ext.getStore('Categories').load();
+        Ext.Loader.setPath('Vzabote','app');
+        // Ext.getStore('Categories').load();
         Vzabote.router.initRoutes(this);
-        
     }
 })
 Ext.ns('templates');

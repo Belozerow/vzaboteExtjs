@@ -3,52 +3,61 @@ Ext.define('Vzabote.view.ScrollableDataView',{
     alias: 'widget.scrollabledataview',
     cls: 'scrollable-dataview',
     tpl: '',
-    // height: 300,
     scrollOverWidth: 300,
     animSpeed: 8,
     animDuration: 800,
     constrainMargin: 2,
     scrollItemsCount: 3,
+    scrollerIsActive: true,
     initComponent: function(){
         this.callParent();
         this.itemElWidth = 0;
         this.scrollerDiff = 0;
         this.dataViewConstrainX = [0,0];
         this.scrollWidth = 0;
-        this.store = Ext.getStore(this.store);
         
-        this.mon(this.cardParent,'deactivate',function(){
-            this.stopAnimation();
+        this.animDelay = new Ext.util.DelayedTask(function(){
+            this.animationIsActive = false;
         },this);
-        this.mon(this.cardParent,'activate',function(){
-            this.dragEnd(0);
-        },this);
+        
+        this.store = Ext.getStore(this.store);
+        if(!this.store)
+            console.error('Scrollable dataview requires store');
+        if(!this.cardParent){
+            console.warn('Scrollable dataview requires cardParent param to save animation on card switch');
+        }
+        else{
+            this.mon(this.cardParent,'deactivate',function(){
+                this.stopAnimation();
+            },this);
+            this.mon(this.cardParent,'activate',function(){
+                if(this.scrollWidth>0)
+                    this.dragEnd(0);
+            },this);   
+        }
         this.dataView = this.add({
             xtype: 'dataview',
             store: this.store,
-            // height: 250,
+            cls: 'scrollable-dataview-dataview',
             itemCls: 'scrollable-dataview-item',
             itemTpl: this.itemTpl,
             listeners: {
                 scope: this,
-                afterrender: function(){
-                    // this.dataView.getEl().on('mousedown',function(){
-                        // this.animationStop();
-                    // },this)
-                },
-                itemclick: function(){
-                    // if(this.animationIsActive())
-                        // this.animationStop();
-                    // else{
-                        // console.log('itemselect')
-                    // }
+                itemclick: function(me,item,node,index,e){
+                    if(!this.animationIsActive)
+                        this.fireEvent('itemclick',me,item,node,index,e)
                 }
                 
             }
         })
         this.mon(this.store,'load',this.refresh,this);
-        this.on('afterrender',this.initElements);
-        this.mon(this.store,'datachanged',this.refresh,this)
+        this.mon(this.store,'datachanged',this.refresh,this);
+        
+        this.dataView.on('viewready',function(){
+            if(!this.store.isLoading()){
+                this.refresh();
+            }
+        },this,{single: true})
         this.scrollerContainer = Ext.create('Ext.container.Container',{
             cls: 'scroll-bar',
             html: '<div class="scroller-container">'+ //scrollerEl
@@ -112,11 +121,15 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             listeners: {
                 dragstart: function(e){
                     this.ddTracker.prevPos = e.startXY[0];
+                    this.animationIsActive = true;
                 },
                 dragend: function(e){
+                    this.animDelay.cancel();
+                    this.animDelay.delay(200);
                     this.dragEnd(this.ddTracker.speed)
                 },
                 drag: function(e){
+                    this.animationIsActive = true;
                     this.ddTracker.speed = this.ddTracker.prevPos - e.lastXY[0];
                     this.scrollTo(this.ddTracker.prevPos - e.lastXY[0])
                     this.ddTracker.prevPos = e.lastXY[0];
@@ -146,8 +159,16 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         });
     },
     refresh: function(){
+        if(!this.scrollerEl)
+            this.initElements()
         var itemEl = this.dataView.getEl().first('.scrollable-dataview-item');
         if(itemEl){
+            
+            var aElements = this.dataView.getEl().select('a');
+            if(aElements){
+                aElements.un('click',this.onLinkClick,this);
+                aElements.on('click',this.onLinkClick,this);    
+            }
             this.itemElWidth = itemEl.getWidth() + itemEl.getMargin().left + itemEl.getMargin().right;
             this.dataView.setWidth(this.store.getCount()*this.itemElWidth+itemEl.getMargin().right);
             
@@ -188,7 +209,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
                 
     },
     scrollTo: function(diff){
-        if(this.scrollWidth != -1){
+        if(this.scrollWidth != -1 && this.scrollerIsActive){
             var el = this.dataView.getEl(),
                 leftOver = (el.getX() >  this.dataViewConstrainX[0] + this.scrollOverWidth),
                 rightOver = (el.getX() < this.dataViewConstrainX[1] - this.scrollOverWidth),
@@ -230,7 +251,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         
     },
     dragEnd: function(speed){
-        if(this.scrollWidth != -1){
+        if(this.scrollWidth != -1 && this.scrollerIsActive){
             var el = this.dataView.getEl(),
             scroller = this.scrollEl,
             speed = speed*this.animSpeed;
@@ -260,12 +281,6 @@ Ext.define('Vzabote.view.ScrollableDataView',{
     scrollRight: function(){
         this.dragEnd((this.itemElWidth/this.animSpeed)*this.scrollItemsCount);
     },
-    animationIsActive: function(){
-        var el = this.dataView.getEl();
-        if(el.getActiveAnimation())
-            return true;
-        return false;
-    },
     stopAnimation: function(){
         var el = this.dataView.getEl(),
                     scroller = this.scrollEl;
@@ -273,5 +288,42 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             el.getActiveAnimation().end()
         if(scroller.getActiveAnimation())
             scroller.getActiveAnimation().end();
+    },
+    hideScrollBar: function(){
+        this.scroller.hide();
+    },
+    showScrollBar: function(){
+        this.scroller.show();
+    },
+    onLinkClick: function(e){
+        if(this.animationIsActive)
+            e.preventDefault()
+    },
+    disableScroller: function(){
+        this.scrollerIsActive = false;
+    },
+    enableScroller: function(){
+        this.scrollerIsActive = true;
+    },
+    disableDataView: function(elementId){
+        this.dataView.getTargetEl().mask()
+        if(!this.store.isLoading()){
+            this.activeElement = Ext.get(this.dataView.getNode(this.store.getById(elementId)));
+            this.activeElement.addCls('scrollable-dataview-item-selected')    
+        }
+        else{
+            this.mon(this.store,'load',function(){
+                this.activeElement = Ext.get(this.dataView.getNode(this.store.getById(elementId)));
+                this.activeElement.addCls('scrollable-dataview-item-selected')
+            },this,{single: true})
+        }        
+        this.hideScrollBar();
+        this.disableScroller();
+    },
+    enableDataView: function(){
+        this.dataView.getTargetEl().unmask()
+        this.activeElement.removeCls('scrollable-dataview-item-selected')
+        this.showScrollBar();
+        this.enableScroller();
     }
 })

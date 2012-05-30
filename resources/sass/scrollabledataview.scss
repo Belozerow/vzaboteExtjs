@@ -25,3 +25,9 @@
   float: left;
   text-align: center;
 }
+.scrollable-dataview-item-selected{
+  z-index: 1;
+}
+.scrollable-dataview-dataview .x-mask{
+    z-index: 0;
+}
