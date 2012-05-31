@@ -38,7 +38,7 @@ Ext.define('Vzabote.controller.Product',{
            this.animateProductsHide(function(){
                   this.productsIsShown = false;
                   this.productsView.hideProducts(function(){
-                      this.getProductTypesSlider().enableDataView(query.id)
+                      this.getProductTypesSlider().enableDataView(query.id);
                       this.productsView.cngButton('main');    
                   },this);
            });           
@@ -52,11 +52,17 @@ Ext.define('Vzabote.controller.Product',{
            });
        }
        if(cardPanel.layout.getActiveItem().xtype!='products'){
+           
             this.getController('Viewport').closeAllWindows();
+            
             var store = Ext.getStore('ProductTypes');
-            if(store.getCount()==0)
+            
+            if(store.getCount()==0){
                 store.load();
+            }
+                        
             if(!this.productsView||this.productsView.isDestroyed){
+                
                 this.productsView = Ext.create('Vzabote.view.Products',{
                     store: store,
                     animDuration: this.animDuration,

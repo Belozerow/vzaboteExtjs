@@ -1,6 +1,6 @@
 Ext.define('Vzabote.store.CategoryInfo',{
     extend: 'Ext.data.Store',
-    requires: 'Vzabote.model.CategoryInfo',
+    // requires: 'Vzabote.model.CategoryInfo',
     model: 'Vzabote.model.CategoryInfo',
     data: [
         {name: 'Капуста', titleextra: '1 кг'},

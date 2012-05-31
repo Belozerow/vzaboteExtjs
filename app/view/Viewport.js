@@ -36,10 +36,10 @@ Ext.define('Vzabote.view.Viewport',{
                     items: [
                         Ext.apply({
                             xtype: 'button',
-                            id: 'viewport-loginbutton',
+                            id: 'viewport-loginbutton'
                         },templates.viewport.login)
                     ]
-                },
+                }
             ]
         })
         this.cards = this.add({
@@ -79,10 +79,10 @@ Ext.define('Vzabote.view.Viewport',{
                     items: [
                         Ext.apply({
                             id: 'viewport-addshop-button',
-                            xtype: 'button',
+                            xtype: 'button'
                         },templates.viewport.addshop)
                     ]
-                },
+                }
                 
             ]
         });

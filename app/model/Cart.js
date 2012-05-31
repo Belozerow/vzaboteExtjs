@@ -6,6 +6,6 @@ Ext.define('Vzabote.model.Cart',{
         {type: 'hasMany', model: 'Vzabote.model.Product', name: 'products'}
     ],
     proxy: {
-        type: 'memory',
+        type: 'memory'
     }
 });

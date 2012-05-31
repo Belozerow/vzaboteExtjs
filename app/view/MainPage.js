@@ -4,7 +4,7 @@ Ext.define('Vzabote.view.MainPage',{
    id: 'mainpage',
    layout: {
        type: 'fit',
-       align: 'stretch',
+       align: 'stretch'
    },
    initComponent: function(){
        this.callParent();
@@ -14,7 +14,7 @@ Ext.define('Vzabote.view.MainPage',{
            id: 'mainpage-catpanel',
            layout: {
                type: 'vbox',
-               align: 'stretch',
+               align: 'stretch'
            },
            items: [Ext.apply({
                    flex: 2,
@@ -80,15 +80,15 @@ Ext.define('Vzabote.view.MainPage',{
                items: [
                     Ext.apply({
                         flex: 1,
-                        id: 'sidebar-f',
+                        id: 'sidebar-f'
                     },templates.mainpage.infopanelfirst),
                     Ext.apply({
                         flex: 1,
-                        id: 'sidebar-s',
+                        id: 'sidebar-s'
                     },templates.mainpage.infopanelsecond),
                     Ext.apply({
                         height: 179,
-                        id: 'sidebar-t',
+                        id: 'sidebar-t'
                     },templates.mainpage.infopanelthird)
                ] 
            },templates.mainpage.infopanel)]
