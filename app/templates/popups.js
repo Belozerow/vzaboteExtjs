@@ -16,5 +16,10 @@ templates.popups = {
                     '<div class="product-title-extra">{data.titleextra}</div>'+
                 '</div>'+
             '</tpl>'
+    },
+    productsChooseInfo: {
+        html: 'Выберите категорию продуктов <br/>'+
+              '&#8592; &nbsp; &#8594; <br/>'+
+              'Перетаскивайте список категорий вбок, как будто прохаживаетесь в магазие вдоль реальных отделов'
     }
 }
