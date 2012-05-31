@@ -14,6 +14,9 @@ Ext.define('Vzabote.controller.Product',{
    },{
        ref: 'productTypesSlider',
        selector: '#products-productstypes'
+   },{
+       ref: 'productsSlider',
+       selector: '#products-products'
    }],
    init: function(){
        this.control({
@@ -24,12 +27,12 @@ Ext.define('Vzabote.controller.Product',{
         if(this.productsIsShown){
             var cardPanel = this.getCardPanel(),
                 activeItem = cardPanel.layout.getActiveItem().getTargetEl();
-            activeItem.setY(this.productsY)
+            activeItem.setY(this.productsY);
         }
         if(this.cartIsShown){
             var cardPanel = this.getCardPanel(),
                 activeItem = cardPanel.layout.getActiveItem().getTargetEl();
-            activeItem.setY(this.cartsY)
+            activeItem.setY(this.cartsY);
         }
    },
    index: function(query){
@@ -60,7 +63,7 @@ Ext.define('Vzabote.controller.Product',{
             if(store.getCount()==0){
                 this.mon(store,'load',function(){
                     this.showCategoryHintPopup();
-                },this,{single: true})    
+                },this,{single: true});
                 store.load();
             }
                         
@@ -71,10 +74,25 @@ Ext.define('Vzabote.controller.Product',{
                     animDuration: this.animDuration,
                     listeners: {
                         productsData: {
-                            itemclick: function(){
+                            itemclick: function(me,item,node,index,e){
                                 console.log('add to cart')
-                            }
-                        }
+                                var el = Ext.get(e.getTarget());
+                                if(el.hasCls('loupe')){
+                                     this.showProductPopup(node,item);
+                                }
+                            },
+                            scope: this
+                        },
+                        cartsDataView: {
+                            itemclick: function(me,item,node,index,e){
+                                var el = Ext.get(e.getTarget());
+                                if(el.hasCls('cart-info')){
+                                     this.showCartInfoPopup(el,item);
+                                }
+                            },
+                            scope: this
+                        },
+                        scope: this
                     }
                 });
                 this.productsView.on('afterlayout',this.saveStateAfterLayout,this);
@@ -155,7 +173,8 @@ Ext.define('Vzabote.controller.Product',{
           duration: this.animDuration,
           listeners: {
               afteranimate: function(){
-                 this.productsIsShown = true;   
+                 this.productsIsShown = true;
+                 this.showProductHintPopup();   
               },
               scope: this
           }
@@ -183,10 +202,54 @@ Ext.define('Vzabote.controller.Product',{
                 this.infoPopup = Ext.create('widget.simplepopup',Ext.apply({
                    ownerEl: element,
                    id: 'products-choose-info-popup',
-                   cls: 'info-popup',
+                   cls: 'info-popup'
                 },templates.popups.productsChooseInfo));
                 this.infoPopup.show();    
            },this,{single: true})    
        }   
+   },
+   showProductHintPopup: function(){
+       //TODO привязать к store.load
+       if(!this.infoProductPopup){
+           var element = this.getProductsSlider().getEl().down('.product-image');
+           this.infoProductPopup = Ext.create('widget.simplepopup',Ext.apply({
+               ownerEl: element,
+               id: 'products-choose-info-popup',
+               cls: 'info-popup'
+           },templates.popups.productsProductInfo));
+           this.infoProductPopup.show();   
+       }
+   },
+   showCartInfoPopup: function(element, item){
+       if(this.cartInfoPopup)
+            this.cartInfoPopup.close();       
+       this.cartInfoPopup = Ext.create('widget.simplepopup',Ext.apply({
+           ownerEl: element,
+           id: 'products-choose-info-popup',
+           cls: 'info-popup',
+           data: item.data,
+           alignPosition: 'bl-t'
+       },templates.popups.cartInfoPopup));
+       this.cartInfoPopup.show();  
+   },
+   showProductPopup: function(element, item){
+       if(this.productPopup)
+            this.productPopup.close();       
+       this.productPopup = Ext.create('widget.simplepopup',Ext.apply({
+           ownerEl: element,
+           id: 'products-choose-info-popup',
+           cls: 'info-popup',
+           layout: {
+               type: 'vbox',
+               align: 'stretch' 
+           },
+           alignPosition: 'c-c',
+           items: [Ext.apply({
+               data: item.data
+           },templates.popups.productPopup),Ext.apply({
+               xtype: 'button'
+           },templates.popups.productPopupButton)]
+       },templates.popups.productPopup));
+       this.productPopup.show();
    }
 });

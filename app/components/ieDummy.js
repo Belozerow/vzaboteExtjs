@@ -3,5 +3,5 @@ if(Ext.isIE){
         log: Ext.emptyFn,
         warn: Ext.emptyFn,
         error: Ext.emptyFn
-    }
+    };
 }

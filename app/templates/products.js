@@ -14,7 +14,8 @@ templates.products = {
                  '</a>'
     },
     products: {
-         itemTpl:'<div style="background: url({image});height: 150px; width: 150px; background-size: contain; background-repeat: no-repeat;"></div>'+
+         itemTpl:'<div class="images product-image" style="background: url({image}); background-repeat: no-repeat;"></div>'+
+                 '<div class="loupe">Лупа</div>'+
                  '<div>{name}</div>'
     },
     cartcontent: {
@@ -30,7 +31,7 @@ templates.products = {
     cart: {
         //name,custom,info,image, minprice, maxprice
         itemTpl: '<a href="#/products/carts/{id}"><img src="{image}" style="height: 100px; width: 100px;"/></a>'+
-                 '<div class="cart-info">i</div>'+
+                 '<div class="info-icon cart-info"></div>'+
                  '<div>Добавить в список</div>'+
                  '<div class="cart-name">{name}</div>'+
                  '<div class="cart-price">{minprice} - {maxprice}</div>'

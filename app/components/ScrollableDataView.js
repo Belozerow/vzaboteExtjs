@@ -21,8 +21,9 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         },this);
         
         this.store = Ext.getStore(this.store);
-        if(!this.store)
+        if(!this.store){
             console.error('Scrollable dataview requires store');
+        }            
         if(!this.cardParent){
             console.warn('Scrollable dataview requires cardParent param to save animation on card switch');
         }
