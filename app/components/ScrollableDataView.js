@@ -85,25 +85,23 @@ Ext.define('Vzabote.view.ScrollableDataView',{
                 align: 'center',
                 pack: 'center'
             },             
-            items: [{
+            items: [Ext.apply({
                     xtype: 'button',
-                    text: 'left',
                     cls: 'scrollabledataview-left',
                     width: 100,
                     handler: function(){
                         this.scrollLeft();
                     },
                     scope: this
-                },this.scrollerContainer,{
+                },templates.scrollabledataview.left),this.scrollerContainer,Ext.apply({
                     xtype: 'button',
-                    text: 'right',
                     cls: 'scrollabledataview-right',
                     width: 100,
                     handler: function(){
                         this.scrollRight();
                     },
                     scope: this
-            }]   
+            },templates.scrollabledataview.right)]   
         })
         this.addDocked(this.scroller)
     },

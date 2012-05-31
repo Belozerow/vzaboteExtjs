@@ -60,7 +60,7 @@ Ext.define('Vzabote.controller.Product',{
             if(store.getCount()==0){
                 this.mon(store,'load',function(){
                     this.showCategoryHintPopup();
-                },this,{single: true})
+                },this,{single: true})    
                 store.load();
             }
                         
@@ -175,16 +175,18 @@ Ext.define('Vzabote.controller.Product',{
       })
    },
    showCategoryHintPopup: function(){
-       this.mon(this.getProductTypesSlider().dataView,'show',function(){
-            var element = this.getProductTypesSlider().getEl().down('.producttypes-image');
-            if(this.infoPopup)
-                this.infoPopup.close();
-            this.infoPopup = Ext.create('widget.simplepopup',Ext.apply({
-               ownerEl: element,
-               id: 'products-choose-info-popup',
-               cls: 'info-popup',
-            },templates.popups.productsChooseInfo));
-            this.infoPopup.show();    
-       },this,{single: true})       
+       if(!this.productsIsShown){
+           this.mon(this.getProductTypesSlider().dataView,'show',function(){
+                var element = this.getProductTypesSlider().getEl().down('.producttypes-image');
+                if(this.infoPopup)
+                    this.infoPopup.close();
+                this.infoPopup = Ext.create('widget.simplepopup',Ext.apply({
+                   ownerEl: element,
+                   id: 'products-choose-info-popup',
+                   cls: 'info-popup',
+                },templates.popups.productsChooseInfo));
+                this.infoPopup.show();    
+           },this,{single: true})    
+       }   
    }
 });
