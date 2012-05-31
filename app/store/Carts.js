@@ -39,4 +39,4 @@ Ext.define('Vzabote.store.Carts',{
             {name: 'Гуляш', image: 'resources/product', minprice: 100.1, maxprice: 221.4, offerscount: 12}
         ]}
     ]   
-})
+});

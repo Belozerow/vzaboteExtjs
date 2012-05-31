@@ -27,4 +27,4 @@ Ext.define('Vzabote.store.CategoryInfo',{
         {name: 'Говядина', titleextra: '1 кг'},
         {name: 'Свинина', titleextra: '1 кг'}
     ]
-})
+});

@@ -41,7 +41,7 @@ Ext.define('Vzabote.view.Viewport',{
                     ]
                 }
             ]
-        })
+        });
         this.cards = this.add({
             xtype: 'panel',
             id: 'cardpanel',
@@ -51,7 +51,7 @@ Ext.define('Vzabote.view.Viewport',{
                 xtype: 'mainpage'
             }],
             flex: 10
-        })
+        });
         this.footer = this.add({
             xtype: 'panel',
             id: 'footer',
@@ -87,4 +87,4 @@ Ext.define('Vzabote.view.Viewport',{
             ]
         });
     }
-})
+});

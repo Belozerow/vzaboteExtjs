@@ -48,7 +48,6 @@ Ext.define('Vzabote.view.LoginPopup',{
             xtype: 'panel',
             id: 'loginpopup-cards',
             layout: 'card',
-            id: 'login-card',
             flex: 3            
         });
         
@@ -85,7 +84,7 @@ Ext.define('Vzabote.view.LoginPopup',{
                     }
                         
                     ]
-                })
+                });
         this.loginBy = Ext.create('Ext.form.Panel',Ext.apply({
             flex: 4,
             id: 'loginpopup-loginby'
@@ -147,4 +146,4 @@ Ext.define('Vzabote.view.LoginPopup',{
         
     }
     
-})
+});

@@ -93,7 +93,7 @@ Ext.define('Vzabote.view.MainPage',{
                ] 
            },templates.mainpage.infopanel)]
            
-       })
+       });
        this.add(contentPanel);
    }
 });

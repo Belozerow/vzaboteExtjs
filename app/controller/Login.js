@@ -53,17 +53,17 @@ Ext.define('Vzabote.controller.Login',{
             this.loginPopup.close();
        this.loginPopup = Ext.create('widget.loginpopup',{
        });
-       this.loginPopup.show()
+       this.loginPopup.show();
    },
    setActiveTab: function(node){
         var loginPopup = this.getLoginPopup();
         if(node.id == 'signintab'){
-            loginPopup.cardPanel.layout.setActiveItem(0)
+            loginPopup.cardPanel.layout.setActiveItem(0);
             loginPopup.getTargetEl().down('#signintab').addCls('active');
             loginPopup.getTargetEl().down('#signuptab').removeCls('active');
         }
         else if(node.id == 'signuptab'){
-            loginPopup.cardPanel.layout.setActiveItem(1)
+            loginPopup.cardPanel.layout.setActiveItem(1);
             loginPopup.getTargetEl().down('#signuptab').addCls('active');
             loginPopup.getTargetEl().down('#signintab').removeCls('active');
         }

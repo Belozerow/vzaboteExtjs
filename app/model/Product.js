@@ -11,4 +11,4 @@ Ext.define('Vzabote.model.Product',{
     proxy: {
         type: 'memory'
     }
-})
+});
