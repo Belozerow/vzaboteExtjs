@@ -51,11 +51,11 @@ Ext.define('Vzabote.view.ScrollableDataView',{
                 }
                 
             }
-        })
+        });
         if(this.store.isLoading()){
             this.dataView.hide();
             this.loadingPanel = Ext.create('Ext.container.Container',Ext.apply({
-            },templates.scrollabledataview.empty))
+            },templates.scrollabledataview.empty));
             this.add(this.loadingPanel);
             this.store.on('load',function(){
                 this.dataView.show();

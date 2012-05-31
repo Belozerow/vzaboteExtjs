@@ -9,7 +9,7 @@ Ext.define('Vzabote.view.Products',{
    animDuration: 500,
    initComponent: function(){
        this.callParent();
-       
+       this.add(Ext.apply({},templates.products.title))
        this.productTypesPanel = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
            store: this.store,
            cardParent: this,
