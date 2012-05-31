@@ -1,16 +1,23 @@
-/* line 1, ../sass/scrollabledataview.scss */
+/* line 2, ../sass/scrollabledataview.scss */
 .scrollable-dataview-item {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
   display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
   margin: 20px; }
+  /* line 7, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+  .scrollable-dataview-item {
+    *display: inline; }
 
-/* line 5, ../sass/scrollabledataview.scss */
+/* line 6, ../sass/scrollabledataview.scss */
 .scroller-container {
   height: 20px;
   border: 1px solid black;
   border-radius: 5px;
   display: -webkit-box;
   -webkit-box-align: center; }
-  /* line 11, ../sass/scrollabledataview.scss */
+  /* line 12, ../sass/scrollabledataview.scss */
   .scroller-container .scroller {
     position: absolute;
     background: #bb3346;
@@ -18,20 +25,20 @@
     height: 16px;
     top: 2px;
     width: 0px; }
-  /* line 19, ../sass/scrollabledataview.scss */
+  /* line 20, ../sass/scrollabledataview.scss */
   .scroller-container .scroller-part {
     border: 1px solid black;
     height: 20px; }
 
-/* line 24, ../sass/scrollabledataview.scss */
+/* line 25, ../sass/scrollabledataview.scss */
 .scroller-meta-part {
   float: left;
   text-align: center; }
 
-/* line 28, ../sass/scrollabledataview.scss */
+/* line 29, ../sass/scrollabledataview.scss */
 .scrollable-dataview-item-selected {
   z-index: 1; }
 
-/* line 31, ../sass/scrollabledataview.scss */
+/* line 32, ../sass/scrollabledataview.scss */
 .scrollable-dataview-dataview .x-mask {
   z-index: 0; }
