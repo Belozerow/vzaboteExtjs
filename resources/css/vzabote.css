@@ -8574,7 +8574,7 @@ a.x-tab-close-btn:hover {
   vertical-align: middle;
   *vertical-align: auto;
   overflow: hidden; }
-  /* line 7, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+  /* line 7, ../../../../../../usr/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
   .x-surface {
     *display: inline; }
 
@@ -10290,7 +10290,33 @@ nav {
     #pricestat-bottom #pricestat-back .x-btn-inner {
       font-size: 14px !important; }
 
-/* line 409, ../sass/vzabote.scss */
+/* line 411, ../sass/vzabote.scss */
+#products .scrollable-dataview .scrollable-dataview-item .images {
+  width: 150px;
+  height: 120px;
+  background-size: contain;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 10px 50px -20px black;
+  -webkit-box-shadow: 0px 10px 50px -20px black;
+  -o-box-shadow: 0px 10px 50px -20px black;
+  box-shadow: 0px 10px 50px -20px black; }
+/* line 418, ../sass/vzabote.scss */
+#products .scrollable-dataview .scrollable-dataview-item a {
+  font-size: 18px;
+  font-weight: bold;
+  color: #650d3d;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px white; }
+  /* line 424, ../sass/vzabote.scss */
+  #products .scrollable-dataview .scrollable-dataview-item a .title {
+    padding-top: 15px; }
+
+/* line 430, ../sass/vzabote.scss */
 #footer {
   margin-top: 30px;
   padding-left: 30px;
@@ -10299,14 +10325,14 @@ nav {
   -o-box-shadow: 0px 1px 0px white inset;
   box-shadow: 0px 1px 0px white inset;
   border-top: 1px solid #c5c1c0; }
-  /* line 415, ../sass/vzabote.scss */
+  /* line 436, ../sass/vzabote.scss */
   #footer #footer-body {
     padding-top: 20px;
     font-size: 12px; }
-    /* line 418, ../sass/vzabote.scss */
+    /* line 439, ../sass/vzabote.scss */
     #footer #footer-body #viewport-addshop-button {
       top: 0px !important; }
-      /* line 420, ../sass/vzabote.scss */
+      /* line 441, ../sass/vzabote.scss */
       #footer #footer-body #viewport-addshop-button .add-shop-button {
         width: 154px;
         float: right;

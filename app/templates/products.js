@@ -9,8 +9,8 @@ templates.products = {
         text: 'В список покупок'
     },
     dataview: {
-        itemTpl: '<a href="#/products/{id}"><div style="background: url({image});height: 150px; width: 150px; background-size: contain; background-repeat: no-repeat;"></div>'+
-                 '<div>{name}</div>'+
+        itemTpl: '<a href="#/products/{id}"><div class="images" style="background: url({image}); background-repeat: no-repeat;"></div>'+
+                 '<div class="title">{name}</div>'+
                  '</a>'
     },
     products: {
