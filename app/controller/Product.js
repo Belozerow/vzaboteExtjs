@@ -175,9 +175,6 @@ Ext.define('Vzabote.controller.Product',{
       })
    },
    showCategoryHintPopup: function(){
-       Ext.util.Observable.capture(this.getProductTypesSlider().dataView,function(e){
-           console.log(e)
-       })
        this.mon(this.getProductTypesSlider().dataView,'show',function(){
             var element = this.getProductTypesSlider().getEl().down('.producttypes-image');
             if(this.infoPopup)

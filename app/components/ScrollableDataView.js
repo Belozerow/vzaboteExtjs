@@ -44,8 +44,9 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             listeners: {
                 scope: this,
                 itemclick: function(me,item,node,index,e){
-                    if(!this.animationIsActive)
-                        this.fireEvent('itemclick',me,item,node,index,e)
+                    if(!this.animationIsActive){
+                        this.fireEvent('itemclick',me,item,node,index,e);
+                    }                        
                 }
                 
             }
@@ -179,8 +180,13 @@ Ext.define('Vzabote.view.ScrollableDataView',{
                 aElements.un('click',this.onLinkClick,this);
                 aElements.on('click',this.onLinkClick,this);    
             }
-            this.itemElWidth = itemEl.getWidth() + itemEl.getMargin().left + itemEl.getMargin().right;
-            this.dataView.setWidth(this.store.getCount()*this.itemElWidth+itemEl.getMargin().right);
+            var dataViewWidth = 0;
+            this.dataView.getEl().select('.scrollable-dataview-item').each(function(item){
+                dataViewWidth += item.getWidth()+ item.getMargin().left + item.getMargin().right;
+            });
+            
+            this.itemElWidth = dataViewWidth/this.store.getCount();
+            this.dataView.setWidth(dataViewWidth);
             
             this.dataViewConstrainX = [this.getEl().getX(),(this.getWidth()-this.dataView.getWidth())];
             
