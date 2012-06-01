@@ -180,7 +180,7 @@ Ext.define('Vzabote.controller.Product',{
    animateCartShow: function(cart){
         var carts = this.getCartsDataView();
         Vzabote.util.onEventOrNow(carts,'viewready','viewReady',undefined,function(){
-            this.cartsY = - carts.getEl().getY() - carts.getEl().down('.prodcarts').getHeight()/2;
+            this.cartsY = - carts.getEl().getY() - carts.getEl().down('.products-carts-dataview').getHeight()/3;
             var activeItem = this.productsView.getTargetEl(),
               newY = this.cartsY;
               
