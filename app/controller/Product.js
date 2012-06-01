@@ -94,7 +94,7 @@ Ext.define('Vzabote.controller.Product',{
                     productsStore: this.productsStore,
                     cartsStore: this.cartsStore,
                     animDuration: this.animDuration,
-                    itemsHeight: this.getCardPanel().getHeight()/2,
+                    parentHeight: this.getCardPanel().getHeight(),
                     listeners: {
                         productsData: {
 
@@ -178,9 +178,9 @@ Ext.define('Vzabote.controller.Product',{
         this.animateCartShow(query.id);
    },
    animateCartShow: function(cart){
-        var carts = this.getCartsDataView();
+        var carts = this.getCartsDataView().dataView;
         Vzabote.util.onEventOrNow(carts,'viewready','viewReady',undefined,function(){
-            this.cartsY = - carts.getEl().getY() - carts.getEl().down('.products-carts-dataview').getHeight()/3;
+            this.cartsY = - carts.getEl().getY() - carts.getEl().down('.scrollable-dataview-item').getHeight()/3;
             var activeItem = this.productsView.getTargetEl(),
               newY = this.cartsY;
               
