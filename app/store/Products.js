@@ -15,6 +15,5 @@ Ext.define('Vzabote.store.Products',{
         {id: 10, name: 'Грудинка', image: 'resources/products/grudinka.png', minprice: 100.1, maxprice: 221.4, offerscount: 12},
         {id: 11, name: 'Гуляш', image: 'resources/products/gulyash.png', minprice: 100.1, maxprice: 221.4, offerscount: 12},
         {id: 12, name: 'Вырезка', image: 'resources/products/vyrezka.png', minprice: 100.1, maxprice: 221.4, offerscount: 12}
-        
     ]    
 });
