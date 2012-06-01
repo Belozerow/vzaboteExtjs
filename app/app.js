@@ -12,7 +12,7 @@ Ext.application({
     autoCreateViewport: true,
     controllers: ['Viewport','CategorySelect','Login','Product', 'ShoppingList'],
     models: ['Category','CategoryInfo','ProductType','Cart','Product','Brand'],
-    stores: ['Categories','CategoryInfo','ProductTypes','Carts','Products','Brands'],
+    stores: ['Categories','CategoryInfo','ProductTypes','Carts','Products','Brands','UserCart'],
     launch: function(){
         Ext.Loader.setPath('Vzabote','app');
         Vzabote.router.initRoutes(this);
