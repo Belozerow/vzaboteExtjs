@@ -377,7 +377,7 @@ nav {
   }
 }
 
-.pricestat-title {
+.pricestat-title, .block-title {
   font-size: 24px;
   font-weight: bold;
   line-height: 28px;
@@ -408,20 +408,87 @@ nav {
 #products {
   .scrollable-dataview {
     .scrollable-dataview-item {
+      vertical-align: top;
       .images {
-        width: 150px;
-        height: 120px;
+        width: 160px;
+        height: 128px;
         background-size: contain;
         @include border-radius(5px);
         @include box-shadow(0px 10px 50px -20px #000);
       }
       a {
-        font-size: 18px;
+        font-size: 17px;
         font-weight: bold;
         color: #650d3d;
         text-decoration: none;
         @include text-shadow(0px 1px 0px #fff);
-        .title {padding-top: 15px;}
+        .title {
+          width: 150px;
+          padding-top: 15px;
+          word-wrap: break-word;
+        }
+      }
+    }
+    .scrollabledataview-left, .scrollabledataview-right {
+      button {width: 50px !important;}
+    }
+    .scrollabledataview-left {background: url(../images/arrow_left.png) center no-repeat;}
+    .scrollabledataview-right {background: url(../images/arrow_right.png) center no-repeat;}
+    .scroll-bar {
+      .scroller-container {
+        height: 9px;
+        border: 1px solid #d4d4d4;
+        @include box-shadow(0px 0px 1px 0px #aaa inset);
+        .scroller-part {height: 8px; border: none;}
+        .scroller-part-1 {border-left: 1px solid #d4d4d4; border-right: 1px solid #d4d4d4;}
+        .scroller {
+          height: 5px;
+          // needs latest Compass, add '@import "compass"' to your scss
+          background-color: #dc3b43; // Old browsers
+          @include filter-gradient(#dc3b43, #b3255f, vertical); // IE6-9
+          @include background-image(linear-gradient(top,  #dc3b43 0%,#b3255f 100%));
+        }
+      }
+    }
+  }
+  #products-cartspanel {
+    padding-top: 40px;
+    #products-carts {
+      @include border-radius(5px);
+      .cart-info {
+        position: absolute;
+        marign-top: 0px;
+        top: 10px;
+        right: 30px;
+      }
+      .prodcarts {
+        background: #ebeae6;
+        padding-bottom: 8px;
+        @include box-shadow(0px 10px 50px -20px #000);
+        .add {
+          margin: 6px 8px 0px 8px;
+          width: 146px;
+          height: 32px;
+          padding-top: 8px;
+          font-weight: bold;
+          text-align: center;
+          @include text-shadow(0px 1px 0px #fff);
+          background: url(../images/cardadd.png) center no-repeat;
+        }
+      }
+      .cart-name {
+        width: 150px;
+        color: #650d3d;
+        font-size: 17px;
+        padding-top: 15px;
+        font-weight: bold;
+        word-wrap: break-word;
+        @include text-shadow(0px 1px 0px #fff);
+      }
+      .cart-price {
+        font-size: 15px;
+        margin-top: 4px;
+        .rub {font-family: ALSRublRegular; font-weight: lighter; padding-left: 4px;}
       }
     }
   }
