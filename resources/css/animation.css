@@ -11,11 +11,5 @@
   position: relative; }
 
 /* line 10, ../sass/animation.scss */
-.products-carts-dataview {
-  display: inline-block;
-  padding: 20px;
-  position: relative; }
-
-/* line 15, ../sass/animation.scss */
 #products-cartspanel .x-mask {
   z-index: 0; }

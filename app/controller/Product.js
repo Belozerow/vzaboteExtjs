@@ -14,6 +14,9 @@ Ext.define('Vzabote.controller.Product',{
    },{
        ref: 'productTypesSlider',
        selector: '#products-productstypes'
+   },{
+       ref: 'productsSlider',
+       selector: '#products-products'
    }],
    init: function(){
        this.control({
@@ -21,15 +24,13 @@ Ext.define('Vzabote.controller.Product',{
        });
    },
    saveStateAfterLayout: function(){
-        if(this.productsIsShown){
-            var cardPanel = this.getCardPanel(),
+        var cardPanel = this.getCardPanel(),
                 activeItem = cardPanel.layout.getActiveItem().getTargetEl();
-            activeItem.setY(this.productsY)
+        if(this.productsIsShown){
+            activeItem.setY(this.productsY);
         }
         if(this.cartIsShown){
-            var cardPanel = this.getCardPanel(),
-                activeItem = cardPanel.layout.getActiveItem().getTargetEl();
-            activeItem.setY(this.cartsY)
+            activeItem.setY(this.cartsY);
         }
    },
    index: function(query){
@@ -38,7 +39,7 @@ Ext.define('Vzabote.controller.Product',{
            this.animateProductsHide(function(){
                   this.productsIsShown = false;
                   this.productsView.hideProducts(function(){
-                      this.getProductTypesSlider().enableDataView(query.id)
+                      this.getProductTypesSlider().enableDataView(query.id);
                       this.productsView.cngButton('main');    
                   },this);
            });           
@@ -52,20 +53,72 @@ Ext.define('Vzabote.controller.Product',{
            });
        }
        if(cardPanel.layout.getActiveItem().xtype!='products'){
+           
             this.getController('Viewport').closeAllWindows();
-            var store = Ext.getStore('ProductTypes');
-            if(store.getCount()==0)
+            
+            var store = this.store = Ext.getStore('ProductTypes');
+            this.productsStore = Ext.getStore('Products');
+            this.cartsStore = Ext.getStore('Carts');
+            
+            
+            if(store.getCount() === 0){
+                this.mon(store,'load',function(){
+                    this.showCategoryHintPopup();
+                },this,{single: true});
                 store.load();
+            }
+                        
             if(!this.productsView||this.productsView.isDestroyed){
+                
                 this.productsView = Ext.create('Vzabote.view.Products',{
-                    store: store,
+                    store: this.store,
+                    productsStore: this.productsStore,
+                    cartsStore: this.cartsStore,
                     animDuration: this.animDuration,
                     listeners: {
                         productsData: {
-                            itemclick: function(){
-                                console.log('add to cart')
-                            }
-                        }
+                            itemclick: function(me,item,node,index,e){
+                                var el = Ext.get(e.getTarget());
+                                if(el.hasCls('loupe')){
+                                     this.showProductPopup(node,item);
+                                }
+                            },
+                            scope: this
+                        },
+                        cartcontentitemclick: function(me,item,node,index,e){
+                                var el = Ext.get(e.getTarget());
+                                if(el.hasCls('loupe')){
+                                     this.showProductPopup(node,item);
+                                }
+                        },
+                        cartsDataView: {
+                            itemclick: function(me,item,node,index,e){
+                                var el = Ext.get(e.getTarget());
+                                if(el.hasCls('cart-info')){
+                                     this.showCartInfoPopup(el,item);
+                                }
+                            },
+                            scope: this
+                        },
+                        slider: {
+                            change: function(me,val,thumb){
+                                if(thumb.index === 0){
+                                    this.productsView.updateSliderInfo({minprice: val});
+                                }
+                                else {
+                                    this.productsView.updateSliderInfo({maxprice: val});
+                                }
+                                
+                            },
+                            scope: this
+                        },
+                        brandsFilter: {
+                            click: function(){
+                                this.showBrandsPopup();
+                            },
+                            scope: this
+                        },
+                        scope: this
                     }
                 });
                 this.productsView.on('afterlayout',this.saveStateAfterLayout,this);
@@ -73,16 +126,20 @@ Ext.define('Vzabote.controller.Product',{
                     this.productsView.destroy();
                     this.productsIsShown =  false;
                     this.cartIsShown = false;
-                },this)
+                },this);
             }
-            cardPanel.layout.setActiveItem(this.productsView)
+            cardPanel.layout.setActiveItem(this.productsView);
        }
    },
    product: function(query){
        
        if(!this.productsView)
             this.index();
-       this.getProductTypesSlider().disableDataView(query.id)
+       Vzabote.util.storeOnLoad(this.store,function(){
+           this.productsView.updateSliderInfo({name: this.store.getById(query.id).get('name')});
+           
+       },this,{single: true});
+       this.getProductTypesSlider().disableDataView(query.id);
        this.productsView.showProducts(function(){
            this.animateProductsShow();       
            this.productsView.cngButton('products');
@@ -95,12 +152,12 @@ Ext.define('Vzabote.controller.Product',{
             this.index();
         var cart = Ext.getStore('Carts').getById(parseInt(query.id));
         this.productsView.disableCartsDataView(cart);
-        this.productsView.showCartContent(cart)
+        this.productsView.showCartContent(cart);
         this.animateCartShow(query.id);
    },
    animateCartShow: function(cart){
       var cardPanel = this.getCardPanel(),
-              activeItem = cardPanel.layout.getActiveItem().getTargetEl()
+              activeItem = cardPanel.layout.getActiveItem().getTargetEl(),
               newY = this.cartsY;
       this.prevY = activeItem.getY();
       activeItem.animate({
@@ -112,12 +169,12 @@ Ext.define('Vzabote.controller.Product',{
               },
               scope: this
           }
-      })
+      });
       var inner = Ext.get(this.productsView.getInner());
       inner.animate({
           to: {height: inner.getHeight()-newY},
           duration: this.animDuration
-      })
+      });
    },
    animateCartHide: function(callback){
       var cardPanel = this.getCardPanel(),
@@ -129,16 +186,16 @@ Ext.define('Vzabote.controller.Product',{
               afteranimate: callback||Ext.emptyFn,
               scope: this
           }
-      })
+      });
       var inner = Ext.get(this.productsView.getInner());
       inner.animate({
           to: {height: this.productsView.getTargetEl().getHeight()},
           duration: this.animDuration
-      })
+      });
    },
    animateProductsShow: function(){
       var cardPanel = this.getCardPanel(),
-                      activeItem = cardPanel.layout.getActiveItem().getTargetEl()
+                      activeItem = cardPanel.layout.getActiveItem().getTargetEl(),
                       newY = this.productsY;
       this.prevY = activeItem.getY();
       activeItem.animate({
@@ -146,11 +203,12 @@ Ext.define('Vzabote.controller.Product',{
           duration: this.animDuration,
           listeners: {
               afteranimate: function(){
-                 this.productsIsShown = true;   
+                 this.productsIsShown = true;
+                 this.showProductHintPopup();   
               },
               scope: this
           }
-      })
+      });
    },
    animateProductsHide: function(callback){
       
@@ -163,7 +221,68 @@ Ext.define('Vzabote.controller.Product',{
               afteranimate: callback||Ext.emptyFn,
               scope: this
           }
-      })
-      
+      });
+   },
+   showCategoryHintPopup: function(){
+       if(!this.productsIsShown){
+           this.mon(this.getProductTypesSlider().dataView,'show',function(){
+                var element = this.getProductTypesSlider().getEl().down('.producttypes-image');
+                if(this.infoPopup)
+                    this.infoPopup.close();
+                this.infoPopup = Ext.create('widget.simplepopup',Ext.apply({
+                   ownerEl: element,
+                   id: 'products-choose-info-popup',
+                   cls: 'info-popup'
+                },templates.popups.productsChooseInfo));
+                this.infoPopup.show();    
+           },this,{single: true});    
+       }   
+   },
+   showProductHintPopup: function(){
+       //TODO привязать к store.load
+       if(!this.infoProductPopup){
+           var element = this.getProductsSlider().getEl().down('.product-image');
+           this.infoProductPopup = Ext.create('widget.simplepopup',Ext.apply({
+               ownerEl: element,
+               id: 'products-choose-info-popup',
+               cls: 'info-popup'
+           },templates.popups.productsProductInfo));
+           this.infoProductPopup.show();   
+       }
+   },
+   showCartInfoPopup: function(element, item){
+       if(this.cartInfoPopup)
+            this.cartInfoPopup.close();       
+       this.cartInfoPopup = Ext.create('widget.simplepopup',Ext.apply({
+           ownerEl: element,
+           id: 'products-choose-info-popup',
+           cls: 'info-popup',
+           data: item.data,
+           alignPosition: 'bl-t'
+       },templates.popups.cartInfoPopup));
+       this.cartInfoPopup.show();  
+   },
+   showProductPopup: function(element, item){
+       if(this.productPopup)
+            this.productPopup.close();       
+       this.productPopup = Ext.create('widget.simplepopup',Ext.apply({
+           ownerEl: element,
+           id: 'products-choose-info-popup',
+           cls: 'info-popup',
+           layout: {
+               type: 'vbox',
+               align: 'stretch' 
+           },
+           alignPosition: 'c-c',
+           items: [Ext.apply({
+               data: item.data
+           },templates.popups.productPopup),Ext.apply({
+               xtype: 'button'
+           },templates.popups.productPopupButton)]
+       },templates.popups.productPopup));
+       this.productPopup.show();
+   },
+   showBrandsPopup: function(){
+       
    }
 });

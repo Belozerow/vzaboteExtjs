@@ -37,7 +37,7 @@ Ext.define('Vzabote.view.LoginPopup',{
                     items: [
                         Ext.apply({
                             xtype: 'button',
-                            id: 'loginpopup-login-button',
+                            id: 'loginpopup-login-button'
                         },templates.viewport.login)
                     ]
                 }
@@ -48,7 +48,6 @@ Ext.define('Vzabote.view.LoginPopup',{
             xtype: 'panel',
             id: 'loginpopup-cards',
             layout: 'card',
-            id: 'login-card',
             flex: 3            
         });
         
@@ -67,7 +66,7 @@ Ext.define('Vzabote.view.LoginPopup',{
                         name: 'password',
                         xtype: 'textfield',
                         // inputType: 'password', 
-                        emptyText: 'Пароль',                        
+                        emptyText: 'Пароль'                       
                     },
                     {
                         name: 'hide-password',
@@ -85,7 +84,7 @@ Ext.define('Vzabote.view.LoginPopup',{
                     }
                         
                     ]
-                })
+                });
         this.loginBy = Ext.create('Ext.form.Panel',Ext.apply({
             flex: 4,
             id: 'loginpopup-loginby'
@@ -118,7 +117,7 @@ Ext.define('Vzabote.view.LoginPopup',{
                         name: 'password',
                         xtype: 'textfield',
                         // inputType: 'password', 
-                        emptyText: 'Пароль',                        
+                        emptyText: 'Пароль'                        
                     },
                     {
                         name: 'hide-password',
@@ -136,7 +135,7 @@ Ext.define('Vzabote.view.LoginPopup',{
                     }
                         
                     ]
-                })
+        });
         
         this.cardPanel.add(this.loginCardItem);
         this.cardPanel.add(this.regCardItem);
@@ -147,4 +146,4 @@ Ext.define('Vzabote.view.LoginPopup',{
         
     }
     
-})
+});
