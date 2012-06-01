@@ -9,14 +9,14 @@ Ext.define('Vzabote.model.ProductType',{
              {name: 'id'}
     ],
     proxy: {
-        type: 'rest',
+        type: 'scripttag',
         url: VzaboteSettings.serviceUrl + '/api/v1/whitebrand/',
         extraParams: {
-            format: 'json'
+            format: 'jsonp'
         },
         reader: {
             type: 'json',
             root: 'objects'
         }
     }
-})
+});

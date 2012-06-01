@@ -7,17 +7,17 @@ Ext.define('Vzabote.view.PriceStat',{
        
        this.addDocked(Ext.apply({
            id: 'pricestat-title'
-       },templates.pricestat.title))
+       },templates.pricestat.title));
        //Можно/нужно было dataview использовать
        var index = 0;
        Ext.getStore('Categories').each(function(item){
           this.add(Ext.apply({
               xtype: 'container',
               data: item.data,
-              columnWidth: .25,
+              columnWidth: 0.25,
               id: 'pricestat-cat-'+index,
               index: index
-          },templates.pricestat.stat))
+          },templates.pricestat.stat));
           index++; 
        },this);
        
@@ -31,6 +31,6 @@ Ext.define('Vzabote.view.PriceStat',{
                id: 'pricestat-back',
                hrefTarget: '_self'
            },templates.pricestat.goback)
-       })
+       });
    }
 });

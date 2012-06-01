@@ -21,7 +21,7 @@ Ext.define('Vzabote.view.SimplePopup',{
     },
     initComponent: function(){
         this.callParent();
-        this.on('show',this.showPopup,this)
+        this.on('show',this.showPopup,this);
         var me = this;
         this.closeAnim.scope = me;
     },
@@ -29,17 +29,17 @@ Ext.define('Vzabote.view.SimplePopup',{
         if(this.ownerEl){
             this.alignTo(this.ownerEl,(this.alignPosition)?this.alignPosition:"tl-bl");
         }
-        this.getEl().hide()
+        this.getEl().hide();
         this.getEl().fadeIn(this.anim);
     },
     close: function(withAnimation){
         if(this.getActiveAnimation())
             this.getActiveAnimation().end();
         if(withAnimation&&this.getEl()){
-            this.getEl().fadeOut(this.closeAnim)
+            this.getEl().fadeOut(this.closeAnim);
         } 
         else
-            this.callParent()
+            this.callParent();
    }
     
 })

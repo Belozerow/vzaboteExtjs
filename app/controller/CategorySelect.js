@@ -8,8 +8,7 @@ Ext.define('Vzabote.controller.CategorySelect',{
        this.control({
           '#mainpage-categoriespanel > container': {
              afterlayout:function(me){
-                 //для первой, не совсем понятно как должно быть
-                 if(me.index == 0){
+                 if(me.index === 0){
                      this.showPopup(me);
                  }
              },
@@ -22,7 +21,7 @@ Ext.define('Vzabote.controller.CategorySelect',{
                      if(el.hasCls('info-icon')){
                          this.showInfoPopup(el,me.index);
                      }
-                 },this)
+                 },this);
              }
           },
           'pricestat container': {
@@ -32,7 +31,7 @@ Ext.define('Vzabote.controller.CategorySelect',{
                      if(el.hasCls('info-icon')){
                          this.showInfoPopup(el,me.index);
                      }
-                 },this)
+                 },this);
               }
           }
        });
@@ -41,7 +40,7 @@ Ext.define('Vzabote.controller.CategorySelect',{
        var cardPanel = this.getCardPanel();
        if(cardPanel.layout.getActiveItem().xtype!='mainpage'){
            this.getController('Viewport').closeAllWindows();
-           cardPanel.layout.setActiveItem(0)
+           cardPanel.layout.setActiveItem(0);
        }
    },
    pricestat: function(){
@@ -52,7 +51,7 @@ Ext.define('Vzabote.controller.CategorySelect',{
                 this.pricestatView = Ext.create('Vzabote.view.PriceStat',{
                 });
             }
-            cardPanel.layout.setActiveItem(this.pricestatView)
+            cardPanel.layout.setActiveItem(this.pricestatView);
        }
    },
    showInfoPopup: function(element,index){
@@ -85,7 +84,7 @@ Ext.define('Vzabote.controller.CategorySelect',{
               id: 'hint-popup',
               ownerEl: element.getEl().down('.category-name')
            },tpl));
-           this.popup.show()    
+           this.popup.show();
        } 
        else
             this.popup.close();

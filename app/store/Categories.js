@@ -1,6 +1,6 @@
 Ext.define('Vzabote.store.Categories',{
     extend: 'Ext.data.Store',
-    requires: 'Vzabote.model.Category',
+    // requires: 'Vzabote.model.Category',
     model: 'Vzabote.model.Category',
     data: [
 
@@ -47,4 +47,4 @@ Ext.define('Vzabote.store.Categories',{
             }
         ]}
     ]
-})
+});
