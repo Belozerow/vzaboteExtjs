@@ -47,4 +47,4 @@ Ext.define('Vzabote.store.Categories',{
             }
         ]}
     ]
-})
+});

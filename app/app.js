@@ -18,6 +18,6 @@ Ext.application({
         Ext.getStore('Categories').load();
         Vzabote.router.initRoutes(this);
     }
-})
+});
 Ext.ns('templates');
 Ext.ns('Vzabote.router');

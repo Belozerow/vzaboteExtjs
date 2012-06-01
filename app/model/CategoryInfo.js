@@ -4,4 +4,4 @@ Ext.define('Vzabote.model.CategoryInfo',{
     proxy: {
         type: 'memory'
     }
-})
+});
