@@ -4,7 +4,7 @@ Ext.application({
     autoCreateViewport: true,
     models: ['Category','CategoryInfo','ProductType','Cart','Product'],
     stores: ['Categories','CategoryInfo','ProductTypes','Carts','Products'],
-    controllers: ['Viewport','CategorySelect','Login','Product'],
+    controllers: ['Viewport','CategorySelect','Login','Product', 'ShoppingList'],
     launch: function(){
         Ext.Loader.setPath('Vzabote','app');
         // Ext.getStore('Categories').load();
