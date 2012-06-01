@@ -56,7 +56,10 @@ Ext.define('Vzabote.controller.Product',{
            
             this.getController('Viewport').closeAllWindows();
             
-            var store = Ext.getStore('ProductTypes');
+            var store = this.store = Ext.getStore('ProductTypes');
+            this.productsStore = Ext.getStore('Products');
+            this.cartsStore = Ext.getStore('Carts');
+            
             
             if(store.getCount() === 0){
                 this.mon(store,'load',function(){
@@ -68,7 +71,9 @@ Ext.define('Vzabote.controller.Product',{
             if(!this.productsView||this.productsView.isDestroyed){
                 
                 this.productsView = Ext.create('Vzabote.view.Products',{
-                    store: store,
+                    store: this.store,
+                    productsStore: this.productsStore,
+                    cartsStore: this.cartsStore,
                     animDuration: this.animDuration,
                     listeners: {
                         productsData: {
@@ -90,6 +95,24 @@ Ext.define('Vzabote.controller.Product',{
                             },
                             scope: this
                         },
+                        slider: {
+                            change: function(me,val,thumb){
+                                if(thumb.index === 0){
+                                    this.productsView.updateSliderInfo({minprice: val});
+                                }
+                                else {
+                                    this.productsView.updateSliderInfo({maxprice: val});
+                                }
+                                
+                            },
+                            scope: this
+                        },
+                        brandsFilter: {
+                            click: function(){
+                                this.showBrandsPopup();
+                            },
+                            scope: this
+                        },
                         scope: this
                     }
                 });
@@ -107,6 +130,10 @@ Ext.define('Vzabote.controller.Product',{
        
        if(!this.productsView)
             this.index();
+       Vzabote.util.storeOnLoad(this.store,function(){
+           this.productsView.updateSliderInfo({name: this.store.getById(query.id).get('name')});
+           
+       },this,{single: true});
        this.getProductTypesSlider().disableDataView(query.id);
        this.productsView.showProducts(function(){
            this.animateProductsShow();       
@@ -249,5 +276,8 @@ Ext.define('Vzabote.controller.Product',{
            },templates.popups.productPopupButton)]
        },templates.popups.productPopup));
        this.productPopup.show();
+   },
+   showBrandsPopup: function(){
+       
    }
 });

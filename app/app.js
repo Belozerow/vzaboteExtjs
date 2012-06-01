@@ -10,14 +10,14 @@
 Ext.application({
     name: 'Vzabote',
     autoCreateViewport: true,
-    models: ['Category','CategoryInfo','ProductType','Cart','Product'],
-    stores: ['Categories','CategoryInfo','ProductTypes','Carts','Products'],
+    models: ['Category','CategoryInfo','ProductType','Cart','Product','Brand'],
+    stores: ['Categories','CategoryInfo','ProductTypes','Carts','Products','Brands'],
     controllers: ['Viewport','CategorySelect','Login','Product'],
     launch: function(){
         Ext.Loader.setPath('Vzabote','app');
-        Ext.getStore('Categories').load();
         Vzabote.router.initRoutes(this);
     }
 });
 Ext.ns('templates');
 Ext.ns('Vzabote.router');
+Ext.ns('Vzabote.util');

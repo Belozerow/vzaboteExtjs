@@ -39,5 +39,9 @@ templates.popups = {
     },
     productPopupButton: {
         text: 'Добавить в список'
+    },
+    brands: {
+        itemTpl: '<img src="{image}"/>'+
+                 '<div>{name}</div>'
     }
 }

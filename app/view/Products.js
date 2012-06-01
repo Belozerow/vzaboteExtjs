@@ -18,16 +18,66 @@ Ext.define('Vzabote.view.Products',{
        
        this.add(this.productTypesPanel);
        
-       this.productsDataPanel = Ext.create('Ext.panel.Panel',{
+       this.productsDataPanel = Ext.create('Ext.container.Container',{
            layout: {
                type: 'vbox',
                align: 'stretch'
            },
-           // hidden: true
            height: 0
        });
+       
+       //TODO this.sliderMin = this.productsStore.getMinPrice()
+       this.sliderMin = 20;
+       this.sliderMax = 145;
+       this.slider = Ext.create('Ext.slider.Multi',Ext.apply({
+           minValue: this.sliderMin,
+           maxValue: this.sliderMax,
+           increment: 1,
+           useTips: false,
+           values: [this.sliderMin,this.sliderMax]
+       },templates.products.slider));
+       this.scrollerInfoData = {
+               name: 'Продукт',
+               minprice: this.sliderMin,
+               maxprice: this.sliderMax,
+               measure: 'КГ'
+       };
+       this.sliderInfoPanel = Ext.create('Ext.container.Container',Ext.apply({
+           data: this.scrollerInfoData
+       },templates.products.sliderinfo));
+       
+       this.brandsFilter = Ext.create('Ext.button.Button',Ext.apply({
+       },templates.products.brandfilter));
+       
+       this.productsFilters = Ext.create('Ext.container.Container',{
+           layout: {
+               type: 'hbox',
+               align: 'stretch'
+           },
+           items: [{
+               xtype: 'container',
+               layout: {
+                   type: 'vbox',
+                   align: 'start'
+               },
+               flex: 7,
+               items: [this.sliderInfoPanel,this.slider]
+           },{
+               xtype: 'container',
+               flex: 3,
+               layout: {
+                   type: 'hbox',
+                   align: 'middle',
+                   pack: 'center'
+               },
+               items: this.brandsFilter
+           }
+           
+           ]
+       });
+       this.productsDataPanel.add(this.productsFilters);
        this.productsData = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
-           store: Ext.getStore('Products'),
+           store: this.productsStore,
            id: 'products-products',
            cardParent: this,
            metaData: [
@@ -42,10 +92,10 @@ Ext.define('Vzabote.view.Products',{
        this.cartsDataView = Ext.create('Ext.view.View',Ext.apply({
                    id: 'products-carts',
                    itemCls: 'products-carts-dataview',
-                   store: Ext.getStore('Carts'),
+                   store: this.cartsStore,
                    bubbleEvents: ['itemclick']
        },templates.products.cart));
-       this.cartsPanel = Ext.create('Ext.panel.Panel',{
+       this.cartsPanel = Ext.create('Ext.container.Container',{
            xtype: 'panel',
            id: 'products-cartspanel',
            layout: {
@@ -74,7 +124,7 @@ Ext.define('Vzabote.view.Products',{
                id: 'products-productsbackbutton',
                cls: 'back-button'
        },templates.products.backbuttonproducts));
-       this.bottomPanel = Ext.create('Ext.panel.Panel',{xtype: 'panel',
+       this.bottomPanel = Ext.create('Ext.container.Container',{xtype: 'panel',
            dock: 'bottom',
            layout: {
                type: 'hbox',
@@ -178,5 +228,11 @@ Ext.define('Vzabote.view.Products',{
    enableCartsDataView: function(){
        this.cartsDataView.getTargetEl().unmask();
        this.activeElement.removeCls('scrollable-dataview-item-selected');
+   },
+   updateSliderInfo: function(newDate){
+       Ext.apply(this.scrollerInfoData,newDate);
+       this.sliderMin = newDate.minprice;
+       this.sliderMax = newDate.maxprice;
+       this.sliderInfoPanel.update(this.scrollerInfoData);
    }
 });
