@@ -91,7 +91,9 @@ Ext.define('Vzabote.controller.Product',{
                                 
                                 // Добавление товара в корзину
                                 var uStore = Ext.getStore('UserCart');
-            					uStore.addItem(item.raw);
+            					uStore.addItem(item.raw, {
+            						dublicate: 'id'		// Товар не будет добавлен, если в сторе уже есть товар с таким id
+            					});
             					
             					// Обновляем индикатор в header
             					this.getViewportTopPanel().update({});
