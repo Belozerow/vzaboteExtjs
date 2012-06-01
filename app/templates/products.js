@@ -16,11 +16,16 @@ templates.products = {
     products: {
          itemTpl:'<div class="images product-image" style="background: url({image}); background-repeat: no-repeat;"></div>'+
                  '<div class="loupe">Лупа</div>'+
-                 '<div>{name}</div>'
+                 '<div>{name}</div>'+
+                 '<div>{minprice} - {maxprice}<b class="rub">a</b></div>'+
+                 '<div>{offerscount} предложений</div>'
     },
     cartcontent: {
-         itemTpl:'<div style="background: url({image});height: 150px; width: 150px; background-size: contain; background-repeat: no-repeat;"></div>'+
-                 '<div>{name}</div>'
+         itemTpl:'<div class="images product-image" style="background: url({image}); background-repeat: no-repeat;"></div>'+
+                 '<div class="loupe">Лупа</div>'+
+                 '<div>{name}</div>'+
+                 '<div>{minprice} - {maxprice}<b class="rub">a</b></div>'+
+                 '<div>{offerscount} предложений</div>'
     },
     title: {
         html: '<div class="block-title">Продукты</div>'

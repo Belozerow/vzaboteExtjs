@@ -195,7 +195,13 @@ Ext.define('Vzabote.view.Products',{
        if(!this.cartContent||this.cartContent.isDestroyed){
             this.cartContent = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
                store: cart.products(),
-               cardParent: this
+               cardParent: this,
+               listeners: {
+                   itemclick: function(me,item,node,index,e){
+                       this.fireEvent('cartcontentitemclick',me,item,node,index,e)
+                   },
+                   scope: this
+               }
             },templates.products.cartcontent));
             this.add(this.cartContent);    
        }

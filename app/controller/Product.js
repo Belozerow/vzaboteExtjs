@@ -78,13 +78,18 @@ Ext.define('Vzabote.controller.Product',{
                     listeners: {
                         productsData: {
                             itemclick: function(me,item,node,index,e){
-                                
                                 var el = Ext.get(e.getTarget());
                                 if(el.hasCls('loupe')){
                                      this.showProductPopup(node,item);
                                 }
                             },
                             scope: this
+                        },
+                        cartcontentitemclick: function(me,item,node,index,e){
+                                var el = Ext.get(e.getTarget());
+                                if(el.hasCls('loupe')){
+                                     this.showProductPopup(node,item);
+                                }
                         },
                         cartsDataView: {
                             itemclick: function(me,item,node,index,e){
