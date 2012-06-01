@@ -41,7 +41,7 @@ templates.popups = {
         text: 'Добавить в список'
     },
     brands: {
-        itemTpl: '<img src="{image}"/>'+
-                 '<div>{name}</div>'
+        itemTpl: '<div class="brand-item <tpl if=\"selected\">brand-item-selected</tpl>"><img src="{image}"/>'+
+                 '<div>{name}</div></div>'
     }
 }
