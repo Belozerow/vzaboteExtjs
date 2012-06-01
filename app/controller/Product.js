@@ -113,8 +113,8 @@ Ext.define('Vzabote.controller.Product',{
                             scope: this
                         },
                         brandsFilter: {
-                            click: function(){
-                                this.showBrandsPopup();
+                            click: function(me){
+                                this.showBrandsPopup(me);
                             },
                             scope: this
                         },
@@ -282,7 +282,25 @@ Ext.define('Vzabote.controller.Product',{
        },templates.popups.productPopup));
        this.productPopup.show();
    },
-   showBrandsPopup: function(){
-       
+   showBrandsPopup: function(element){
+       if(this.brandsPopup)
+            this.brandsPopup.close();       
+       this.brandsPopup = Ext.create('widget.brandspopup',Ext.apply({
+           ownerEl: element,
+           alignPosition: 'tr-br',
+           store: Ext.getStore('Brands'),
+           listeners: {
+               itemclick: function(me,item,node,index,e){
+                   Ext.getStore('Brands').each(function(storeitem){
+                       storeitem.set('selected',false);
+                   })
+                   item.set('selected',true);
+                   this.productsView.setBrandText(item.get('name'));
+                   this.brandsPopup.close();
+               },
+               scope: this
+           }
+       },templates.popups.brands));
+       this.brandsPopup.show();
    }
 });

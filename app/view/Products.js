@@ -240,5 +240,8 @@ Ext.define('Vzabote.view.Products',{
        this.sliderMin = newDate.minprice;
        this.sliderMax = newDate.maxprice;
        this.sliderInfoPanel.update(this.scrollerInfoData);
+   },
+   setBrandText: function(text){
+       this.brandsFilter.setText(text);
    }
 });
