@@ -103,7 +103,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
                     scope: this
             },templates.scrollabledataview.right)]   
         });
-        this.addDocked(this.scroller);
+        this.add(this.scroller);
     },
     onScrollerClick: function(e,node){
         var scroller = this.scrollEl;
@@ -355,5 +355,15 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         this.showScrollBar();
         this.enableScroller();
         this.refresh();
+    },
+    getDataViewHeight: function(){
+        var lpHeight = 0,
+            sddHeight = 0,
+            sdd = this.getEl().down('.scrollable-dataview-dataview');
+        if(this.loadingPanel)
+            lpHeight = this.loadingPanel.getHeight();
+        if(sdd)
+            sddHeight = sdd.getHeight();
+        return Math.max(lpHeight,sddHeight);
     }
 })

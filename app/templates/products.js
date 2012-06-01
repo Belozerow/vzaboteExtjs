@@ -38,7 +38,14 @@ templates.products = {
         itemTpl:
                 new Ext.XTemplate('<div class="cart-style cart-style-{[this.getCartId(values)]}">'+
                     '<div class="prodcarts">'+
-                        '<a href="#/products/carts/{id}"><img src="{image}" style="height: 150px; width: 162px;"/></a>'+
+                        '<a href="#/products/carts/{id}">'+
+                        '<tpl if="custom">'+
+                            '<div class="cart-custom-image{[this.getCustomCartClass(values)]}"></div>'+
+                        '</tpl>'+
+                        '<tpl if="!custom">'+
+                            '<div style="background: url({image}); height: 150px; width: 162px;"></div>'+
+                        '</tpl>'+
+                        '</a>'+
                         '<div class="info-icon cart-info"></div>'+
                         '<div class="add">Добавить в список</div>'+
                     '</div>'+
@@ -46,10 +53,17 @@ templates.products = {
                     '<div class="cart-price">{minprice} - {maxprice}<b class="rub">a</b></div>'+
                 '</div>',{
                     cartNum: 0,
+                    customNum: 0,
                     getCartId: function(values){
                         if(values.custom)
                             return 'custom';
                         return this.cartNum++;
+                    },
+                    getCustomCartClass: function(values){
+                        if(this.customNum%2 == 0){
+                            this.customNum++;
+                            return '-odd'
+                        }
                     }
                 })
     },

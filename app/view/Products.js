@@ -13,7 +13,8 @@ Ext.define('Vzabote.view.Products',{
        this.productTypesPanel = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
            store: this.store,
            cardParent: this,
-           id: 'products-productstypes'
+           id: 'products-productstypes',
+           height: this.itemsHeight
        },templates.products.dataview));
        
        this.add(this.productTypesPanel);
@@ -102,6 +103,7 @@ Ext.define('Vzabote.view.Products',{
                type: 'vbox',
                align: 'stretch'
            },
+           height: this.itemsHeight,
            items: [
                 Ext.apply({
                 },templates.products.cartsTitle),
@@ -198,7 +200,7 @@ Ext.define('Vzabote.view.Products',{
                cardParent: this,
                listeners: {
                    itemclick: function(me,item,node,index,e){
-                       this.fireEvent('cartcontentitemclick',me,item,node,index,e)
+                       this.fireEvent('cartcontentitemclick',me,item,node,index,e);
                    },
                    scope: this
                }
@@ -206,6 +208,14 @@ Ext.define('Vzabote.view.Products',{
             this.add(this.cartContent);    
        }
        
+   },
+   stopAnimation: function(){
+       if(this.cartsPanel.getActiveAnimation()){
+           this.cartsPanel.getActiveAnimation().end();
+       }
+       if(this.productsDataPanel.getActiveAnimation()){
+           this.productsDataPanel.getActiveAnimation().end();
+       }
    },
    hideCartContent: function(){
        this.remove(this.cartContent);
