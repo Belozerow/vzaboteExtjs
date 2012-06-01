@@ -455,6 +455,11 @@ nav {
     padding-top: 40px;
     #products-carts {
       @include border-radius(5px);
+      .products-carts-dataview{
+        @include inline-block;
+        padding: 20px;
+        position: relative;
+      }
       .cart-info {
         position: absolute;
         marign-top: 0px;
