@@ -2,7 +2,8 @@ Ext.define('Vzabote.view.Viewport',{
     extend: 'Ext.container.Viewport',
     id: 'viewport',
     requires: [
-        'Vzabote.view.MainPage'
+        'Vzabote.view.MainPage',
+        'Vzabote.store.UserCart'
     ],
     layout: {
         type: 'vbox',
@@ -22,7 +23,9 @@ Ext.define('Vzabote.view.Viewport',{
             },
             items: [
                 Ext.apply({
-                  flex: 3  
+                  flex: 3,
+                  id: 'top-panel',
+                  data: {}
                 },templates.viewport.header),
                 {
                     xtype: 'panel',

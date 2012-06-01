@@ -6,4 +6,5 @@ Ext.define('Vzabote.store.UserCart', {
 	addItem: function(data){
 		return this.add(data);
 	}
+
 });
