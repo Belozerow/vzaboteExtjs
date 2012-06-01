@@ -18,28 +18,14 @@ Ext.define('Vzabote.controller.Product',{
        ref: 'productsSlider',
        selector: '#products-products'
    },{
+	   ref: 'viewportTopPanel',
+	   selector: '#top-panel'
+   },{
        ref: 'cartsDataView',
        selector: '#products-carts'
    }],
    init: function(){
-/*       this.control({
-			'#products-products': {
-				itemclick: function(data1, data2, data3, index, data5, data6){
-					console.log(data1, data2, data3, index, data5, data6);
-
-					var uStore = Ext.getStore('UserCart');
-					uStore.addItem({
-						id: '',
-						name: 'test'+index,
-						image: 'resources/product',
-						minprice: '22',
-						maxprice: '98',
-						offerscount: '24'
-					});
-					
-				}
-			}
-       });*/
+	   
    },
    saveStateAfterLayout: function(){
         var activeItem = this.productsView.getTargetEl();
@@ -97,12 +83,21 @@ Ext.define('Vzabote.controller.Product',{
                     parentHeight: this.getCardPanel().getHeight(),
                     listeners: {
                         productsData: {
-
                             itemclick: function(me,item,node,index,e){
                                 var el = Ext.get(e.getTarget());
                                 if(el.hasCls('loupe')){
                                      this.showProductPopup(node,item);
                                 }
+                                
+                                // Добавление товара в корзину
+                                var uStore = Ext.getStore('UserCart');
+            					uStore.addItem(item.raw, {
+            						dublicate: 'id'		// Товар не будет добавлен, если в сторе уже есть товар с таким id
+            					});
+            					
+            					// Обновляем индикатор в header
+            					this.getViewportTopPanel().update({});
+                                
                             },
                             scope: this
                         },
@@ -134,8 +129,8 @@ Ext.define('Vzabote.controller.Product',{
                             scope: this
                         },
                         brandsFilter: {
-                            click: function(me){
-                                this.showBrandsPopup(me);
+                            click: function(){
+                                this.showBrandsPopup();
                             },
                             scope: this
                         },
@@ -351,7 +346,6 @@ Ext.define('Vzabote.controller.Product',{
        var activeItem = this.productsView.getTargetEl();
        if(activeItem.getActiveAnimation())
             activeItem.getActiveAnimation().end();
-       
        
    }
 });
