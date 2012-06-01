@@ -18,13 +18,11 @@ Ext.define('Vzabote.controller.Product',{
        ref: 'productsSlider',
        selector: '#products-products'
    },{
-<<<<<<< HEAD
 	   ref: 'viewportTopPanel',
 	   selector: '#top-panel'
-=======
+   },{
        ref: 'cartsDataView',
        selector: '#products-carts'
->>>>>>> 04ea6d9403734a7ad3668fb9b29c993e790e5c7f
    }],
    init: function(){
 	   
@@ -316,9 +314,6 @@ Ext.define('Vzabote.controller.Product',{
        },templates.popups.productPopup));
        this.productPopup.show();
    },
-<<<<<<< HEAD
-   showBrandsPopup: function(){
-=======
    showBrandsPopup: function(element){
        if(this.brandsPopup)
             this.brandsPopup.close();       
@@ -349,8 +344,6 @@ Ext.define('Vzabote.controller.Product',{
        var activeItem = this.productsView.getTargetEl();
        if(activeItem.getActiveAnimation())
             activeItem.getActiveAnimation().end();
-       
->>>>>>> 04ea6d9403734a7ad3668fb9b29c993e790e5c7f
        
    }
 });
