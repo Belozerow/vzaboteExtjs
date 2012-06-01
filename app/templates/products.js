@@ -23,18 +23,21 @@ templates.products = {
                  '<div>{name}</div>'
     },
     title: {
-        html: 'Продукты'
+        html: '<div class="block-title">Продукты</div>'
     },
     cartsTitle: {
-        html: 'Продуктовые корзины'
+        html: '<div class="block-title">Продуктовые корзины</div>'
     },
     cart: {
         //name,custom,info,image, minprice, maxprice
-        itemTpl: '<a href="#/products/carts/{id}"><img src="{image}" style="height: 100px; width: 100px;"/></a>'+
-                 '<div class="info-icon cart-info"></div>'+
-                 '<div>Добавить в список</div>'+
-                 '<div class="cart-name">{name}</div>'+
-                 '<div class="cart-price">{minprice} - {maxprice}</div>'
+        itemTpl:
+                '<div class="prodcarts">'+
+                    '<a href="#/products/carts/{id}"><img src="{image}" style="height: 150px; width: 162px;"/></a>'+
+                    '<div class="info-icon cart-info"></div>'+
+                    '<div class="add">Добавить в список</div>'+
+                '</div>'+
+                '<div class="cart-name">{name}</div>'+
+                '<div class="cart-price">{minprice} - {maxprice}<b class="rub">a</b></div>'
     },
     sliderinfo: {
         tpl: '<div class="slider-title">{name}</div>'+
