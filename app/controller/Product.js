@@ -17,7 +17,22 @@ Ext.define('Vzabote.controller.Product',{
    }],
    init: function(){
        this.control({
+			'#products-products': {
+				itemclick: function(data1, data2, data3, index, data5, data6){
+					console.log(data1, data2, data3, index, data5, data6);
 
+					var uStore = Ext.getStore('UserCart');
+					uStore.addItem({
+						id: '',
+						name: 'test'+index,
+						image: 'resources/product',
+						minprice: '22',
+						maxprice: '98',
+						offerscount: '24'
+					});
+					
+				}
+			}
        });
    },
    saveStateAfterLayout: function(){
@@ -60,13 +75,13 @@ Ext.define('Vzabote.controller.Product',{
                 this.productsView = Ext.create('Vzabote.view.Products',{
                     store: store,
                     animDuration: this.animDuration,
-                    listeners: {
+                    /*listeners: {
                         productsData: {
                             itemclick: function(){
                                 console.log('add to cart')
                             }
                         }
-                    }
+                    }*/
                 });
                 this.productsView.on('afterlayout',this.saveStateAfterLayout,this);
                 this.productsView.on('deactivate',function(){

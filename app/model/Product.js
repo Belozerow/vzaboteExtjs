@@ -5,7 +5,7 @@ Ext.define('Vzabote.model.Product',{
              {name: 'name', type: 'string'},
              {name: 'image', type: 'imag'},
              {name: 'minprice',type: 'float'},
-             {name: 'minprice',type: 'float'},
+             {name: 'maxprice',type: 'float'},
              {name: 'offerscount',type: 'int'},
     ],
     proxy: {
