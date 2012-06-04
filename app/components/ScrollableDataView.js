@@ -41,6 +41,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             cls: 'scrollable-dataview-dataview',
             itemCls: 'scrollable-dataview-item',
             itemTpl: this.itemTpl,
+            bubbleEvents: ['viewready'],
             listeners: {
                 scope: this,
                 itemclick: function(me,item,node,index,e){
