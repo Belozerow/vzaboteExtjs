@@ -229,14 +229,14 @@ Ext.define('Vzabote.view.Products',{
    },
    disableCartsDataView: function(cart){
        Vzabote.util.onEventOrNow(this.cartsDataView.dataView,'viewready','viewReady',undefined,function(){
-           this.cartsDataView.dataView.mask();
-           this.activeElement = Ext.get(this.cartsDataView.dataView.getNode(cart));
-           this.activeElement.addCls('scrollable-dataview-item-selected');
+           this.cartsDataView.disableDataView(cart.get('id'));
+           // this.activeElement = Ext.get(this.cartsDataView.dataView.getNode(cart));
+           // this.activeElement.addCls('scrollable-dataview-item-selected');
        },this)
    },
    enableCartsDataView: function(){
-       this.cartsDataView.dataView.getTargetEl().unmask();
-       this.activeElement.removeCls('scrollable-dataview-item-selected');
+       this.cartsDataView.enableDataView()
+       // this.activeElement.removeCls('scrollable-dataview-item-selected');
    },
    updateSliderInfo: function(newDate){
        Ext.apply(this.scrollerInfoData,newDate);

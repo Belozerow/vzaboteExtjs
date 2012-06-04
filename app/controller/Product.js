@@ -4,7 +4,7 @@ Ext.define('Vzabote.controller.Product',{
    cartsY: -300,
    productsIsShown: false,
    cartIsShown: false,
-   animDuration: 700,
+   animDuration: 400,
    refs: [{
        ref: 'cardPanel',
        selector: '#cardpanel'
