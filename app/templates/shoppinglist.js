@@ -9,7 +9,7 @@ templates.shoppingList = {
         text: 'Выбор магазина'
     },
     dataview: {
-        itemTpl: new Ext.XTemplate('<a href="#/products/{id}"><div style="background: url({image});height: 150px; width: 150px; background-size: contain; background-repeat: no-repeat;"></div>'+
+        itemTpl: new Ext.XTemplate('<div style="background: url({image});height: 150px; width: 150px; background-size: contain; background-repeat: no-repeat;"></div>'+
                  '<div>{minprice} — {maxprice}<br>{offerscount} предложений{[this.method(values)]}</div>'+
                  //'<div>{name}</div>' +
                  '</a>'+
@@ -50,7 +50,7 @@ templates.shoppingList = {
                  
     },
     saveLoadButton: {
-        text: '<button>Сохранить, загрузить или очистить список...</button>'
+        text: 'Сохранить, загрузить или очистить список...'
                  
     }
 }
