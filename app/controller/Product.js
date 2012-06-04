@@ -26,6 +26,11 @@ Ext.define('Vzabote.controller.Product',{
    }],
    init: function(){
 	   
+	   this.mon(Ext.getStore('UserCart'), 'add', function(store, item, index, eOpts){
+		   console.log(store, item, index, eOpts);
+		   
+	   },this);
+	   
    },
    saveStateAfterLayout: function(){
         var activeItem = this.productsView.getTargetEl();
@@ -97,11 +102,14 @@ Ext.define('Vzabote.controller.Product',{
             					
             					// Обновляем индикатор в header
             					this.getViewportTopPanel().update({});
+            					
+            					// Добавляем класс по которому на продукте будет отображаться надпись - добавлено
+            					Ext.get(node).addCls('this-added');
                                 
                             },
                             scope: this
                         },
-                        cartcontentitemclick: function(me,item,node,index,e){
+                        cartcontentitemclick: function(me,item,node,index,e){ 
                                 var el = Ext.get(e.getTarget());
                                 if(el.hasCls('loupe')){
                                      this.showProductPopup(node,item);
