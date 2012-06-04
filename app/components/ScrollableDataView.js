@@ -9,6 +9,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
     constrainMargin: 2,
     scrollItemsCount: 3,
     scrollerIsActive: true,
+    hideScrollerOnEmpty: false,
     initComponent: function(){
         this.callParent();
         this.itemElWidth = 0;
@@ -19,7 +20,9 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         this.animDelay = new Ext.util.DelayedTask(function(){
             this.animationIsActive = false;
         },this);
-        
+        Ext.EventManager.onWindowResize(function(){
+            this.on('afterlayout',this.refresh,this,{single: true});
+        },this);
         this.store = Ext.getStore(this.store);
         if(!this.store){
             console.error('Scrollable dataview requires store');
@@ -34,7 +37,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             this.mon(this.cardParent,'activate',function(){
                 if(this.scrollWidth>0)
                     this.dragEnd(0);
-            },this);   
+            },this);
         }
         this.dataView = this.add({
             xtype: 'dataview',
@@ -75,7 +78,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             html: '<div class="scroller-container">'+ //scrollerEl
                             '<div class="scroller"></div>'+ //scrollEl
                   '</div>',
-            width: 800
+            width: 500
         });
         this.scroller = Ext.create('Ext.panel.Panel',{
             // height: 50,
@@ -89,7 +92,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             items: [Ext.apply({
                     xtype: 'button',
                     cls: 'scrollabledataview-left',
-                    width: 100,
+                    width: 70,
                     handler: function(){
                         this.scrollLeft();
                     },
@@ -97,14 +100,14 @@ Ext.define('Vzabote.view.ScrollableDataView',{
                 },templates.scrollabledataview.left),this.scrollerContainer,Ext.apply({
                     xtype: 'button',
                     cls: 'scrollabledataview-right',
-                    width: 100,
+                    width: 70,
                     handler: function(){
                         this.scrollRight();
                     },
                     scope: this
             },templates.scrollabledataview.right)]   
         });
-        this.addDocked(this.scroller);
+        this.add(this.scroller);
     },
     onScrollerClick: function(e,node){
         var scroller = this.scrollEl;
@@ -212,10 +215,17 @@ Ext.define('Vzabote.view.ScrollableDataView',{
                 this.initElements(scrollerHtml);
             }
             
-            if(this.dataView.getEl().getWidth() < this.getEl().getWidth())
+            if(this.dataView.getEl().getWidth() < this.getEl().getWidth()){
                 this.scrollWidth = -1;
-            else
+                if(this.hideScrollerOnEmpty)
+                    this.scroller.hide();
+            }                
+            else{
+                if(!this.scrollBarIsHidden)
+                    this.scroller.show()
                 this.scrollWidth = (this.getWidth()*this.scrollerEl.getWidth())/this.dataView.getWidth();
+            }
+                
             this.scrollEl.setWidth(this.scrollWidth);
             this.scrollConstrainX = [this.scrollerEl.getX()+this.constrainMargin,this.scrollerEl.getX()+this.scrollerEl.getWidth()-this.constrainMargin];
             
@@ -306,9 +316,11 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             scroller.getActiveAnimation().end();
     },
     hideScrollBar: function(){
+        this.scrollBarIsHidden = true;
         this.scroller.hide();
     },
     showScrollBar: function(){
+        this.scrollBarIsHidden = false;
         this.scroller.show();
     },
     onLinkClick: function(e){
@@ -356,5 +368,15 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         this.showScrollBar();
         this.enableScroller();
         this.refresh();
+    },
+    getDataViewHeight: function(){
+        var lpHeight = 0,
+            sddHeight = 0,
+            sdd = this.getEl().down('.scrollable-dataview-dataview');
+        if(this.loadingPanel)
+            lpHeight = this.loadingPanel.getHeight();
+        if(sdd)
+            sddHeight = sdd.getHeight();
+        return Math.max(lpHeight,sddHeight);
     }
 })

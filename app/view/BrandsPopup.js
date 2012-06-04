@@ -9,7 +9,10 @@ Ext.define('Vzabote.view.BrandsPopup',{
         this.store = Ext.getStore(this.store);
         this.add(Ext.apply({
             xtype: 'dataview',
-            store: this.store
+            itemCls: 'dataview-brands-item',
+            cls: 'dataview-brands',
+            store: this.store,
+            bubbleEvents: ['itemclick']
         },templates.popups.brands));        
     }
     

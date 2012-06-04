@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="libs/|app/components/|ext/|app/templates/|app/model/|app/store/|app/controller/|app/|app/view/" kind="src" path=""/>
+	<classpathentry excluding="components/|templates/|model/|store/|controller/|view/" kind="src" path="app"/>
+	<classpathentry kind="src" path="app/components"/>
+	<classpathentry kind="src" path="app/controller"/>
+	<classpathentry kind="src" path="app/model"/>
+	<classpathentry kind="src" path="app/store"/>
+	<classpathentry kind="src" path="app/templates"/>
+	<classpathentry kind="src" path="app/view"/>
+	<classpathentry kind="src" path="ext"/>
+	<classpathentry kind="src" path="libs"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

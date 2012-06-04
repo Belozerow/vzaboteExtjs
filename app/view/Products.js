@@ -89,11 +89,13 @@ Ext.define('Vzabote.view.Products',{
        this.productsDataPanel.add(this.productsData);
        
        this.add(this.productsDataPanel);
-       this.cartsDataView = Ext.create('Ext.view.View',Ext.apply({
+       this.cartsDataView = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
                    id: 'products-carts',
                    itemCls: 'products-carts-dataview',
                    store: this.cartsStore,
-                   bubbleEvents: ['itemclick']
+                   cardParent: this,
+                   bubbleEvents: ['itemclick'],
+                   hideScrollerOnEmpty: true
        },templates.products.cart));
        this.cartsPanel = Ext.create('Ext.container.Container',{
            xtype: 'panel',
@@ -198,7 +200,7 @@ Ext.define('Vzabote.view.Products',{
                cardParent: this,
                listeners: {
                    itemclick: function(me,item,node,index,e){
-                       this.fireEvent('cartcontentitemclick',me,item,node,index,e)
+                       this.fireEvent('cartcontentitemclick',me,item,node,index,e);
                    },
                    scope: this
                }
@@ -206,6 +208,14 @@ Ext.define('Vzabote.view.Products',{
             this.add(this.cartContent);    
        }
        
+   },
+   stopAnimation: function(){
+       if(this.cartsPanel.getActiveAnimation()){
+           this.cartsPanel.getActiveAnimation().end();
+       }
+       if(this.productsDataPanel.getActiveAnimation()){
+           this.productsDataPanel.getActiveAnimation().end();
+       }
    },
    hideCartContent: function(){
        this.remove(this.cartContent);
@@ -218,27 +228,23 @@ Ext.define('Vzabote.view.Products',{
        return this.getEl().down('#products-innerCt');
    },
    disableCartsDataView: function(cart){
-       if(this.cartsDataView.viewReady){
-            this.cartsDataView.mask();
-            this.activeElement = Ext.get(this.cartsDataView.getNode(cart));
-            this.activeElement.addCls('scrollable-dataview-item-selected');    
-       }
-       else{
-            this.cartsDataView.on('viewready',function(){
-                this.cartsDataView.mask();
-                this.activeElement = Ext.get(this.cartsDataView.getNode(cart));
-                this.activeElement.addCls('scrollable-dataview-item-selected');    
-            },this,{single: true});
-       }
+       Vzabote.util.onEventOrNow(this.cartsDataView.dataView,'viewready','viewReady',undefined,function(){
+           this.cartsDataView.disableDataView(cart.get('id'));
+           // this.activeElement = Ext.get(this.cartsDataView.dataView.getNode(cart));
+           // this.activeElement.addCls('scrollable-dataview-item-selected');
+       },this)
    },
    enableCartsDataView: function(){
-       this.cartsDataView.getTargetEl().unmask();
-       this.activeElement.removeCls('scrollable-dataview-item-selected');
+       this.cartsDataView.enableDataView()
+       // this.activeElement.removeCls('scrollable-dataview-item-selected');
    },
    updateSliderInfo: function(newDate){
        Ext.apply(this.scrollerInfoData,newDate);
        this.sliderMin = newDate.minprice;
        this.sliderMax = newDate.maxprice;
        this.sliderInfoPanel.update(this.scrollerInfoData);
+   },
+   setBrandText: function(text){
+       this.brandsFilter.setText(text);
    }
 });
