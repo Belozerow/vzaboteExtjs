@@ -18,22 +18,6 @@ Ext.define('Vzabote.view.ShoppingList',{
        
        this.add(this.productTypesPanel);
        
-       this.productsListPanel = Ext.create('Ext.panel.Panel',{
-           layout: {
-               type: 'vbox',
-               align: 'stretch'
-           },
-           // hidden: true
-           height: 0
-       });
-       this.productsList = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
-           store: Ext.getStore('Products'),
-           id: 'shoppingList-products',
-           cardParent: this
-       },templates.shoppingList.products))
-       this.productsListPanel.add(this.productsList);
-       
-       this.add(this.productsListPanel);
        this.mainpageBackButton = Ext.create('Ext.button.Button',Ext.apply({
                xtype: 'button',
                href: '#/index',
@@ -108,7 +92,7 @@ Ext.define('Vzabote.view.ShoppingList',{
                 xtype: 'button',
                 href: '#/',
                 hrefTarget: '_self',
-                id: 'shopinglist-saveloadbutton',
+                id: 'shopinglist-saveloadbutton'
                 },templates.shoppingList.saveLoadButton)
            ]
        })
@@ -128,21 +112,7 @@ Ext.define('Vzabote.view.ShoppingList',{
         }
         
    },
-   showProducts: function(callback,scope){
-        this.productsListPanel.animate({
-            to: {height: this.getHeight()-this.productTypesPanel.getHeight()},
-            from: {height: 0},
-            duration: this.animDuration
-        });
-        
-        this.productsList.refresh();
-   },
-   hideProducts: function(callback,scope){
-        this.productsListPanel.animate({
-            to: {height: 0},
-            duration: this.animDuration
-        });
-   },
+
    showCartContent: function(cart){
        if(!this.cartContent||this.cartContent.isDestroyed){
             this.cartContent = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
@@ -157,7 +127,7 @@ Ext.define('Vzabote.view.ShoppingList',{
    },
    refresh: function(){
        this.productTypesPanel.refresh();
-       this.productsList.refresh();       
+       //this.productsList.refresh();       
    },
    getInner: function(){
        return this.getEl().down('#shoppingList-innerCt');

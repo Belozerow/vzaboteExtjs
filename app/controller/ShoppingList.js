@@ -19,7 +19,6 @@ Ext.define('Vzabote.controller.ShoppingList',{
                     {
                         if (item.data.amount > 0) item.data.amount -= item.data.amount_modificaton_step;
                         sls = this.getShoppingListScroller();
-                        sls.dataView.refreshNode(index);
                     }
                     if (Ext.get(e.getTarget()).hasCls('inc-button'))
                     {
@@ -37,9 +36,9 @@ Ext.define('Vzabote.controller.ShoppingList',{
        if(cardPanel.layout.getActiveItem().xtype!='shoppingList'){
             this.getController('Viewport').closeAllWindows();
             //var store = Ext.getStore('ProductTypes');
-            var store = Ext.getStore('Products');
-            if(store.getCount()==0)
-                store.load();
+            var store = Ext.getStore('UserCart');
+//            if(store.getCount()==0)
+//                store.load();
             if(!this.shoppingListView||this.shoppingListView.isDestroyed){
                 this.shoppingListView = Ext.create('Vzabote.view.ShoppingList',{
                     store: store,
