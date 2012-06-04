@@ -102,8 +102,8 @@ Ext.define('Vzabote.controller.Product',{
                             scope: this
                         },
                         brandsFilter: {
-                            click: function(){
-                                this.showBrandsPopup();
+                            click: function(me){
+                                this.showBrandsPopup(me);
                             },
                             scope: this
                         },
