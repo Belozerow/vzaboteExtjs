@@ -68,10 +68,11 @@ Ext.define('Vzabote.view.Products',{
            },
            items: [{
                xtype: 'container',
-               layout: {
-                   type: 'vbox',
-                   align: 'start'
-               },
+               cls: 'slider-container',
+               // layout: {
+                   // type: 'vbox',
+                   // align: 'start'
+               // },
                flex: 7,
                items: [this.sliderInfoPanel,this.slider]
            },{

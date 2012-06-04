@@ -16,7 +16,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         this.scrollerDiff = 0;
         this.dataViewConstrainX = [0,0];
         this.scrollWidth = 0;
-        
+        this.mon(this.cardParent,'activate',this.refresh,this);
         this.animDelay = new Ext.util.DelayedTask(function(){
             this.animationIsActive = false;
         },this);

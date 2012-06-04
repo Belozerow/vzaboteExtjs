@@ -6,15 +6,14 @@ Ext.define('Vzabote.view.ShoppingList',{
        type: 'vbox',
        align: 'stretch'
    },
-   animDuration: 500,
    initComponent: function(){
        this.callParent();
        
        this.productTypesPanel = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
            store: this.store,
            cardParent: this,
-           id: 'shoppingList-productstypes',
-       },templates.shoppingList.dataview))
+           id: 'shoppingList-productstypes'
+       },templates.shoppingList.dataview));
        
        this.add(this.productTypesPanel);
        
@@ -49,18 +48,18 @@ Ext.define('Vzabote.view.ShoppingList',{
                cls: 'forward-button'
             },templates.shoppingList.forwardbutton)
            ]
-       })
+       });
        this.addDocked(this.bottomPanel);
        this.cngButton('main');
        
-    var minprice = 0;
-    var maxprice = 0;
-    var count = 0;
+        var minprice = 0;
+        var maxprice = 0;
+        var count = 0;
         this.store.each(function(item){
             minprice+=item.get('minprice');
             maxprice+=item.get('maxprice');
             count += 1;
-        })
+        });
        this.inTotal = Ext.create('Ext.panel.Panel',{
            //cls: 'categories-panel',
            id: 'shoppingList-intotal-panel',
@@ -77,12 +76,11 @@ Ext.define('Vzabote.view.ShoppingList',{
                        maxprice: maxprice.toFixed(2),
                        count: count
                    }
-           },templates.shoppingList.inTotal)],
-           flex: 3
+           },templates.shoppingList.inTotal)]
        });
        this.add(this.inTotal);
        
-       this.saveloadPanel = Ext.create('Ext.panel.Panel',{xtype: 'panel',
+       this.saveloadPanel = Ext.create('Ext.container.Container',{
            layout: {
                type: 'vbox',
                align: 'right'
@@ -95,7 +93,7 @@ Ext.define('Vzabote.view.ShoppingList',{
                 id: 'shopinglist-saveloadbutton'
                 },templates.shoppingList.saveLoadButton)
            ]
-       })
+       });
        this.add(this.saveloadPanel);
    },
    
@@ -112,25 +110,9 @@ Ext.define('Vzabote.view.ShoppingList',{
         }
         
    },
-
-   showCartContent: function(cart){
-       if(!this.cartContent||this.cartContent.isDestroyed){
-            this.cartContent = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
-               store: cart.products(),
-               cardParent: this
-            },templates.products.cartcontent))
-            this.add(this.cartContent)    
-       }
-   },
-   hideCartContent: function(){
-       this.remove(this.cartContent)
-   },
    refresh: function(){
        this.productTypesPanel.refresh();
        //this.productsList.refresh();       
-   },
-   getInner: function(){
-       return this.getEl().down('#shoppingList-innerCt');
-   },
+   }
 });
 

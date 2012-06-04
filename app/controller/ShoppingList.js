@@ -46,7 +46,7 @@ Ext.define('Vzabote.controller.ShoppingList',{
                     listeners: {
                         productsData: {
                             itemclick: function(){
-                                console.log('add to cart')
+                                console.log('add to cart');
                             }
                         },
                         viewready : this.showCountChangePopup, 
@@ -54,11 +54,10 @@ Ext.define('Vzabote.controller.ShoppingList',{
                     }
                 });
             }
-            cardPanel.layout.setActiveItem(this.shoppingListView)
+            cardPanel.layout.setActiveItem(this.shoppingListView);
        }
-   },
-   
-  showCountChangePopup: function(){
+   },   
+   showCountChangePopup: function(){
             var element = this.getShoppingListScroller().getEl().down('.item-count');
             if(this.countPopup)
                 this.countPopup.close();
@@ -69,5 +68,5 @@ Ext.define('Vzabote.controller.ShoppingList',{
                //cls: 'count-popup'
             },templates.popups.countChangePopup));
             this.countPopup.show();    
-   },
+   }
 });
