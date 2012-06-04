@@ -43,5 +43,8 @@ templates.popups = {
     brands: {
         itemTpl: '<img src="{image}"/>'+
                  '<div>{name}</div>'
+    },
+    countChangePopup: {
+        html: 'Нажмите на товар и он добавится в список покупок.'
     }
 }
