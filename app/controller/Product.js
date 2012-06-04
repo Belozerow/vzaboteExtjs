@@ -129,7 +129,10 @@ Ext.define('Vzabote.controller.Product',{
            this.productsView.updateSliderInfo({name: this.store.getById(query.id).get('name')});
        },this,{single: true});
        this.getProductTypesSlider().disableDataView(query.id);
-       this.productsView.showProducts();
+       this.productsView.showProducts(function(){
+           this.showProductHintPopup();
+           this.productsView.productsData.getVisibleItems();
+       },this);
               
    },
    

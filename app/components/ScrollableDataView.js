@@ -342,6 +342,15 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         this.scrollBarIsHidden = false;
         this.scroller.show();
     },
+    fadeInScrollBar: function(callback,scope){
+        this.scroller.getEl().animate({
+            to: {opacity: 1},
+            from: {opacity: 0},
+            duration: 300,
+            callback: callback||Ext.emptyFn,
+            scope: scope||this
+        });
+    },    
     onLinkClick: function(e){
         if(this.animationIsActive)
             e.preventDefault();
@@ -398,5 +407,8 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         if(sdd)
             sddHeight = sdd.getHeight();
         return Math.max(lpHeight,sddHeight);
+    },
+    getVisibleItems: function(){
+        console.log(parseInt(this.getWidth()/this.itemElWidth))
     }
 })

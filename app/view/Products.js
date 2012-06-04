@@ -7,7 +7,7 @@ Ext.define('Vzabote.view.Products',{
        align: 'stretch'
    },
    animDuration: 300,
-   fadeDuration: 200,
+   fadeDuration: 300,
    productsHeight: 440,
    saveStateAfterLayout: function(){
         var activeItem = this.cardPanel.getEl();
@@ -208,6 +208,7 @@ Ext.define('Vzabote.view.Products',{
                                          this.productsIsShown = true;
                                          this.cngButton('products');
                                          this.doLayout();
+                                         callback.apply(scope);
                                       },
                                       scope: this
                                   }
@@ -244,8 +245,8 @@ Ext.define('Vzabote.view.Products',{
                                                 this.productTypesPanel.enableDataView();
                                                 this.cngButton('main');
                                                 this.suspendLayout = false;
-                                                this.productTypesPanel.showScrollBar();
                                                 this.doLayout();
+                                                this.productTypesPanel.fadeInScrollBar();                                                
                                         },
                                         scope: this
                                     });
