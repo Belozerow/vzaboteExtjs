@@ -21,7 +21,7 @@ Ext.define('Vzabote.view.ShoppingList',{
 
         this.add(this.cartList);
 
-        this.mainpageBackButton = Ext.create('Ext.button.Button',Ext.apply({
+        this.backButton = Ext.create('Ext.button.Button',Ext.apply({
             xtype: 'button',
             href: '#/index',
             hrefTarget: '_self',
@@ -29,13 +29,13 @@ Ext.define('Vzabote.view.ShoppingList',{
             cls: 'back-button'
         },templates.shoppingList.backbutton));
         
-        this.productsBackButton = Ext.create('Ext.button.Button',Ext.apply({
+        this.forwardbutton = Ext.create('Ext.button.Button',Ext.apply({
             xtype: 'button',
             href: '#/products',
             hrefTarget: '_self',
-            id: 'shoppingList-productsbackbutton',
-            cls: 'back-button'
-        },templates.shoppingList.backbuttonproducts));
+            id: 'shoppingList-forwardbutton',
+            cls: 'forward-button'
+        },templates.shoppingList.forwardbutton));
         
         this.bottomPanel = Ext.create('Ext.panel.Panel',{xtype: 'panel',
             dock: 'bottom',
@@ -44,46 +44,18 @@ Ext.define('Vzabote.view.ShoppingList',{
                 pack: 'start'
             },
             items: [
-                this.mainpageBackButton,
-                this.productsBackButton,
-                Ext.apply({
-                    xtype: 'button',
-                    href: '#/products',
-                    hrefTarget: '_self',
-                    id: 'shoppingList-forwardbutton',
-                    cls: 'forward-button'
-                },templates.shoppingList.forwardbutton)
+                this.backButton,
+                this.forwardbutton
             ]
         });
         this.addDocked(this.bottomPanel);
-        this.cngButton('main');
-
-        this.inTotal = Ext.create('Ext.panel.Panel',{
-            //cls: 'categories-panel',
-            id: 'shoppingList-intotal-panel',
-            layout: {
-                type: 'vbox',
-                align: 'stretch'
-            },
-            items: [
-                Ext.apply({
-                    //flex: 2,
-                    //height: 105,
-                    id: 'shoppingList-intotal-info',
-                    data: {
-                        minprice: this.minprice.toFixed(2),
-                        maxprice: this.maxprice.toFixed(2),
-                        count: this.count
-                    }
-            },templates.shoppingList.inTotal)]
-        });
-        this.add(this.inTotal);
 
         this.saveloadPanel = Ext.create('Ext.container.Container',{
             layout: {
                 type: 'vbox',
                 align: 'right'
             },
+            flex : 6,
             items: [
                 Ext.apply({
                     xtype: 'button',
@@ -93,27 +65,28 @@ Ext.define('Vzabote.view.ShoppingList',{
                 },templates.shoppingList.saveLoadButton)
             ]
         });
-        this.add(this.saveloadPanel);
+        
+        this.inTotal = Ext.create('Ext.panel.Panel',{
+            id: 'shoppingList-intotal-panel',
+            layout: {
+                type: 'hbox',
+                align: 'stretch'
+            },
+            items: [
+                Ext.apply({
+                    flex: 6,
+                    id: 'shoppingList-intotal-info',
+                    data: {
+                        minprice: this.minprice.toFixed(2),
+                        maxprice: this.maxprice.toFixed(2),
+                        count: this.count
+                    }
+            },templates.shoppingList.inTotal),
+            this.saveloadPanel]
+        });
+        this.add(this.inTotal);
     },
 
-    cngButton: function(type){
-        switch(type){
-        case 'main':    
-            this.mainpageBackButton.show();
-            this.productsBackButton.hide();
-            break;
-        case 'products':
-            this.mainpageBackButton.hide();
-            this.productsBackButton.show();
-            break;
-        }
-    },
-    
-    refresh: function(){
-        this.cartList.refresh();
-        //this.productsList.refresh();       
-    },
-    
     reCount: function(){
         this.minprice = 0;
         this.maxprice = 0;

@@ -1,6 +1,7 @@
 Ext.define('Vzabote.controller.ShoppingList',{
    extend: 'Ext.app.Controller',
    animDuration: 700,
+   popupIsShown: false,
    refs: [
    {
        ref: 'cardPanel',
@@ -30,6 +31,7 @@ Ext.define('Vzabote.controller.ShoppingList',{
    },
 
    index: function(query){
+
        var cardPanel = this.getCardPanel();
        if(cardPanel.layout.getActiveItem().xtype!='shoppingList'){
             this.getController('Viewport').closeAllWindows();
@@ -50,8 +52,9 @@ Ext.define('Vzabote.controller.ShoppingList',{
                             },
                             scope: this
                         },
-                        viewready : this.showCountChangePopup, 
-                        activate: this.intotalRecount,
+//                        viewready : this.showCountChangePopup, 
+//                        activate: this.intotalRecount,
+                        activate: this.onViewActivate,
                         scope: this
                     }
                 });
@@ -61,7 +64,8 @@ Ext.define('Vzabote.controller.ShoppingList',{
    },  
     
    showCountChangePopup: function(){
-   
+        if (this.shoppingListView.count > 0 && this.popupIsShown != true)
+        {
             var element = this.getShoppingListScroller().getEl().down('.item-count');
             if(this.countPopup)
                 this.countPopup.close();
@@ -71,7 +75,9 @@ Ext.define('Vzabote.controller.ShoppingList',{
                alignPosition: "t-b?"
                //cls: 'count-popup'
             },templates.popups.countChangePopup));
-            this.countPopup.show();    
+            this.countPopup.show();
+            this.popupIsShown = true;
+        }
    },
    
     showProductPopup: function(element, item){
@@ -97,6 +103,11 @@ Ext.define('Vzabote.controller.ShoppingList',{
    
    intotalRecount: function(){
             this.shoppingListView.updateInTotal();
+   },
+   
+   onViewActivate: function(){
+        this.intotalRecount();
+        this.showCountChangePopup();
    }
 });
 
