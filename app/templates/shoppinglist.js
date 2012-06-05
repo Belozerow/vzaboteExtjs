@@ -1,17 +1,25 @@
 templates.shoppingList = {
     backbutton: {
-        text: 'Back'
+        text: 'Выбор товара'
     },
     backbuttonproducts: {
         text: '.....'
     },
     forwardbutton: {
-        text: 'Forward'
+        text: 'Выбор магазина'
     },
     dataview: {
-        itemTpl: '<a href="#/products/{id}"><div style="background: url({image});height: 150px; width: 150px; background-size: contain; background-repeat: no-repeat;"></div>'+
-                 '<div>{minprice}</div>'+
-                 '</a>'
+        itemTpl: new Ext.XTemplate('<div style="background: url({image});height: 150px; width: 150px; background-size: contain; background-repeat: no-repeat;"></div>'+
+                 '<div>{minprice} — {maxprice}<br>{offerscount} предложений{[this.method(values)]}</div>'+
+                 //'<div>{name}</div>' +
+                 '</a>'+
+                 '<div class="dec-button">minus</div><div class="item-count">{amount} {amount_measure}</div><div class="inc-button">plus</div>',{
+                     method: function(values){
+                         console.log('%o - lkfgjfd', values);
+                     }
+                 }
+
+        )
     },
     products: {
          itemTpl:'<div style="background: url({image});height: 150px; width: 150px; background-size: contain; background-repeat: no-repeat;"></div>'+
@@ -34,5 +42,15 @@ templates.shoppingList = {
                  '<div>Добавить в список</div>'+
                  '<div class="cart-name">{name}</div>'+
                  '<div class="cart-price">{minprice} - {maxprice}</div>'
+    },
+    inTotal: {
+        tpl: '<div>Итого к заказу</div>' +
+                 '<div>{count} товаров на сумму</div>' +    
+                 '<div>{minprice}-{maxprice} рублей</div>'
+                 
+    },
+    saveLoadButton: {
+        text: 'Сохранить, загрузить или очистить список...'
+                 
     }
 }

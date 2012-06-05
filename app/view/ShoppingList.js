@@ -6,72 +6,29 @@ Ext.define('Vzabote.view.ShoppingList',{
        type: 'vbox',
        align: 'stretch'
    },
-   animDuration: 500,
    initComponent: function(){
        this.callParent();
        
        this.productTypesPanel = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
            store: this.store,
            cardParent: this,
-           id: 'shoppingList-productstypes',
-           metaData: [
-                {name: 'Свежая свинина', count: 10},
-                {name: 'Полуфабрикаты', count: 5},
-                {name: 'Копченая', count: 8},
-           ]
-       },templates.shoppingList.dataview))
+           id: 'shoppingList-productstypes'
+       },templates.shoppingList.dataview));
        
        this.add(this.productTypesPanel);
        
-       this.productsDataPanel = Ext.create('Ext.panel.Panel',{
-           layout: {
-               type: 'vbox',
-               align: 'stretch'
-           },
-           // hidden: true
-           height: 0
-       });
-       this.productsData = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
-           store: Ext.getStore('Products'),
-           id: 'products-products',
-           cardParent: this
-       },templates.shoppingList.products))
-       this.productsDataPanel.add(this.productsData);
-       
-       this.add(this.productsDataPanel);
-       this.cartsDataView = Ext.create('Ext.view.View',Ext.apply({
-                   id: 'shoppingList-carts',
-                   itemCls: 'products-carts-dataview',
-                   store: Ext.getStore('Carts'),
-                   bubbleEvents: ['itemclick']
-       },templates.products.cart)) 
-//       this.cartsPanel = Ext.create('Ext.panel.Panel',{
-//           xtype: 'panel',
-//           id: 'products-cartspanel',
-//           layout: {
-//               type: 'vbox',
-//               align: 'stretch'
-//           },
-//           items: [
-//                Ext.apply({
-//                },templates.products.cartsTitle),
-//                this.cartsDataView
-//           ]
-//       })
-//       // this.add(this.productsPanel)
-//       this.add(this.cartsPanel)
        this.mainpageBackButton = Ext.create('Ext.button.Button',Ext.apply({
                xtype: 'button',
                href: '#/index',
                hrefTarget: '_self',
-               id: 'products-backbutton',
+               id: 'shoppingList-backbutton',
                cls: 'back-button'
        },templates.shoppingList.backbutton));
        this.productsBackButton = Ext.create('Ext.button.Button',Ext.apply({
                xtype: 'button',
                href: '#/products',
                hrefTarget: '_self',
-               id: 'products-productsbackbutton',
+               id: 'shoppingList-productsbackbutton',
                cls: 'back-button'
        },templates.shoppingList.backbuttonproducts));
        this.bottomPanel = Ext.create('Ext.panel.Panel',{xtype: 'panel',
@@ -87,15 +44,59 @@ Ext.define('Vzabote.view.ShoppingList',{
                xtype: 'button',
                href: '#/products',
                hrefTarget: '_self',
-               id: 'products-forwardbutton',
+               id: 'shoppingList-forwardbutton',
                cls: 'forward-button'
             },templates.shoppingList.forwardbutton)
            ]
-       })
+       });
        this.addDocked(this.bottomPanel);
        this.cngButton('main');
-           
+       
+        var minprice = 0;
+        var maxprice = 0;
+        var count = 0;
+        this.store.each(function(item){
+            minprice+=item.get('minprice');
+            maxprice+=item.get('maxprice');
+            count += 1;
+        });
+       this.inTotal = Ext.create('Ext.panel.Panel',{
+           //cls: 'categories-panel',
+           id: 'shoppingList-intotal-panel',
+           layout: {
+               type: 'vbox',
+               align: 'stretch'
+           },
+           items: [Ext.apply({
+                   flex: 2,
+                   //height: 105,
+                   id: 'shoppingList-intotal-info',
+                   data: {
+                       minprice: minprice.toFixed(2),
+                       maxprice: maxprice.toFixed(2),
+                       count: count
+                   }
+           },templates.shoppingList.inTotal)]
+       });
+       this.add(this.inTotal);
+       
+       this.saveloadPanel = Ext.create('Ext.container.Container',{
+           layout: {
+               type: 'vbox',
+               align: 'right'
+           },
+           items: [
+                Ext.apply({
+                xtype: 'button',
+                href: '#/',
+                hrefTarget: '_self',
+                id: 'shopinglist-saveloadbutton'
+                },templates.shoppingList.saveLoadButton)
+           ]
+       });
+       this.add(this.saveloadPanel);
    },
+   
    cngButton: function(type){
         switch(type){
             case 'main':    
@@ -109,74 +110,9 @@ Ext.define('Vzabote.view.ShoppingList',{
         }
         
    },
-   showProducts: function(callback,scope){
-        this.productsDataPanel.animate({
-            to: {height: this.getHeight()-this.productTypesPanel.getHeight()},
-            from: {height: 0},
-            duration: this.animDuration
-        });
-        
-        this.productsData.refresh();
-//        this.cartsPanel.animate({
-//            to: {y: Ext.getBody().getHeight()-70},
-//            from: {y:this.productsDataPanel.getEl().getY()},
-//            duration: this.animDuration,
-//            listeners: {
-//                afteranimate: callback||Ext.emptyFn,
-//                scope: scope||this
-//            }
-//        })         
-   },
-   hideProducts: function(callback,scope){
-        this.productsDataPanel.animate({
-            to: {height: 0},
-            duration: this.animDuration
-        });
-//        this.cartsPanel.animate({
-//            to: {y: this.productsDataPanel.getEl().getY()},
-//            duration: this.animDuration,
-//            listeners: {
-//                afteranimate: callback||Ext.emptyFn,
-//                scope: scope||this
-//            }
-//        })
-   },
-   showCartContent: function(cart){
-       if(!this.cartContent||this.cartContent.isDestroyed){
-            this.cartContent = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
-               store: cart.products(),
-               cardParent: this
-            },templates.products.cartcontent))
-            this.add(this.cartContent)    
-       }
-       
-   },
-   hideCartContent: function(){
-       this.remove(this.cartContent)
-   },
    refresh: function(){
        this.productTypesPanel.refresh();
-       this.productsData.refresh();       
-   },
-   getInner: function(){
-       return this.getEl().down('#products-innerCt');
-   },
-   disableCartsDataView: function(cart){
-       if(this.cartsDataView.viewReady){
-            this.cartsDataView.mask();
-            this.activeElement = Ext.get(this.cartsDataView.getNode(cart));
-            this.activeElement.addCls('scrollable-dataview-item-selected')    
-       }
-       else{
-            this.cartsDataView.on('viewready',function(){
-                this.cartsDataView.mask();
-                this.activeElement = Ext.get(this.cartsDataView.getNode(cart));
-                this.activeElement.addCls('scrollable-dataview-item-selected')    
-            },this,{single: true})    
-       }
-   },
-   enableCartsDataView: function(){
-       this.cartsDataView.getTargetEl().unmask()
-       this.activeElement.removeCls('scrollable-dataview-item-selected')
+       //this.productsList.refresh();       
    }
 });
+

@@ -9,21 +9,20 @@ Ext.define('Vzabote.view.ScrollableDataView',{
     constrainMargin: 2,
     scrollItemsCount: 3,
     scrollerIsActive: true,
+    hideScrollerOnEmpty: false,
     initComponent: function(){
         this.callParent();
         this.itemElWidth = 0;
         this.scrollerDiff = 0;
         this.dataViewConstrainX = [0,0];
         this.scrollWidth = 0;
-        
+        this.mon(this.cardParent,'activate',this.refresh,this);
         this.animDelay = new Ext.util.DelayedTask(function(){
             this.animationIsActive = false;
         },this);
-        
-        this.store = Ext.getStore(this.store);
-        if(!this.store){
-            console.error('Scrollable dataview requires store');
-        }            
+        Ext.EventManager.onWindowResize(function(){
+            this.on('afterlayout',this.refresh,this,{single: true});
+        },this);
         if(!this.cardParent){
             console.warn('Scrollable dataview requires cardParent param to save animation on card switch');
         }
@@ -34,7 +33,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             this.mon(this.cardParent,'activate',function(){
                 if(this.scrollWidth>0)
                     this.dragEnd(0);
-            },this);   
+            },this);
         }
         this.dataView = this.add({
             xtype: 'dataview',
@@ -42,6 +41,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             cls: 'scrollable-dataview-dataview',
             itemCls: 'scrollable-dataview-item',
             itemTpl: this.itemTpl,
+            bubbleEvents: ['viewready'],
             listeners: {
                 scope: this,
                 itemclick: function(me,item,node,index,e){
@@ -52,18 +52,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
                 
             }
         });
-        if(this.store.isLoading()){
-            this.dataView.hide();
-            this.loadingPanel = Ext.create('Ext.container.Container',Ext.apply({
-            },templates.scrollabledataview.empty));
-            this.add(this.loadingPanel);
-            this.store.on('load',function(){
-                this.dataView.show();
-                this.loadingPanel.hide();
-            },this);
-        }
-        this.mon(this.store,'load',this.refresh,this);
-        this.mon(this.store,'datachanged',this.refresh,this);
+        
         
         this.dataView.on('viewready',function(){
             if(!this.store.isLoading())
@@ -74,7 +63,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             html: '<div class="scroller-container">'+ //scrollerEl
                             '<div class="scroller"></div>'+ //scrollEl
                   '</div>',
-            width: 800
+            width: 500
         });
         this.scroller = Ext.create('Ext.panel.Panel',{
             // height: 50,
@@ -88,7 +77,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             items: [Ext.apply({
                     xtype: 'button',
                     cls: 'scrollabledataview-left',
-                    width: 100,
+                    width: 70,
                     handler: function(){
                         this.scrollLeft();
                     },
@@ -96,7 +85,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
                 },templates.scrollabledataview.left),this.scrollerContainer,Ext.apply({
                     xtype: 'button',
                     cls: 'scrollabledataview-right',
-                    width: 100,
+                    width: 70,
                     handler: function(){
                         this.scrollRight();
                     },
@@ -104,6 +93,44 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             },templates.scrollabledataview.right)]   
         });
         this.add(this.scroller);
+        this.spacer = Ext.create('Ext.container.Container',{
+            hidden: true,
+            cls: 'spacer'
+        });
+        this.add(this.spacer);
+        if(this.store)
+            this.bindStore(this.store);
+        if(this.store && this.store.isLoading()||!this.store){
+            this.dataView.hide();
+            this.loadingPanel = Ext.create('Ext.container.Container',Ext.apply({
+            },templates.scrollabledataview.empty));
+            this.add(this.loadingPanel);
+        }
+    },
+    bindStore: function(store,refresh){
+        if(this.store){
+            this.mun(this.store,'load',this.refresh,this);
+            this.mun(this.store,'datachanged',this.refresh,this);
+            this.mun(this.store,'load',this.hideLoadingPanel,this);
+        }
+        this.store = store;
+        if(store){
+            this.mon(this.store,'load',this.hideLoadingPanel,this);
+            this.mon(this.store,'load',this.refresh,this);
+            this.mon(this.store,'datachanged',this.refresh,this);       
+            this.dataView.bindStore(this.store);
+            if(!this.store.isLoading()){
+                this.dataView.show();
+                if(this.loadingPanel)
+                    this.loadingPanel.hide();
+            }
+            if(refresh)
+                this.refresh();   
+        }
+    },
+    hideLoadingPanel: function(){
+        this.dataView.show();
+        this.loadingPanel.hide();
     },
     onScrollerClick: function(e,node){
         var scroller = this.scrollEl;
@@ -211,10 +238,17 @@ Ext.define('Vzabote.view.ScrollableDataView',{
                 this.initElements(scrollerHtml);
             }
             
-            if(this.dataView.getEl().getWidth() < this.getEl().getWidth())
+            if(this.dataView.getEl().getWidth() < this.getEl().getWidth()){
                 this.scrollWidth = -1;
-            else
+                if(this.hideScrollerOnEmpty)
+                    this.scroller.hide();
+            }                
+            else{
+                if(!this.scrollBarIsHidden)
+                    this.scroller.show()
                 this.scrollWidth = (this.getWidth()*this.scrollerEl.getWidth())/this.dataView.getWidth();
+            }
+                
             this.scrollEl.setWidth(this.scrollWidth);
             this.scrollConstrainX = [this.scrollerEl.getX()+this.constrainMargin,this.scrollerEl.getX()+this.scrollerEl.getWidth()-this.constrainMargin];
             
@@ -305,11 +339,25 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             scroller.getActiveAnimation().end();
     },
     hideScrollBar: function(){
+        this.spacer.setHeight(this.scroller.getHeight());
+        this.spacer.show();
+        this.scrollBarIsHidden = true;
         this.scroller.hide();
     },
     showScrollBar: function(){
+        this.scrollBarIsHidden = false;
         this.scroller.show();
     },
+    fadeInScrollBar: function(callback,scope){
+        this.spacer.hide();
+        this.scroller.getEl().animate({
+            to: {opacity: 1},
+            from: {opacity: 0},
+            duration: 300,
+            callback: callback||Ext.emptyFn,
+            scope: scope||this
+        });
+    },    
     onLinkClick: function(e){
         if(this.animationIsActive)
             e.preventDefault();
@@ -351,7 +399,8 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             var index = this.dataView.indexOf(this.activeElement);
             this.dataView.getEl().setX(Math.max((-this.itemElWidth)*(index),this.dataViewConstrainX[1]));
         }
-        this.activeElement.removeCls('scrollable-dataview-item-selected');
+        if(this.activeElement)
+            this.activeElement.removeCls('scrollable-dataview-item-selected');
         this.showScrollBar();
         this.enableScroller();
         this.refresh();
@@ -365,5 +414,8 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         if(sdd)
             sddHeight = sdd.getHeight();
         return Math.max(lpHeight,sddHeight);
+    },
+    getVisibleItems: function(){
+        console.log(parseInt(this.getWidth()/this.itemElWidth))
     }
 })

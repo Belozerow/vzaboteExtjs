@@ -2,7 +2,8 @@ Ext.define('Vzabote.view.Viewport',{
     extend: 'Ext.container.Viewport',
     id: 'viewport',
     requires: [
-        'Vzabote.view.MainPage'
+        'Vzabote.view.MainPage',
+        'Vzabote.store.UserCart'
     ],
     layout: {
         type: 'vbox',
@@ -22,7 +23,9 @@ Ext.define('Vzabote.view.Viewport',{
             },
             items: [
                 Ext.apply({
-                  flex: 3  
+                  flex: 3,
+                  id: 'top-panel',
+                  data: {}
                 },templates.viewport.header),
                 {
                     xtype: 'panel',
@@ -42,19 +45,10 @@ Ext.define('Vzabote.view.Viewport',{
                 }
             ]
         });
-        this.cards = this.add({
-            xtype: 'panel',
-            id: 'cardpanel',
-            layout: 'card',
-            cls: 'cardpanel',
-            items: [{
-                xtype: 'mainpage'
-            }],
-            flex: 10
-        });
-        this.footer = this.add({
+        this.footer = Ext.create('Ext.panel.Panel',{
             xtype: 'panel',
             id: 'footer',
+            dock: 'bottom',
             //flex: 1,
             height: 66,
             layout: {
@@ -85,6 +79,16 @@ Ext.define('Vzabote.view.Viewport',{
                 }
                 
             ]
+        });
+        this.cards = this.add({
+            xtype: 'panel',
+            id: 'cardpanel',
+            layout: 'card',
+            cls: 'cardpanel',
+            items: [{
+                xtype: 'mainpage'
+            }],
+            dockedItems: this.footer
         });
     }
 });

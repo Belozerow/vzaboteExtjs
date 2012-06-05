@@ -15,8 +15,8 @@ templates.products = {
     },
     products: {
          itemTpl:'<div class="images product-image" style="background: url({image}); background-repeat: no-repeat;"></div>'+
-                 '<div class="loupe">Лупа</div>'+
-                 '<div>{name}</div>'+
+                 '<div class="loupe"></div>'+
+                 '<div class="title">{name}</div>'+
                  '<div>{minprice} - {maxprice}<b class="rub">a</b></div>'+
                  '<div>{offerscount} предложений</div>'
     },
@@ -40,10 +40,10 @@ templates.products = {
                     '<div class="prodcarts">'+
                         '<a href="#/products/carts/{id}">'+
                         '<tpl if="custom">'+
-                            '<div class="cart-custom-image{[this.getCustomCartClass(values)]}"></div>'+
+                            '<div class="cart-custom-image{[this.getCustomCartClass(values)]}"><div class="star"></div></div>'+
                         '</tpl>'+
                         '<tpl if="!custom">'+
-                            '<div class="images" style="background: url({image}); background-repeat: no-repeat;"></div>'+
+                            '<div class="cart-images"></div>'+
                         '</tpl>'+
                         '</a>'+
                         '<div class="info-icon cart-info"></div>'+

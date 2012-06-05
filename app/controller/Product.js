@@ -1,10 +1,5 @@
 Ext.define('Vzabote.controller.Product',{
    extend: 'Ext.app.Controller',
-   productsY: -100,
-   cartsY: -300,
-   productsIsShown: false,
-   cartIsShown: false,
-   animDuration: 700,
    refs: [{
        ref: 'cardPanel',
        selector: '#cardpanel'
@@ -18,58 +13,22 @@ Ext.define('Vzabote.controller.Product',{
        ref: 'productsSlider',
        selector: '#products-products'
    },{
+	   ref: 'viewportTopPanel',
+	   selector: '#top-panel'
+   },{
        ref: 'cartsDataView',
        selector: '#products-carts'
    }],
    init: function(){
-/*       this.control({
-			'#products-products': {
-				itemclick: function(data1, data2, data3, index, data5, data6){
-					console.log(data1, data2, data3, index, data5, data6);
-
-					var uStore = Ext.getStore('UserCart');
-					uStore.addItem({
-						id: '',
-						name: 'test'+index,
-						image: 'resources/product',
-						minprice: '22',
-						maxprice: '98',
-						offerscount: '24'
-					});
-					
-				}
-			}
-       });*/
-   },
-   saveStateAfterLayout: function(){
-        var activeItem = this.productsView.getTargetEl();
-        if(this.productsIsShown){
-            activeItem.setY(this.productsY);
-        }
-        if(this.cartIsShown){
-            activeItem.setY(this.cartsY);
-            var inner = Ext.get(this.productsView.getInner());
-            inner.setHeight(this.newHeight);
-        }
+	   
    },
    index: function(query){
        var cardPanel = this.getCardPanel();
-       if(this.productsIsShown){
-           this.animateProductsHide(function(){
-                  this.productsIsShown = false;
-                  this.productsView.hideProducts(function(){
-                      this.getProductTypesSlider().enableDataView(query.id);
-                      this.productsView.cngButton('main');    
-                  },this);
-           });           
+       if(this.productsView&&this.productsView.getEl()){
+           this.productsView.hideProducts();           
        }
-       if(this.cartIsShown){
-           this.animateCartHide(function(){
-                  this.cartIsShown = false;
-                  this.productsView.hideCartContent();
-                  this.productsView.cngButton('main');
-                  this.productsView.enableCartsDataView();    
-           });
+       if(this.productsView&&this.productsView.getEl()){
+           this.productsView.hideCartContent();
        }
        if(cardPanel.layout.getActiveItem().xtype!='products'){
            
@@ -93,16 +52,25 @@ Ext.define('Vzabote.controller.Product',{
                     store: this.store,
                     productsStore: this.productsStore,
                     cartsStore: this.cartsStore,
-                    animDuration: this.animDuration,
-                    itemsHeight: this.getCardPanel().getHeight()/2,
+                    parentHeight: this.getCardPanel().getHeight(),
+                    cardPanel: this.getCardPanel(),
                     listeners: {
                         productsData: {
-
                             itemclick: function(me,item,node,index,e){
                                 var el = Ext.get(e.getTarget());
                                 if(el.hasCls('loupe')){
                                      this.showProductPopup(node,item);
                                 }
+                                
+                                // Добавление товара в корзину
+                                var uStore = Ext.getStore('UserCart');
+            					uStore.addItem(item.raw, {
+            						dublicate: 'id'		// Товар не будет добавлен, если в сторе уже есть товар с таким id
+            					});
+            					
+            					// Обновляем индикатор в header
+            					this.getViewportTopPanel().update({});
+                                
                             },
                             scope: this
                         },
@@ -142,11 +110,10 @@ Ext.define('Vzabote.controller.Product',{
                         scope: this
                     }
                 });
-                this.productsView.on('afterlayout',this.saveStateAfterLayout,this);
                 this.productsView.on('deactivate',function(){
                     this.stopAnimation();
-                    this.productsIsShown =  false;
-                    this.cartIsShown = false;
+                    this.productsView.productsIsShown =  false;
+                    this.productsView.cartIsShown = false;
                     this.productsView.destroy();                    
                 },this);
             }
@@ -155,115 +122,30 @@ Ext.define('Vzabote.controller.Product',{
    },
    product: function(query){
        
-       if(!this.productsView)
-            this.index();
-       
+       if(!this.productsView){
+           this.index();
+       }       
        Vzabote.util.onEventOrNow(this.store,'load',this.store.isLoading,true,function(){
            this.productsView.updateSliderInfo({name: this.store.getById(query.id).get('name')});
        },this,{single: true});
        this.getProductTypesSlider().disableDataView(query.id);
        this.productsView.showProducts(function(){
-           this.animateProductsShow();       
-           this.productsView.cngButton('products');
-           this.productsIsShown = true;
-       },this);       
+           this.showProductHintPopup();
+           this.productsView.productsData.getVisibleItems();
+       },this);
+              
    },
    
    carts: function(query){
-        if(!this.productsView)
+        if(!this.productsView){
             this.index();
+        }            
         var cart = Ext.getStore('Carts').getById(parseInt(query.id));
         this.productsView.disableCartsDataView(cart);
         this.productsView.showCartContent(cart);
-        this.animateCartShow(query.id);
-   },
-   animateCartShow: function(cart){
-        var carts = this.getCartsDataView();
-        Vzabote.util.onEventOrNow(carts,'viewready','viewReady',undefined,function(){
-            this.cartsY = - carts.getEl().getY() - carts.getEl().down('.products-carts-dataview').getHeight()/3;
-            var activeItem = this.productsView.getTargetEl(),
-              newY = this.cartsY;
-              
-            this.prevY = activeItem.getY();
-            activeItem.animate({
-                  to: {y: newY},
-                  duration: this.animDuration,
-                  listeners: {
-                      afteranimate: function(){
-                            this.cartIsShown = true;
-                      },
-                      scope: this
-                  }
-            });
-            var inner = Ext.get(this.productsView.getInner()),
-                newHeight = inner.getHeight()-newY;
-            inner.animate({
-                  to: {height: newHeight},
-                  duration: this.animDuration,
-                  listeners: {
-                      afteranimate: function(){
-                          this.newHeight = newHeight;
-                      },
-                      scope: this
-                  }
-            });
-        },this,{single: true});
-   },
-   animateCartHide: function(callback){
-      var activeItem = this.productsView.getTargetEl();
-      
-      activeItem.animate({
-          to: {y: this.prevY},
-          duration: this.animDuration,
-          listeners: {
-              afteranimate: callback||Ext.emptyFn,
-              scope: this
-          }
-      });
-      var inner = Ext.get(this.productsView.getInner()),
-          newHeight = this.productsView.getTargetEl().getHeight();
-      
-      inner.animate({
-          to: {height: newHeight},
-          duration: this.animDuration,
-          listeners: {
-              afteranimate: function(){
-                  this.newHeight = newHeight;
-              },
-              scope: this
-          }
-      });
-   },
-   animateProductsShow: function(){
-      this.productsY = -this.getProductTypesSlider().getDataViewHeight()/2;
-      var activeItem = this.productsView.getTargetEl(),
-          newY = this.productsY;
-      this.prevY = activeItem.getY();
-      activeItem.animate({
-          to: {y: newY},
-          duration: this.animDuration,
-          listeners: {
-              afteranimate: function(){
-                 this.productsIsShown = true;
-                 this.showProductHintPopup();   
-              },
-              scope: this
-          }
-      });
-   },
-   animateProductsHide: function(callback){
-      var activeItem = this.productsView.getTargetEl();
-      activeItem.animate({
-          to: {y: this.prevY},
-          duration: this.animDuration,
-          listeners: {
-              afteranimate: callback||Ext.emptyFn,
-              scope: this
-          }
-      });
    },
    showCategoryHintPopup: function(){
-       if(!this.productsIsShown){
+       if(!this.productsView.productsIsShown&&!this.productsView.cartIsShown){
            this.mon(this.getProductTypesSlider().dataView,'show',function(){
                 var element = this.getProductTypesSlider().getEl().down('.producttypes-image');
                 if(this.infoPopup)
@@ -283,10 +165,10 @@ Ext.define('Vzabote.controller.Product',{
            var element = this.getProductsSlider().getEl().down('.product-image');
            this.infoProductPopup = Ext.create('widget.simplepopup',Ext.apply({
                ownerEl: element,
-               id: 'products-choose-info-popup',
+               id: 'products-hint-info-popup',
                cls: 'info-popup'
            },templates.popups.productsProductInfo));
-           this.infoProductPopup.show();   
+           this.infoProductPopup.show();
        }
    },
    showCartInfoPopup: function(element, item){
@@ -294,7 +176,7 @@ Ext.define('Vzabote.controller.Product',{
             this.cartInfoPopup.close();       
        this.cartInfoPopup = Ext.create('widget.simplepopup',Ext.apply({
            ownerEl: element,
-           id: 'products-choose-info-popup',
+           id: 'products-carts-info-popup',
            cls: 'info-popup',
            data: item.data,
            alignPosition: 'bl-t'
@@ -306,7 +188,7 @@ Ext.define('Vzabote.controller.Product',{
             this.productPopup.close();       
        this.productPopup = Ext.create('widget.simplepopup',Ext.apply({
            ownerEl: element,
-           id: 'products-choose-info-popup',
+           id: 'products-info-popup',
            cls: 'info-popup',
            layout: {
                type: 'vbox',
@@ -344,14 +226,5 @@ Ext.define('Vzabote.controller.Product',{
    },
    stopAnimation: function(){
        this.productsView.stopAnimation();
-       var inner = Ext.get(this.productsView.getInner());
-       if(inner.getActiveAnimation())
-           inner.getActiveAnimation().end();
-       
-       var activeItem = this.productsView.getTargetEl();
-       if(activeItem.getActiveAnimation())
-            activeItem.getActiveAnimation().end();
-       
-       
    }
 });
