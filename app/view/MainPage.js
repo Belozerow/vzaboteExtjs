@@ -6,6 +6,7 @@ Ext.define('Vzabote.view.MainPage',{
        type: 'fit',
        align: 'stretch'
    },
+   height: 600,
    initComponent: function(){
        this.callParent();
        var categoryButtons = [];

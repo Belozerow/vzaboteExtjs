@@ -8,6 +8,7 @@ Ext.define('Vzabote.view.SimplePopup',{
     closable: false,
     draggable: false,
     resizable: false,
+    alignPosition: "tl-bl",
     anim: {
         from: {opacity: 0},
         duration: 700
@@ -27,7 +28,7 @@ Ext.define('Vzabote.view.SimplePopup',{
     },
     showPopup: function(){
         if(this.ownerEl){
-            this.alignTo(this.ownerEl,(this.alignPosition)?this.alignPosition:"tl-bl");
+            this.alignTo(this.ownerEl,this.alignPosition);
         }
         this.getEl().hide();
         this.getEl().fadeIn(this.anim);
@@ -40,6 +41,11 @@ Ext.define('Vzabote.view.SimplePopup',{
         } 
         else
             this.callParent();
+   },
+   destroy: function(){
+       if(this.corner)
+            this.corner.destroy();
+       this.callParent(arguments);
    }
     
 })

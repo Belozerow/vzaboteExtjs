@@ -11,7 +11,7 @@ Vzabote.util = {
      */
     onEventOrNow: function(element,e,checkFn,checkVal,callback,scope,onloadparams){
         if(!onloadparams)
-            onloadparams = {single: true}
+            onloadparams = {single: true};
         if(Ext.isFunction(checkFn)){
             if(checkFn.call(element) === checkVal)
                 element.on(e,callback,scope,onloadparams);

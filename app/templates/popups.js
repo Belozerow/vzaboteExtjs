@@ -18,9 +18,12 @@ templates.popups = {
             '</tpl>'
     },
     productsChooseInfo: {
-        html: 'Выберите категорию продуктов <br/>'+
-              '&#8592; &nbsp; &#8594; <br/>'+
-              'Перетаскивайте список категорий вбок, как будто прохаживаетесь в магазие вдоль реальных отделов'
+        html:
+        	'<div class="products-info">'+
+	        	'Выберите категорию продуктов <br/>'+
+	            '&#8592; &nbsp; &#8594; <br/>'+
+	            'Перетаскивайте список категорий вбок, как будто прохаживаетесь в магазие вдоль реальных отделов'+
+            '</div>'
     },
     productsProductInfo: {
         html: 'Нажмите на товар &#8212; он добавится в список покупок. <br/>'+
@@ -43,5 +46,8 @@ templates.popups = {
     brands: {
         itemTpl: '<div class="brand-item <tpl if=\"selected\">brand-item-selected</tpl>"><img src="{image}"/>'+
                  '<div>{name}</div></div>'
+    },
+    countChangePopup: {
+        html: 'Выберите количество товара, которое собираетесь купить.'
     }
 }
