@@ -53,7 +53,7 @@ Ext.define('Vzabote.view.Products',{
                name: 'Продукт',
                minprice: this.sliderMin,
                maxprice: this.sliderMax,
-               measure: 'КГ'
+               measure: 'кг.'
        };
        this.sliderInfoPanel = Ext.create('Ext.container.Container',Ext.apply({
            data: this.scrollerInfoData

@@ -8574,7 +8574,7 @@ a.x-tab-close-btn:hover {
   vertical-align: middle;
   *vertical-align: auto;
   overflow: hidden; }
-  /* line 7, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+  /* line 7, ../../../../../../usr/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
   .x-surface {
     *display: inline; }
 
@@ -9822,7 +9822,7 @@ svg, vml {
   vertical-align: middle;
   *vertical-align: auto;
   margin: 20px; }
-  /* line 7, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+  /* line 7, ../../../../../../usr/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
   .scrollable-dataview-item {
     *display: inline; }
 
@@ -10261,7 +10261,7 @@ nav {
     text-shadow: 0px 1px 0px white; }
 
 /* line 380, ../sass/vzabote.scss */
-.pricestat-title, .block-title {
+.pricestat-title, .block-title, .slider-title {
   font-size: 24px;
   font-weight: bold;
   line-height: 28px;
@@ -10310,27 +10310,61 @@ nav {
     -o-box-shadow: 0px 10px 50px -20px black;
     box-shadow: 0px 10px 50px -20px black; }
   /* line 419, ../sass/vzabote.scss */
+  #products .scrollable-dataview .scrollable-dataview-item .product-image {
+    width: 160px;
+    height: 160px;
+    background-size: contain;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0px 10px 50px -20px black;
+    -webkit-box-shadow: 0px 10px 50px -20px black;
+    -o-box-shadow: 0px 10px 50px -20px black;
+    box-shadow: 0px 10px 50px -20px black; }
+  /* line 426, ../sass/vzabote.scss */
+  #products .scrollable-dataview .scrollable-dataview-item .loupe {
+    width: 15px;
+    height: 19px;
+    position: absolute;
+    top: 132px;
+    right: 11px;
+    cursor: pointer;
+    background: url(../images/loupe.png) top no-repeat; }
+  /* line 435, ../sass/vzabote.scss */
   #products .scrollable-dataview .scrollable-dataview-item a {
+    text-decoration: none; }
+  /* line 436, ../sass/vzabote.scss */
+  #products .scrollable-dataview .scrollable-dataview-item .title {
+    color: #650d3d;
+    width: 150px;
     font-size: 17px;
     font-weight: bold;
-    color: #650d3d;
-    text-decoration: none;
+    padding-top: 15px;
+    text-shadow: 0px 1px 0px white;
+    word-wrap: break-word; }
+  /* line 445, ../sass/vzabote.scss */
+  #products .scrollable-dataview .scrollable-dataview-item .cart-price {
+    font-size: 15px;
+    margin-top: 4px;
     text-shadow: 0px 1px 0px white; }
-    /* line 425, ../sass/vzabote.scss */
-    #products .scrollable-dataview .scrollable-dataview-item a .title {
-      width: 150px;
-      padding-top: 15px;
-      word-wrap: break-word; }
-/* line 433, ../sass/vzabote.scss */
+    /* line 449, ../sass/vzabote.scss */
+    #products .scrollable-dataview .scrollable-dataview-item .cart-price .rub {
+      font-family: ALSRublRegular;
+      font-weight: lighter;
+      padding-left: 4px; }
+/* line 453, ../sass/vzabote.scss */
 #products .scrollable-dataview .scrollabledataview-left button, #products .scrollable-dataview .scrollabledataview-right button {
   width: 50px !important; }
-/* line 435, ../sass/vzabote.scss */
+/* line 455, ../sass/vzabote.scss */
 #products .scrollable-dataview .scrollabledataview-left {
   background: url(../images/arrow_left.png) center no-repeat; }
-/* line 436, ../sass/vzabote.scss */
+/* line 456, ../sass/vzabote.scss */
 #products .scrollable-dataview .scrollabledataview-right {
   background: url(../images/arrow_right.png) center no-repeat; }
-/* line 438, ../sass/vzabote.scss */
+/* line 458, ../sass/vzabote.scss */
 #products .scrollable-dataview .scroll-bar .scroller-container {
   height: 9px;
   border: 1px solid #d4d4d4;
@@ -10338,15 +10372,15 @@ nav {
   -webkit-box-shadow: 0px 0px 1px 0px #aaaaaa inset;
   -o-box-shadow: 0px 0px 1px 0px #aaaaaa inset;
   box-shadow: 0px 0px 1px 0px #aaaaaa inset; }
-  /* line 442, ../sass/vzabote.scss */
+  /* line 462, ../sass/vzabote.scss */
   #products .scrollable-dataview .scroll-bar .scroller-container .scroller-part {
     height: 8px;
     border: none; }
-  /* line 443, ../sass/vzabote.scss */
+  /* line 463, ../sass/vzabote.scss */
   #products .scrollable-dataview .scroll-bar .scroller-container .scroller-part-1 {
     border-left: 1px solid #d4d4d4;
     border-right: 1px solid #d4d4d4; }
-  /* line 444, ../sass/vzabote.scss */
+  /* line 464, ../sass/vzabote.scss */
   #products .scrollable-dataview .scroll-bar .scroller-container .scroller {
     height: 5px;
     background-color: #dc3b43;
@@ -10358,74 +10392,316 @@ nav {
     background-image: -o-linear-gradient(top, #dc3b43 0%, #b3255f 100%);
     background-image: -ms-linear-gradient(top, #dc3b43 0%, #b3255f 100%);
     background-image: linear-gradient(top, #dc3b43 0%, #b3255f 100%); }
-/* line 455, ../sass/vzabote.scss */
-#products #products-cartspanel #products-carts {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px; }
-  /* line 457, ../sass/vzabote.scss */
-  #products #products-cartspanel #products-carts .cart-info {
-    position: absolute;
-    marign-top: 0px;
-    top: 10px;
-    right: 30px; }
-  /* line 463, ../sass/vzabote.scss */
-  #products #products-cartspanel #products-carts .prodcarts {
-    background: #ebeae6;
-    padding-bottom: 8px;
-    -moz-box-shadow: 0px 10px 50px -20px black;
-    -webkit-box-shadow: 0px 10px 50px -20px black;
-    -o-box-shadow: 0px 10px 50px -20px black;
-    box-shadow: 0px 10px 50px -20px black; }
-    /* line 467, ../sass/vzabote.scss */
-    #products #products-cartspanel #products-carts .prodcarts .add {
-      margin: 6px 8px 0px 8px;
-      width: 146px;
-      height: 32px;
-      padding-top: 8px;
+/* line 474, ../sass/vzabote.scss */
+#products #products-cartspanel {
+  padding-top: 40px; }
+  /* line 476, ../sass/vzabote.scss */
+  #products #products-cartspanel #products-carts {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px; }
+    /* line 478, ../sass/vzabote.scss */
+    #products #products-cartspanel #products-carts .cart-info {
+      position: absolute;
+      marign-top: 0px;
+      top: 10px;
+      right: 10px; }
+    /* line 484, ../sass/vzabote.scss */
+    #products #products-cartspanel #products-carts .prodcarts {
+      width: 160px;
+      background: #ebeae6;
+      padding-bottom: 8px;
+      -moz-box-shadow: 0px 10px 50px -20px black;
+      -webkit-box-shadow: 0px 10px 50px -20px black;
+      -o-box-shadow: 0px 10px 50px -20px black;
+      box-shadow: 0px 10px 50px -20px black; }
+      /* line 489, ../sass/vzabote.scss */
+      #products #products-cartspanel #products-carts .prodcarts .add {
+        margin: 6px 8px 0px 8px;
+        width: 146px;
+        height: 32px;
+        padding-top: 8px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 0px 1px 0px white;
+        background: url(../images/cardadd.png) center no-repeat; }
+      /* line 499, ../sass/vzabote.scss */
+      #products #products-cartspanel #products-carts .prodcarts .cart-images {
+        width: 160px;
+        height: 109px;
+        background-size: contain !important;
+        -moz-border-radius-topleft: 5px;
+        -webkit-border-top-left-radius: 5px;
+        -o-border-top-left-radius: 5px;
+        -ms-border-top-left-radius: 5px;
+        -khtml-border-top-left-radius: 5px;
+        border-top-left-radius: 5px;
+        -moz-border-radius-topright: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -o-border-top-right-radius: 5px;
+        -ms-border-top-right-radius: 5px;
+        -khtml-border-top-right-radius: 5px;
+        border-top-right-radius: 5px; }
+      /* line 505, ../sass/vzabote.scss */
+      #products #products-cartspanel #products-carts .prodcarts .cart-custom-image {
+        width: 160px;
+        height: 109px;
+        -moz-border-radius-topleft: 5px;
+        -webkit-border-top-left-radius: 5px;
+        -o-border-top-left-radius: 5px;
+        -ms-border-top-left-radius: 5px;
+        -khtml-border-top-left-radius: 5px;
+        border-top-left-radius: 5px;
+        -moz-border-radius-topright: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -o-border-top-right-radius: 5px;
+        -ms-border-top-right-radius: 5px;
+        -khtml-border-top-right-radius: 5px;
+        border-top-right-radius: 5px;
+        background-color: #f26530;
+        *zoom: 1;
+        filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF26530', endColorstr='#FFF6906A');
+        background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f26530), color-stop(90%, #f26530), color-stop(91%, #f46e3b), color-stop(100%, #f6906a));
+        background-image: -webkit-linear-gradient(top, #f26530 0%, #f26530 90%, #f46e3b 91%, #f6906a 100%);
+        background-image: -moz-linear-gradient(top, #f26530 0%, #f26530 90%, #f46e3b 91%, #f6906a 100%);
+        background-image: -o-linear-gradient(top, #f26530 0%, #f26530 90%, #f46e3b 91%, #f6906a 100%);
+        background-image: -ms-linear-gradient(top, #f26530 0%, #f26530 90%, #f46e3b 91%, #f6906a 100%);
+        background-image: linear-gradient(top, #f26530 0%, #f26530 90%, #f46e3b 91%, #f6906a 100%); }
+      /* line 514, ../sass/vzabote.scss */
+      #products #products-cartspanel #products-carts .prodcarts .cart-custom-image-odd {
+        width: 160px;
+        height: 109px;
+        -moz-border-radius-topleft: 5px;
+        -webkit-border-top-left-radius: 5px;
+        -o-border-top-left-radius: 5px;
+        -ms-border-top-left-radius: 5px;
+        -khtml-border-top-left-radius: 5px;
+        border-top-left-radius: 5px;
+        -moz-border-radius-topright: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -o-border-top-right-radius: 5px;
+        -ms-border-top-right-radius: 5px;
+        -khtml-border-top-right-radius: 5px;
+        border-top-right-radius: 5px;
+        background-color: #a81a64;
+        *zoom: 1;
+        filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFA81A64', endColorstr='#FFC25B90');
+        background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a81a64), color-stop(91%, #a81a64), color-stop(92%, #ad216a), color-stop(100%, #c25b90));
+        background-image: -webkit-linear-gradient(top, #a81a64 0%, #a81a64 91%, #ad216a 92%, #c25b90 100%);
+        background-image: -moz-linear-gradient(top, #a81a64 0%, #a81a64 91%, #ad216a 92%, #c25b90 100%);
+        background-image: -o-linear-gradient(top, #a81a64 0%, #a81a64 91%, #ad216a 92%, #c25b90 100%);
+        background-image: -ms-linear-gradient(top, #a81a64 0%, #a81a64 91%, #ad216a 92%, #c25b90 100%);
+        background-image: linear-gradient(top, #a81a64 0%, #a81a64 91%, #ad216a 92%, #c25b90 100%); }
+      /* line 523, ../sass/vzabote.scss */
+      #products #products-cartspanel #products-carts .prodcarts .star {
+        width: 160px;
+        height: 109px;
+        background: url(../images/white-star.png) center no-repeat; }
+    /* line 529, ../sass/vzabote.scss */
+    #products #products-cartspanel #products-carts .cart-name {
+      width: 150px;
+      color: #650d3d;
+      font-size: 17px;
+      padding-top: 15px;
       font-weight: bold;
-      text-align: center;
-      text-shadow: 0px 1px 0px white;
-      background: url(../images/cardadd.png) center no-repeat; }
-  /* line 478, ../sass/vzabote.scss */
-  #products #products-cartspanel #products-carts .cart-name {
-    width: 150px;
-    color: #650d3d;
-    font-size: 17px;
-    padding-top: 15px;
-    font-weight: bold;
-    word-wrap: break-word;
-    text-shadow: 0px 1px 0px white; }
-  /* line 487, ../sass/vzabote.scss */
-  #products #products-cartspanel #products-carts .cart-price {
-    font-size: 15px;
-    margin-top: 4px; }
-    /* line 490, ../sass/vzabote.scss */
-    #products #products-cartspanel #products-carts .cart-price .rub {
-      font-family: ALSRublRegular;
-      font-weight: lighter;
-      padding-left: 4px; }
+      word-wrap: break-word;
+      text-shadow: 0px 1px 0px white; }
+    /* line 538, ../sass/vzabote.scss */
+    #products #products-cartspanel #products-carts .cart-price {
+      font-size: 15px;
+      margin-top: 4px;
+      text-shadow: 0px 1px 0px white; }
+      /* line 542, ../sass/vzabote.scss */
+      #products #products-cartspanel #products-carts .cart-price .rub {
+        font-family: ALSRublRegular;
+        font-weight: lighter;
+        padding-left: 4px; }
+    /* line 544, ../sass/vzabote.scss */
+    #products #products-cartspanel #products-carts .cart-style {
+      padding-top: 18px;
+      background: url(../images/r0.png) top center no-repeat; }
+    /* line 545, ../sass/vzabote.scss */
+    #products #products-cartspanel #products-carts .cart-style-0 {
+      background: url(../images/r1.png) top center no-repeat; }
+      /* line 547, ../sass/vzabote.scss */
+      #products #products-cartspanel #products-carts .cart-style-0 .cart-images {
+        background: url(../images/ejd.jpg) top center no-repeat; }
+    /* line 551, ../sass/vzabote.scss */
+    #products #products-cartspanel #products-carts .cart-style-1 {
+      background: url(../images/r2.png) top center no-repeat; }
+      /* line 553, ../sass/vzabote.scss */
+      #products #products-cartspanel #products-carts .cart-style-1 .cart-images {
+        background: url(../images/2nd.jpg) top center no-repeat; }
+    /* line 557, ../sass/vzabote.scss */
+    #products #products-cartspanel #products-carts .cart-style-2 {
+      background: url(../images/r3.png) top center no-repeat; }
+      /* line 559, ../sass/vzabote.scss */
+      #products #products-cartspanel #products-carts .cart-style-2 .cart-images {
+        background: url(../images/przn.jpg) top center no-repeat; }
+/* line 565, ../sass/vzabote.scss */
+#products #products-data-panel {
+  padding-top: 22px;
+  background: white url(../images/products-data-panel.png) top repeat-x; }
 
-/* line 496, ../sass/vzabote.scss */
+/* line 571, ../sass/vzabote.scss */
+.navigation-panel {
+  padding-top: 8px;
+  background: url(../images/hr.gif) top repeat-x; }
+  /* line 574, ../sass/vzabote.scss */
+  .navigation-panel .back-button {
+    width: 126px;
+    height: 37px !important;
+    border: 0px;
+    margin-left: 18px;
+    padding-top: 8px;
+    background: url(../images/pricestat-back.png) top no-repeat; }
+    /* line 581, ../sass/vzabote.scss */
+    .navigation-panel .back-button .x-btn-inner {
+      font-size: 14px !important; }
+  /* line 583, ../sass/vzabote.scss */
+  .navigation-panel .forward-button {
+    width: 166px;
+    height: 37px !important;
+    border: 0px;
+    margin-left: 5px;
+    padding-top: 8px;
+    background: url(../images/products-forward-button.png) top no-repeat; }
+    /* line 590, ../sass/vzabote.scss */
+    .navigation-panel .forward-button .x-btn-inner {
+      color: #fff;
+      font-size: 14px !important; }
+
+/* line 594, ../sass/vzabote.scss */
+.x-css-shadow {
+  box-shadow: none !important; }
+
+/* line 596, ../sass/vzabote.scss */
+#products-choose-info-popup {
+  width: 260px;
+  border: none;
+  background: none;
+  padding: 14px 0 0 0;
+  background: url(../images/uparrow.png) top no-repeat;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+  -moz-box-shadow: 0px 10px 40px -10px #666666;
+  -webkit-box-shadow: 0px 10px 40px -10px #666666;
+  -o-box-shadow: 0px 10px 40px -10px #666666;
+  box-shadow: 0px 10px 40px -10px #666666; }
+  /* line 604, ../sass/vzabote.scss */
+  #products-choose-info-popup #products-choose-info-popup-body {
+    background: #fff;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    padding: 18px 21px; }
+
+/* line 611, ../sass/vzabote.scss */
+#products-hint-info-popup {
+  width: 260px;
+  border: none;
+  background: none;
+  padding: 14px 0 0 0;
+  background: url(../images/uparrow.png) top no-repeat;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+  -moz-box-shadow: 0px 10px 40px -10px #666666;
+  -webkit-box-shadow: 0px 10px 40px -10px #666666;
+  -o-box-shadow: 0px 10px 40px -10px #666666;
+  box-shadow: 0px 10px 40px -10px #666666; }
+  /* line 619, ../sass/vzabote.scss */
+  #products-hint-info-popup #products-hint-info-popup-body {
+    background: #fff;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    padding: 18px 21px; }
+
+/* line 626, ../sass/vzabote.scss */
+.slider-values {
+  margin: 0 30px;
+  font-size: 13px; }
+  /* line 629, ../sass/vzabote.scss */
+  .slider-values span {
+    font-size: 12px;
+    color: #9a9290;
+    text-transform: lowercase; }
+
+/* line 636, ../sass/vzabote.scss */
+.x-slider-horz, .x-slider-horz .x-slider-end, .x-slider-horz .x-slider-inner {
+  background: none !important; }
+
+/* line 638, ../sass/vzabote.scss */
+.x-slider-horz {
+  margin-left: 30px;
+  background: url(../images/slider-bg.png) no-repeat 10px 4px !important; }
+  /* line 641, ../sass/vzabote.scss */
+  .x-slider-horz .x-slider-thumb {
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -o-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -khtml-border-radius: 7px;
+    border-radius: 7px;
+    background-images: none;
+    background: #fff;
+    -moz-box-shadow: 0px 0px 3px 0px black;
+    -webkit-box-shadow: 0px 0px 3px 0px black;
+    -o-box-shadow: 0px 0px 3px 0px black;
+    box-shadow: 0px 0px 3px 0px black; }
+
+/* line 651, ../sass/vzabote.scss */
+#products-products .scroll-bar .scroller-container {
+  height: 9px; }
+  /* line 653, ../sass/vzabote.scss */
+  #products-products .scroll-bar .scroller-container .scroller-part {
+    height: 9px;
+    border: none; }
+  /* line 654, ../sass/vzabote.scss */
+  #products-products .scroll-bar .scroller-container .scroller-part-0 {
+    background: #9f0c5d; }
+  /* line 655, ../sass/vzabote.scss */
+  #products-products .scroll-bar .scroller-container .scroller-part-1 {
+    background: #ec4733;
+    border-left: 1px solid #9f0c5d  !important;
+    border-right: 1px solid #f69200 !important; }
+  /* line 660, ../sass/vzabote.scss */
+  #products-products .scroll-bar .scroller-container .scroller-part-2 {
+    background: #f69200; }
+  /* line 661, ../sass/vzabote.scss */
+  #products-products .scroll-bar .scroller-container .scroller {
+    height: 6px !important;
+    background: #fff !important;
+    border: 1px solid #b45887; }
+
+/* line 673, ../sass/vzabote.scss */
 #footer {
-  margin-top: 30px;
-  padding-left: 30px;
-  -moz-box-shadow: 0px 1px 0px white inset;
-  -webkit-box-shadow: 0px 1px 0px white inset;
-  -o-box-shadow: 0px 1px 0px white inset;
-  box-shadow: 0px 1px 0px white inset;
-  border-top: 1px solid #c5c1c0; }
-  /* line 502, ../sass/vzabote.scss */
+  margin-top: 8px; }
+  /* line 675, ../sass/vzabote.scss */
   #footer #footer-body {
+    height: 66px !important;
+    font-size: 12px;
     padding-top: 20px;
-    font-size: 12px; }
-    /* line 505, ../sass/vzabote.scss */
+    padding-left: 30px;
+    background: url(../images/hr.gif) 12px 0 repeat-x;
+    border-top: 1px solid #c5c1c0; }
+    /* line 683, ../sass/vzabote.scss */
     #footer #footer-body #viewport-addshop-button {
       top: 0px !important; }
-      /* line 507, ../sass/vzabote.scss */
+      /* line 685, ../sass/vzabote.scss */
       #footer #footer-body #viewport-addshop-button .add-shop-button {
         width: 154px;
         float: right;
