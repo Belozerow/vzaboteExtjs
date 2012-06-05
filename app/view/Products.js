@@ -35,6 +35,7 @@ Ext.define('Vzabote.view.Products',{
                align: 'stretch'
            },
            height: this.productsHeight,
+           id: 'products-data-panel',
            hidden: true
        });
        
@@ -146,6 +147,7 @@ Ext.define('Vzabote.view.Products',{
        this.cartContent = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
             store: null,
             cardParent: this,
+            id: 'products-cart-content',
             height: 0,
             // hidden: true,
             listeners: {
