@@ -27,7 +27,7 @@ Ext.define('Vzabote.controller.Product',{
            Vzabote.bc.setItem('products',{
                url: '#/products',
                back: {url: '#/index', text: 'На главную'},
-               forward: {url: '#/cart', text: 'Список покупок'},
+               forward: {url: '#/cart', text: 'Список покупок'}
            });
        }
        var cardPanel = this.getCardPanel();
