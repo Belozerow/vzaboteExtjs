@@ -26,8 +26,8 @@ Ext.define('Vzabote.controller.Product',{
        if(query){
            Vzabote.bc.setItem('products',{
                url: '#/products',
-               back: '#/index',
-               forward: '#cart'
+               back: {url: '#/index', text: 'На главную'},
+               forward: {url: '#/cart', text: 'Список покупок'},
            });
        }
        var cardPanel = this.getCardPanel();
@@ -130,9 +130,9 @@ Ext.define('Vzabote.controller.Product',{
    },
    product: function(query){
        Vzabote.bc.setItem('products',{
-           url: '#/products/'+query.id,
-           back: '#/products',
-           forward: '#cart'
+           back: {url: '#/products', text: 'Продукты'},
+           forward: {url: '#/cart', text: 'Список покупок'},
+           url: '#/products'
        });
        if(!this.productsView||this.productsView.isDestroyed){
            this.index(false);
@@ -152,9 +152,9 @@ Ext.define('Vzabote.controller.Product',{
    
    carts: function(query){
        Vzabote.bc.setItem('products',{
-           url: '#/products/carts/'+query.id,
-           back: '#/products',
-           forward: '#cart'
+           back: {url: '#/products', text: 'Продукты'},
+           forward: {url: '#cart', text: 'Список покупок'},
+           url: '#/products'
         });
         if(!this.productsView||this.productsView.isDestroyed){
             this.index(false);

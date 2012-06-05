@@ -139,23 +139,9 @@ Ext.define('Vzabote.view.Products',{
                id: 'products-productsbackbutton',
                cls: 'back-button'
        },templates.products.backbuttonproducts));
-       this.bottomPanel = Ext.create('Ext.container.Container',{xtype: 'panel',
+       this.navPanel = Ext.create('Vzabote.view.NavigationPanel',{
            dock: 'bottom',
-           layout: {
-               type: 'hbox',
-               pack: 'start'
-           },
-           items: [
-            this.mainpageBackButton,
-            this.productsBackButton,
-            Ext.apply({
-               xtype: 'button',
-               href: '#/products',
-               hrefTarget: '_self',
-               id: 'products-forwardbutton',
-               cls: 'forward-button'
-            },templates.products.forwardbutton)
-           ]
+           step: 'products'
        });
        this.cartContent = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
             store: null,
@@ -170,22 +156,8 @@ Ext.define('Vzabote.view.Products',{
             }
        },templates.products.cartcontent));
        this.add(this.cartContent);
-       this.addDocked(this.bottomPanel);
-       this.cngButton('main');
+       this.addDocked(this.navPanel);
        this.on('afterlayout',this.saveStateAfterLayout,this);
-   },
-   cngButton: function(type){
-        switch(type){
-            case 'main':    
-                this.mainpageBackButton.show();
-                this.productsBackButton.hide();
-                break;
-            case 'products':
-                this.mainpageBackButton.hide();
-                this.productsBackButton.show();
-                break;
-        }
-        
    },
    showProducts: function(callback,scope){
        this.stopAnimation();
@@ -207,7 +179,7 @@ Ext.define('Vzabote.view.Products',{
                                   listeners: {
                                       afteranimate: function(){
                                          this.productsIsShown = true;
-                                         this.cngButton('products');
+                                         this.navPanel.updateButtons();
                                          this.doLayout();
                                          callback.apply(scope);
                                       },
@@ -244,7 +216,7 @@ Ext.define('Vzabote.view.Products',{
                                         callback: function(){
                                                 this.productsIsShown = false;
                                                 this.productTypesPanel.enableDataView();
-                                                this.cngButton('main');
+                                                this.navPanel.updateButtons();
                                                 this.suspendLayout = false;
                                                 this.doLayout();
                                                 this.productTypesPanel.fadeInScrollBar();                                                
@@ -286,7 +258,7 @@ Ext.define('Vzabote.view.Products',{
                       listeners: {
                           afteranimate: function(){
                                 this.cartIsShown = true;
-                                this.cngButton('products');
+                                this.navPanel.updateButtons();
                                 // this.doLayout();
                           },
                           scope: this

@@ -18,7 +18,9 @@ Ext.define('Vzabote.controller.Breadcrumb',{
        this.getViewportTopPanel().update(this.getData());
    },   
    /*
-    * @params is object with @url, @back and @forward fields
+    * @params is an object with @url, @back and @forward fields
+    *         @back and 
+    *         @forward fields are objects with @text and @url fields
     */
    setItem: function(name,params){
        if(name&&this[name]){
@@ -31,6 +33,9 @@ Ext.define('Vzabote.controller.Breadcrumb',{
            this[name] = {};
            this.updateNav();
        }
+   },
+   getItem: function(name){
+       return this[name];
    },
    getData: function(){
        return {
