@@ -31,7 +31,12 @@ Ext.define('Vzabote.controller.ShoppingList',{
    },
 
    index: function(query){
-
+       
+       Vzabote.bc.setItem('cart',{
+           back: {url: (Vzabote.bc.getItem('products').url||'#/index'), text: 'Выбор товара'},
+           forward: {url: '#/shops', text: 'Выбор магазина'},
+           url: '#/cart'
+       });
        var cardPanel = this.getCardPanel();
        if(cardPanel.layout.getActiveItem().xtype!='shoppingList'){
             this.getController('Viewport').closeAllWindows();

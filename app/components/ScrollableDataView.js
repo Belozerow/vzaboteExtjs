@@ -415,7 +415,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             sddHeight = sdd.getHeight();
         return Math.max(lpHeight,sddHeight);
     },
-    getVisibleItems: function(){
-        console.log(parseInt(this.getWidth()/this.itemElWidth))
+    getFirstVisibleItems: function(){
+        return this.store.getRange(0,parseInt(this.getWidth()/this.itemElWidth));
     }
 })
