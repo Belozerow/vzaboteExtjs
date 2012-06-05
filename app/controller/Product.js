@@ -144,7 +144,6 @@ Ext.define('Vzabote.controller.Product',{
            this.getProductTypesSlider().disableDataView(query.id);
            this.productsView.showProducts(function(){
                this.showProductHintPopup();
-               this.productsView.productsData.getVisibleItems();
            },this);
        },this);
               

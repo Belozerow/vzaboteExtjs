@@ -42,7 +42,7 @@ Ext.define('Vzabote.view.Products',{
        //TODO this.sliderMin = this.productsStore.getMinPrice()
        this.sliderMin = 20;
        this.sliderMax = 145;
-       this.slider = Ext.create('Ext.slider.Multi',Ext.apply({
+       this.slider = Ext.create('Vzabote.view.JntSlider',Ext.apply({
            minValue: this.sliderMin,
            maxValue: this.sliderMax,
            increment: 1,
