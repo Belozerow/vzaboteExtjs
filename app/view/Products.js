@@ -286,16 +286,15 @@ Ext.define('Vzabote.view.Products',{
                       listeners: {
                           afteranimate: function(){
                                 this.cartIsShown = true;
-                                this.doLayout();
+                                this.cngButton('products');
+                                // this.doLayout();
                           },
                           scope: this
                       }
                     });
                 },
                 scope: this
-            });
-            
-            
+            });   
         },this,{single: true});
    },
    hideCartContent: function(){
@@ -337,30 +336,20 @@ Ext.define('Vzabote.view.Products',{
        if(this.productsDataPanel.getEl().getActiveAnimation()){
            this.productsDataPanel.getEl().getActiveAnimation().end();
        }
+       if(this.cartContent.getEl().getActiveAnimation()){
+           this.cartContent.getEl().getActiveAnimation().end();
+       }
        var activeItem = this.cardPanel.getEl();
        if(activeItem&&activeItem.getActiveAnimation())
             activeItem.getActiveAnimation().end();
    },
-   
-   refresh: function(){
-       this.productTypesPanel.refresh();
-       this.productsData.refresh();       
-   },
-   getInner: function(){
-        if(this.getEl())
-            return this.getEl().down('#products-innerCt');  
-        else return false;
-   },
    disableCartsDataView: function(cart){
        Vzabote.util.onEventOrNow(this.cartsDataView.dataView,'viewready','viewReady',undefined,function(){
            this.cartsDataView.disableDataView(cart.get('id'));
-           // this.activeElement = Ext.get(this.cartsDataView.dataView.getNode(cart));
-           // this.activeElement.addCls('scrollable-dataview-item-selected');
        },this);
    },
    enableCartsDataView: function(){
        this.cartsDataView.enableDataView();
-       // this.activeElement.removeCls('scrollable-dataview-item-selected');
    },
    updateSliderInfo: function(newDate){
        Ext.apply(this.scrollerInfoData,newDate);

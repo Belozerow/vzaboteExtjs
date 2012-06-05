@@ -23,6 +23,13 @@ Ext.define('Vzabote.controller.Product',{
 	   
    },
    index: function(query){
+       if(query){
+           Vzabote.bc.setItem('products',{
+               url: '#/products',
+               back: '#/index',
+               forward: '#cart'
+           });
+       }
        var cardPanel = this.getCardPanel();
        if(this.productsView&&this.productsView.getEl()){
            this.productsView.hideProducts();           
@@ -69,7 +76,8 @@ Ext.define('Vzabote.controller.Product',{
             					});
             					
             					// Обновляем индикатор в header
-            					this.getViewportTopPanel().update({});
+            					// this.getViewportTopPanel().update({});
+            					Vzabote.bc.updateNav();
                                 
                             },
                             scope: this
@@ -121,32 +129,46 @@ Ext.define('Vzabote.controller.Product',{
        }
    },
    product: function(query){
-       
-       if(!this.productsView){
-           this.index();
+       Vzabote.bc.setItem('products',{
+           url: '#/products/'+query.id,
+           back: '#/products',
+           forward: '#cart'
+       });
+       if(!this.productsView||this.productsView.isDestroyed){
+           this.index(false);
        }       
        Vzabote.util.onEventOrNow(this.store,'load',this.store.isLoading,true,function(){
            this.productsView.updateSliderInfo({name: this.store.getById(query.id).get('name')});
        },this,{single: true});
-       this.getProductTypesSlider().disableDataView(query.id);
-       this.productsView.showProducts(function(){
-           this.showProductHintPopup();
-           this.productsView.productsData.getVisibleItems();
+       Vzabote.util.onEventOrNow(this.getProductTypesSlider().dataView,'viewready','viewReady',undefined,function(){
+           this.getProductTypesSlider().disableDataView(query.id);
+           this.productsView.showProducts(function(){
+               this.showProductHintPopup();
+               this.productsView.productsData.getVisibleItems();
+           },this);
        },this);
               
    },
    
    carts: function(query){
-        if(!this.productsView){
-            this.index();
+       Vzabote.bc.setItem('products',{
+           url: '#/products/carts/'+query.id,
+           back: '#/products',
+           forward: '#cart'
+        });
+        if(!this.productsView||this.productsView.isDestroyed){
+            this.index(false);
         }            
         var cart = Ext.getStore('Carts').getById(parseInt(query.id));
-        this.productsView.disableCartsDataView(cart);
-        this.productsView.showCartContent(cart);
+        Vzabote.util.onEventOrNow(this.getCartsDataView().dataView,'viewready','viewReady',undefined,function(){
+           this.productsView.disableCartsDataView(cart);
+           this.productsView.showCartContent(cart);
+        },this);
+        
    },
    showCategoryHintPopup: function(){
-       if(!this.productsView.productsIsShown&&!this.productsView.cartIsShown){
-           this.mon(this.getProductTypesSlider().dataView,'show',function(){
+       if(!this.productsView.productsIsShown&&!this.productsView.cartIsShown&&!this.productsView.isDestroyed){
+           this.productsView.mon(this.getProductTypesSlider().dataView,'show',function(){
                 var element = this.getProductTypesSlider().getEl().down('.producttypes-image');
                 if(this.infoPopup)
                     this.infoPopup.close();

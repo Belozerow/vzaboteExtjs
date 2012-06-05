@@ -10047,7 +10047,7 @@ nav {
   z-index: 2;
   margin-top: 7px; }
   /* line 187, ../sass/vzabote.scss */
-  nav a {
+  nav .nav-tab {
     display: inline-block;
     height: 36px;
     padding-top: 10px;
