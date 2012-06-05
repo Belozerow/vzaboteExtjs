@@ -33,7 +33,6 @@ Ext.define('Vzabote.controller.ShoppingList',{
        var cardPanel = this.getCardPanel();
        if(cardPanel.layout.getActiveItem().xtype!='shoppingList'){
             this.getController('Viewport').closeAllWindows();
-            //var store = Ext.getStore('ProductTypes');
             var store = Ext.getStore('UserCart');
 //            if(store.getCount()==0)
 //                store.load();
@@ -48,14 +47,17 @@ Ext.define('Vzabote.controller.ShoppingList',{
                             }
                         },
                         viewready : this.showCountChangePopup, 
+                        activate: this.intotalRecount,
                         scope: this
                     }
                 });
             }
             cardPanel.layout.setActiveItem(this.shoppingListView);
        }
-   },   
+   },  
+    
    showCountChangePopup: function(){
+   
             var element = this.getShoppingListScroller().getEl().down('.item-count');
             if(this.countPopup)
                 this.countPopup.close();
@@ -66,5 +68,10 @@ Ext.define('Vzabote.controller.ShoppingList',{
                //cls: 'count-popup'
             },templates.popups.countChangePopup));
             this.countPopup.show();    
+   },
+   
+   intotalRecount: function(){
+            this.shoppingListView.updateInTotal();
    }
 });
+
