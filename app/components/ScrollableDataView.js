@@ -93,7 +93,11 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             },templates.scrollabledataview.right)]   
         });
         this.add(this.scroller);
-        
+        this.spacer = Ext.create('Ext.container.Container',{
+            hidden: true,
+            cls: 'spacer'
+        });
+        this.add(this.spacer);
         if(this.store)
             this.bindStore(this.store);
         if(this.store && this.store.isLoading()||!this.store){
@@ -335,6 +339,8 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             scroller.getActiveAnimation().end();
     },
     hideScrollBar: function(){
+        this.spacer.setHeight(this.scroller.getHeight());
+        this.spacer.show();
         this.scrollBarIsHidden = true;
         this.scroller.hide();
     },
@@ -343,6 +349,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         this.scroller.show();
     },
     fadeInScrollBar: function(callback,scope){
+        this.spacer.hide();
         this.scroller.getEl().animate({
             to: {opacity: 1},
             from: {opacity: 0},

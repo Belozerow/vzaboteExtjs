@@ -160,8 +160,8 @@ Ext.define('Vzabote.view.Products',{
        this.cartContent = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
             store: null,
             cardParent: this,
-            height: this.productsHeight,
-            hidden: true,
+            height: 0,
+            // hidden: true,
             listeners: {
                itemclick: function(me,item,node,index,e){
                    this.fireEvent('cartcontentitemclick',me,item,node,index,e);
@@ -269,20 +269,32 @@ Ext.define('Vzabote.view.Products',{
               newY = this.cartsY;
               
             this.prevY = activeItem.getY();
-            this.cartContent.show();
             this.cartContent.bindStore(cart.products(),true);
-            this.cardPanel.doLayout();
-            activeItem.animate({
-                  to: {y: newY},
-                  duration: this.animDuration,
-                  listeners: {
-                      afteranimate: function(){
-                            this.cartIsShown = true;
-                            this.doLayout();
-                      },
-                      scope: this
-                  }
+            this.cartContent.setHeight(this.productsHeight);
+            this.cartContent.getEl().slideIn(null,{
+                duration: this.animDuration,
+                listeners: {
+                    beforeanimate: function(){
+                        this.cartContent.refresh();
+                    },
+                    scope: this
+                },
+                callback: function(){
+                    activeItem.animate({
+                      to: {y: newY},
+                      duration: this.animDuration,
+                      listeners: {
+                          afteranimate: function(){
+                                this.cartIsShown = true;
+                                this.doLayout();
+                          },
+                          scope: this
+                      }
+                    });
+                },
+                scope: this
             });
+            
             
         },this,{single: true});
    },
@@ -291,19 +303,25 @@ Ext.define('Vzabote.view.Products',{
            this.stopAnimation();
            var activeItem = this.cardPanel.getEl();
            if(this.cartContent&&!this.cartContent.isDestroyed){
-                this.cartContent.hide();
-                this.cardPanel.doLayout();
+
+                // this.cardPanel.doLayout();
+                this.cartContent.getEl().slideOut(null,{
+                    duration: this.animDuration,
+                    callback: function(){
+                        activeItem.animate({
+                              to: {y: this.prevY},
+                              duration: this.animDuration,
+                              callback: function(){
+                                  this.cartIsShown = false;
+                                  this.enableCartsDataView();
+                                  this.cartContent.setHeight(0);
+                              },
+                              scope: this
+                        });
+                    },
+                    scope: this
+                });
            }
-           activeItem.animate({
-              to: {y: this.prevY},
-              duration: this.animDuration,
-              callback: function(){
-                  this.cartIsShown = false;
-                  this.enableCartsDataView();
-                  this.doLayout();
-              },
-              scope: this
-           });
        }
    },
    stopAnimation: function(){
