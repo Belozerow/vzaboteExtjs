@@ -60,6 +60,7 @@ Ext.define('Vzabote.view.Products',{
        },templates.products.sliderinfo));
        
        this.brandsFilter = Ext.create('Ext.button.Button',Ext.apply({
+           id: 'products-brandfilter'
        },templates.products.brandfilter));
        
        this.productsFilters = Ext.create('Ext.container.Container',{
@@ -79,6 +80,7 @@ Ext.define('Vzabote.view.Products',{
            },{
                xtype: 'container',
                flex: 3,
+               cls: 'products-filters-container',
                layout: {
                    type: 'hbox',
                    align: 'middle',
