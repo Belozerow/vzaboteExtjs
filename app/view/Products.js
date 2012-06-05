@@ -335,5 +335,11 @@ Ext.define('Vzabote.view.Products',{
    },
    setBrandText: function(text){
        this.brandsFilter.setText(text);
+   },
+   isAnimationActive: function(){
+       return (this.cartsPanel.getActiveAnimation()||this.cartsPanel.getEl().getActiveAnimation()
+                ||this.productsDataPanel.getActiveAnimation()||this.productsDataPanel.getEl().getActiveAnimation()
+                ||this.cartContent.getEl().getActiveAnimation()||this.cardPanel.getEl().getActiveAnimation());
+
    }
 });

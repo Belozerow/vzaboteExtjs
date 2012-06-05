@@ -166,7 +166,7 @@ Ext.define('Vzabote.controller.Product',{
         
    },
    showCategoryHintPopup: function(){
-       if(!this.productsView.productsIsShown&&!this.productsView.cartIsShown&&!this.productsView.isDestroyed){
+       if(!(this.productsView.isAnimationActive())&&!this.productsView.productsIsShown&&!this.productsView.cartIsShown&&!this.productsView.isDestroyed){
            this.productsView.mon(this.getProductTypesSlider().dataView,'show',function(){
                 var element = this.getProductTypesSlider().getEl().down('.producttypes-image');
                 if(this.infoPopup)
