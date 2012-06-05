@@ -15,7 +15,7 @@ templates.shoppingList = {
                  '</a>'+
                  '<div class="dec-button">minus</div><div class="item-count">{amount} {amount_measure}</div><div class="inc-button">plus</div>',{
                      method: function(values){
-                         console.log('%o - lkfgjfd', values);
+                         //console.log('%o - lkfgjfd', values);
                      }
                  }
 

@@ -68,7 +68,7 @@ Ext.define('Vzabote.view.ShoppingList',{
                align: 'stretch'
            },
            items: [Ext.apply({
-                   flex: 2,
+                   //flex: 2,
                    //height: 105,
                    id: 'shoppingList-intotal-info',
                    data: {

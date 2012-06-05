@@ -14,18 +14,16 @@ Ext.define('Vzabote.controller.ShoppingList',{
        this.control({
             '#shoppingList-productstypes': {
                 itemclick: function(me,item,node,index,e){
-                //console.log(Ext.get(e.getTarget()))
+                    sls = this.getShoppingListScroller(); 
                     if(Ext.get(e.getTarget()).hasCls('dec-button'))
                     {
                         if (item.data.amount > 0) item.data.amount -= item.data.amount_modificaton_step;
-                        sls = this.getShoppingListScroller();
                     }
                     if (Ext.get(e.getTarget()).hasCls('inc-button'))
                     {
                          item.data.amount += item.data.amount_modificaton_step;
-                         sls = this.getShoppingListScroller();
-                         sls.dataView.refreshNode(index);
                     }
+                    sls.dataView.refreshNode(index);
                 }
             }
        });
