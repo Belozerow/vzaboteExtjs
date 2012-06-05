@@ -153,7 +153,7 @@ Ext.define('Vzabote.controller.Product',{
    carts: function(query){
        Vzabote.bc.setItem('products',{
            back: {url: '#/products', text: 'Продукты'},
-           forward: {url: '#cart', text: 'Список покупок'},
+           forward: {url: '#/cart', text: 'Список покупок'},
            url: '#/products'
         });
         if(!this.productsView||this.productsView.isDestroyed){

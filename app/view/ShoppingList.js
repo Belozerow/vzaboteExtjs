@@ -21,34 +21,14 @@ Ext.define('Vzabote.view.ShoppingList',{
 
         this.add(this.cartList);
 
-        this.backButton = Ext.create('Ext.button.Button',Ext.apply({
-            xtype: 'button',
-            href: '#/index',
-            hrefTarget: '_self',
-            id: 'shoppingList-backbutton',
-            cls: 'back-button'
-        },templates.shoppingList.backbutton));
-        
-        this.forwardbutton = Ext.create('Ext.button.Button',Ext.apply({
-            xtype: 'button',
-            href: '#/products',
-            hrefTarget: '_self',
-            id: 'shoppingList-forwardbutton',
-            cls: 'forward-button'
-        },templates.shoppingList.forwardbutton));
-        
-        this.bottomPanel = Ext.create('Ext.panel.Panel',{xtype: 'panel',
-            dock: 'bottom',
-            layout: {
-                type: 'hbox',
-                pack: 'start'
-            },
-            items: [
-                this.backButton,
-                this.forwardbutton
-            ]
+        this.navPanel = Ext.create('Vzabote.view.NavigationPanel',{
+            step: 'cart',
+            dock: 'bottom'
         });
-        this.addDocked(this.bottomPanel);
+        this.addDocked(this.navPanel);
+        this.on('activate',function(){
+            this.navPanel.updateButtons();
+        },this);
 
         this.saveloadPanel = Ext.create('Ext.container.Container',{
             layout: {
