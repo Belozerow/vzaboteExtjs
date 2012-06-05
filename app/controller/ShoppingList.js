@@ -41,10 +41,14 @@ Ext.define('Vzabote.controller.ShoppingList',{
                     store: store,
                     animDuration: this.animDuration,
                     listeners: {
-                        productsData: {
-                            itemclick: function(){
-                                console.log('add to cart');
-                            }
+                        cartList: {
+                            itemclick: function(me,item,node,index,e){
+                                var el = Ext.get(e.getTarget());
+                                if(el.hasCls('loupe')){
+                                     this.showProductPopup(node,item);
+                                }
+                            },
+                            scope: this
                         },
                         viewready : this.showCountChangePopup, 
                         activate: this.intotalRecount,
@@ -69,6 +73,27 @@ Ext.define('Vzabote.controller.ShoppingList',{
             },templates.popups.countChangePopup));
             this.countPopup.show();    
    },
+   
+    showProductPopup: function(element, item){
+        if(this.productPopup)
+            this.productPopup.close();
+        this.productPopup = Ext.create('widget.simplepopup',Ext.apply({
+            ownerEl: element,
+            id: 'products-info-popup',
+            cls: 'info-popup',
+            layout: {
+                type: 'vbox',
+                align: 'stretch'
+            },
+            alignPosition: 'c-c',
+            items: [
+                Ext.apply({
+                    data: item.data
+                },templates.popups.productPopup)
+            ]
+        },templates.popups.productPopup));
+        this.productPopup.show();
+    },
    
    intotalRecount: function(){
             this.shoppingListView.updateInTotal();

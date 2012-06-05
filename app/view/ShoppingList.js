@@ -13,13 +13,13 @@ Ext.define('Vzabote.view.ShoppingList',{
         this.maxprice = 0;
         this.count = 0;
 
-        this.productTypesPanel = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
+        this.cartList = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
             store: this.store,
             cardParent: this,
             id: 'shoppingList-productstypes'
         },templates.shoppingList.dataview));
 
-        this.add(this.productTypesPanel);
+        this.add(this.cartList);
 
         this.mainpageBackButton = Ext.create('Ext.button.Button',Ext.apply({
             xtype: 'button',
@@ -28,6 +28,7 @@ Ext.define('Vzabote.view.ShoppingList',{
             id: 'shoppingList-backbutton',
             cls: 'back-button'
         },templates.shoppingList.backbutton));
+        
         this.productsBackButton = Ext.create('Ext.button.Button',Ext.apply({
             xtype: 'button',
             href: '#/products',
@@ -35,6 +36,7 @@ Ext.define('Vzabote.view.ShoppingList',{
             id: 'shoppingList-productsbackbutton',
             cls: 'back-button'
         },templates.shoppingList.backbuttonproducts));
+        
         this.bottomPanel = Ext.create('Ext.panel.Panel',{xtype: 'panel',
             dock: 'bottom',
             layout: {
@@ -108,7 +110,7 @@ Ext.define('Vzabote.view.ShoppingList',{
     },
     
     refresh: function(){
-        this.productTypesPanel.refresh();
+        this.cartList.refresh();
         //this.productsList.refresh();       
     },
     
