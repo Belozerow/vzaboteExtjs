@@ -200,7 +200,8 @@ Ext.define('Vzabote.controller.Product',{
            id: 'products-carts-info-popup',
            cls: 'info-popup',
            data: item.data,
-           alignPosition: 'bl-t'
+           alignPosition: 'bl-t',
+           cornerPosition: 'tl-tl'
        },templates.popups.cartInfoPopup));
        this.cartInfoPopup.show();  
    },

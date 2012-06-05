@@ -61,6 +61,7 @@ Ext.define('Vzabote.controller.CategorySelect',{
            ownerEl: element,
            id: 'info-popup',
            alignPosition: 'l-tr?',
+           cornerPosition: 'tl-tl',
            cls: 'info-popup',
            data: Ext.getStore('CategoryInfo').data
         },templates.popups.categoryInfo));
@@ -82,7 +83,8 @@ Ext.define('Vzabote.controller.CategorySelect',{
            }
            this.popup = Ext.create('widget.simplepopup',Ext.apply({
               id: 'hint-popup',
-              ownerEl: element.getEl().down('.category-name')
+              ownerEl: element.getEl().down('.category-name'),
+              cornerPosition: 'tl-bl?'
            },tpl));
            this.popup.show();
        } 
