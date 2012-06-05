@@ -6,6 +6,11 @@ Ext.define('Vzabote.view.NavigationPanel',{
         this.callParent();
         this.updateButtons();
     },
+    height: 55,
+    layout: {
+        type: 'hbox',
+        align: 'middle'
+    },
     updateButtons: function(){
         this.removeAll();
         if(this.step){
