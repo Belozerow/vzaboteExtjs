@@ -17,7 +17,7 @@ templates.products = {
          itemTpl:'<div class="images product-image" style="background: url({image}); background-repeat: no-repeat;"></div>'+
                  '<div class="loupe"></div>'+
                  '<div class="title">{name}</div>'+
-                 '<div>{minprice} - {maxprice}<b class="rub">a</b></div>'+
+                 '<div class="cart-price">{minprice} - {maxprice}<b class="rub">a</b></div>'+
                  '<div>{offerscount} предложений</div>'
     },
     cartcontent: {
