@@ -8574,7 +8574,7 @@ a.x-tab-close-btn:hover {
   vertical-align: middle;
   *vertical-align: auto;
   overflow: hidden; }
-  /* line 7, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+  /* line 7, ../../../../../../usr/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
   .x-surface {
     *display: inline; }
 
@@ -9822,7 +9822,7 @@ svg, vml {
   vertical-align: middle;
   *vertical-align: auto;
   margin: 20px; }
-  /* line 7, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+  /* line 7, ../../../../../../usr/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
   .scrollable-dataview-item {
     *display: inline; }
 
@@ -10261,7 +10261,7 @@ nav {
     text-shadow: 0px 1px 0px white; }
 
 /* line 380, ../sass/vzabote.scss */
-.pricestat-title, .block-title {
+.pricestat-title, .block-title, .slider-title {
   font-size: 24px;
   font-weight: bold;
   line-height: 28px;
@@ -10358,73 +10358,170 @@ nav {
     background-image: -o-linear-gradient(top, #dc3b43 0%, #b3255f 100%);
     background-image: -ms-linear-gradient(top, #dc3b43 0%, #b3255f 100%);
     background-image: linear-gradient(top, #dc3b43 0%, #b3255f 100%); }
-/* line 454, ../sass/vzabote.scss */
-#products #products-cartspanel {
-  padding-top: 40px; }
-  /* line 456, ../sass/vzabote.scss */
-  #products #products-cartspanel #products-carts {
+/* line 456, ../sass/vzabote.scss */
+#products #products-cartspanel #products-carts {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px; }
+  /* line 458, ../sass/vzabote.scss */
+  #products #products-cartspanel #products-carts .products-carts-dataview {
+    display: -moz-inline-box;
+    -moz-box-orient: vertical;
+    display: inline-block;
+    vertical-align: middle;
+    *vertical-align: auto;
+    padding: 20px;
+    position: relative; }
+    /* line 7, ../../../../../../usr/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+    #products #products-cartspanel #products-carts .products-carts-dataview {
+      *display: inline; }
+  /* line 463, ../sass/vzabote.scss */
+  #products #products-cartspanel #products-carts .cart-info {
+    position: absolute;
+    marign-top: 0px;
+    top: 28px;
+    right: 30px; }
+  /* line 469, ../sass/vzabote.scss */
+  #products #products-cartspanel #products-carts .prodcarts {
+    background: #ebeae6;
+    padding-bottom: 8px;
+    -moz-box-shadow: 0px 10px 50px -20px black;
+    -webkit-box-shadow: 0px 10px 50px -20px black;
+    -o-box-shadow: 0px 10px 50px -20px black;
+    box-shadow: 0px 10px 50px -20px black; }
+    /* line 473, ../sass/vzabote.scss */
+    #products #products-cartspanel #products-carts .prodcarts .add {
+      margin: 6px 8px 0px 8px;
+      width: 146px;
+      height: 32px;
+      padding-top: 8px;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 0px 1px 0px white;
+      background: url(../images/cardadd.png) center no-repeat; }
+    /* line 483, ../sass/vzabote.scss */
+    #products #products-cartspanel #products-carts .prodcarts .images {
+      width: 160px;
+      height: 162px;
+      background-size: contain !important; }
+  /* line 490, ../sass/vzabote.scss */
+  #products #products-cartspanel #products-carts .cart-name {
+    width: 150px;
+    color: #650d3d;
+    font-size: 17px;
+    padding-top: 15px;
+    font-weight: bold;
+    word-wrap: break-word;
+    text-shadow: 0px 1px 0px white; }
+  /* line 499, ../sass/vzabote.scss */
+  #products #products-cartspanel #products-carts .cart-price {
+    font-size: 15px;
+    margin-top: 4px;
+    text-shadow: 0px 1px 0px white; }
+    /* line 503, ../sass/vzabote.scss */
+    #products #products-cartspanel #products-carts .cart-price .rub {
+      font-family: ALSRublRegular;
+      font-weight: lighter;
+      padding-left: 4px; }
+  /* line 505, ../sass/vzabote.scss */
+  #products #products-cartspanel #products-carts .cart-style {
+    padding-top: 18px;
+    background: url(../images/r0.png) top center no-repeat; }
+  /* line 506, ../sass/vzabote.scss */
+  #products #products-cartspanel #products-carts .cart-style-0 {
+    background: url(../images/r1.png) top center no-repeat; }
+  /* line 507, ../sass/vzabote.scss */
+  #products #products-cartspanel #products-carts .cart-style-1 {
+    background: url(../images/r2.png) top center no-repeat; }
+  /* line 508, ../sass/vzabote.scss */
+  #products #products-cartspanel #products-carts .cart-style-2 {
+    background: url(../images/r3.png) top center no-repeat; }
+/* line 512, ../sass/vzabote.scss */
+#products .x-container-docked-bottom #products-backbutton {
+  width: 126px;
+  height: 37px !important;
+  border: 0px;
+  margin-left: 18px;
+  padding-top: 8px;
+  background: url(../images/pricestat-back.png) top no-repeat; }
+  /* line 519, ../sass/vzabote.scss */
+  #products .x-container-docked-bottom #products-backbutton .x-btn-inner {
+    font-size: 14px !important; }
+/* line 521, ../sass/vzabote.scss */
+#products .x-container-docked-bottom #products-forwardbutton {
+  width: 166px;
+  height: 37px !important;
+  border: 0px;
+  margin-left: 5px;
+  padding-top: 8px;
+  background: url(../images/products-forward-button.png) top no-repeat; }
+  /* line 528, ../sass/vzabote.scss */
+  #products .x-container-docked-bottom #products-forwardbutton .x-btn-inner {
+    color: #fff;
+    font-size: 14px !important; }
+
+/* line 532, ../sass/vzabote.scss */
+.x-css-shadow {
+  box-shadow: none !important; }
+
+/* line 534, ../sass/vzabote.scss */
+#products-choose-info-popup {
+  width: 260px;
+  border: none;
+  background: none;
+  padding: 14px 0 0 0;
+  background: url(../images/uparrow.png) top no-repeat;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+  -moz-box-shadow: 0px 10px 40px -10px #666666;
+  -webkit-box-shadow: 0px 10px 40px -10px #666666;
+  -o-box-shadow: 0px 10px 40px -10px #666666;
+  box-shadow: 0px 10px 40px -10px #666666; }
+  /* line 542, ../sass/vzabote.scss */
+  #products-choose-info-popup #products-choose-info-popup-body {
+    background: #fff;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     -o-border-radius: 5px;
     -ms-border-radius: 5px;
     -khtml-border-radius: 5px;
-    border-radius: 5px; }
-    /* line 458, ../sass/vzabote.scss */
-    #products #products-cartspanel #products-carts .products-carts-dataview {
-      display: -moz-inline-box;
-      -moz-box-orient: vertical;
-      display: inline-block;
-      vertical-align: middle;
-      *vertical-align: auto;
-      padding: 20px;
-      position: relative; }
-      /* line 7, ../../../../../../usr/lib/ruby/gems/1.8/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
-      #products #products-cartspanel #products-carts .products-carts-dataview {
-        *display: inline; }
-    /* line 463, ../sass/vzabote.scss */
-    #products #products-cartspanel #products-carts .cart-info {
-      position: absolute;
-      marign-top: 0px;
-      top: 10px;
-      right: 30px; }
-    /* line 469, ../sass/vzabote.scss */
-    #products #products-cartspanel #products-carts .prodcarts {
-      background: #ebeae6;
-      padding-bottom: 8px;
-      -moz-box-shadow: 0px 10px 50px -20px black;
-      -webkit-box-shadow: 0px 10px 50px -20px black;
-      -o-box-shadow: 0px 10px 50px -20px black;
-      box-shadow: 0px 10px 50px -20px black; }
-      /* line 473, ../sass/vzabote.scss */
-      #products #products-cartspanel #products-carts .prodcarts .add {
-        margin: 6px 8px 0px 8px;
-        width: 146px;
-        height: 32px;
-        padding-top: 8px;
-        font-weight: bold;
-        text-align: center;
-        text-shadow: 0px 1px 0px white;
-        background: url(../images/cardadd.png) center no-repeat; }
-    /* line 484, ../sass/vzabote.scss */
-    #products #products-cartspanel #products-carts .cart-name {
-      width: 150px;
-      color: #650d3d;
-      font-size: 17px;
-      padding-top: 15px;
-      font-weight: bold;
-      word-wrap: break-word;
-      text-shadow: 0px 1px 0px white; }
-    /* line 493, ../sass/vzabote.scss */
-    #products #products-cartspanel #products-carts .cart-price {
-      font-size: 15px;
-      margin-top: 4px; }
-      /* line 496, ../sass/vzabote.scss */
-      #products #products-cartspanel #products-carts .cart-price .rub {
-        font-family: ALSRublRegular;
-        font-weight: lighter;
-        padding-left: 4px; }
+    border-radius: 5px;
+    padding: 18px 21px; }
 
-/* line 502, ../sass/vzabote.scss */
+/* line 549, ../sass/vzabote.scss */
+.slider-values {
+  margin: 0 30px;
+  font-size: 13px; }
+  /* line 552, ../sass/vzabote.scss */
+  .slider-values span {
+    font-size: 12px;
+    color: #9a9290;
+    text-transform: lowercase; }
+
+/* line 559, ../sass/vzabote.scss */
+.x-slider-horz {
+  margin-left: 30px; }
+  /* line 561, ../sass/vzabote.scss */
+  .x-slider-horz .x-slider-thumb {
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -o-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -khtml-border-radius: 7px;
+    border-radius: 7px;
+    background-images: none;
+    background: #fff;
+    -moz-box-shadow: 0px 0px 3px 0px black;
+    -webkit-box-shadow: 0px 0px 3px 0px black;
+    -o-box-shadow: 0px 0px 3px 0px black;
+    box-shadow: 0px 0px 3px 0px black; }
+
+/* line 569, ../sass/vzabote.scss */
 #footer {
   margin-top: 30px;
   padding-left: 30px;
@@ -10433,14 +10530,14 @@ nav {
   -o-box-shadow: 0px 1px 0px white inset;
   box-shadow: 0px 1px 0px white inset;
   border-top: 1px solid #c5c1c0; }
-  /* line 508, ../sass/vzabote.scss */
+  /* line 575, ../sass/vzabote.scss */
   #footer #footer-body {
     padding-top: 20px;
     font-size: 12px; }
-    /* line 511, ../sass/vzabote.scss */
+    /* line 578, ../sass/vzabote.scss */
     #footer #footer-body #viewport-addshop-button {
       top: 0px !important; }
-      /* line 513, ../sass/vzabote.scss */
+      /* line 580, ../sass/vzabote.scss */
       #footer #footer-body #viewport-addshop-button .add-shop-button {
         width: 154px;
         float: right;

@@ -43,7 +43,7 @@ templates.products = {
                             '<div class="cart-custom-image{[this.getCustomCartClass(values)]}"></div>'+
                         '</tpl>'+
                         '<tpl if="!custom">'+
-                            '<div style="background: url({image}); height: 150px; width: 162px;"></div>'+
+                            '<div class="images" style="background: url({image}); background-repeat: no-repeat;"></div>'+
                         '</tpl>'+
                         '</a>'+
                         '<div class="info-icon cart-info"></div>'+
@@ -69,10 +69,11 @@ templates.products = {
     },
     sliderinfo: {
         tpl: '<div class="slider-title">{name}</div>'+
-             '<div class="slider-values">Показывать цены: <b>{minprice} - {maxprice}</b> Р / {measure}</div>'
+             '<div class="slider-values">Показывать цены: <b>{minprice} - {maxprice}</b> Р / <span>{measure}</span></div>'
     },
     slider: {
-        width: 300
+        width: 350,
+        //cls: 'slider'
     },
     brandfilter: {
         text: 'Любые бренды'
