@@ -10,9 +10,28 @@
 Ext.application({
     name: 'Vzabote',
     autoCreateViewport: true,
-    controllers: ['Viewport','CategorySelect','Login','Product', 'ShoppingList'],
-    models: ['Category','CategoryInfo','ProductType','Cart','Product','Brand'],
-    stores: ['Categories','CategoryInfo','ProductTypes','Carts','Products','Brands','UserCart'],
+    controllers: ['Viewport',
+                 'CategorySelect',
+                 'Login',
+                 'Product', 
+                 'ShoppingList',
+                 'Breadcrumb'
+                 ],
+    models: ['Category',
+            'CategoryInfo',
+            'ProductType',
+            'Cart',
+            'Product',
+            'Brand'
+    ],
+    stores: ['Categories',
+            'CategoryInfo',
+            'ProductTypes',
+            'Carts',
+            'Products',
+            'Brands',
+            'UserCart'
+    ],
     launch: function(){
         Ext.Loader.setPath('Vzabote','app');
         Vzabote.router.initRoutes(this);

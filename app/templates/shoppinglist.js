@@ -10,12 +10,12 @@ templates.shoppingList = {
     },
     dataview: {
         itemTpl: new Ext.XTemplate('<div style="background: url({image});height: 150px; width: 150px; background-size: contain; background-repeat: no-repeat;"></div>'+
+                '<div class="loupe">Лупа</div>' +
                  '<div>{minprice} — {maxprice}<br>{offerscount} предложений{[this.method(values)]}</div>'+
-                 //'<div>{name}</div>' +
                  '</a>'+
                  '<div class="dec-button">minus</div><div class="item-count">{amount} {amount_measure}</div><div class="inc-button">plus</div>',{
                      method: function(values){
-                         console.log('%o - lkfgjfd', values);
+                         //console.log('%o - lkfgjfd', values);
                      }
                  }
 

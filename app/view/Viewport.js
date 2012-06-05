@@ -25,7 +25,7 @@ Ext.define('Vzabote.view.Viewport',{
                 Ext.apply({
                   flex: 3,
                   id: 'top-panel',
-                  data: {}
+                  data: Vzabote.bc.getData()
                 },templates.viewport.header),
                 {
                     xtype: 'panel',
