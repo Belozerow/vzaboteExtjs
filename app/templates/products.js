@@ -60,9 +60,9 @@ templates.products = {
                         return this.cartNum++;
                     },
                     getCustomCartClass: function(values){
-                        if(this.customNum%2 == 0){
+                        if(this.customNum%2 === 0){
                             this.customNum++;
-                            return '-odd'
+                            return '-odd';
                         }
                     }
                 })
@@ -72,7 +72,7 @@ templates.products = {
              '<div class="slider-values">Показывать цены: <b>{minprice} - {maxprice}</b> Р / <span>{measure}</span></div>'
     },
     slider: {
-        width: 350,
+        width: 350
         //cls: 'slider'
     },
     brandfilter: {
