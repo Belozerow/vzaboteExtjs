@@ -20,6 +20,20 @@ Ext.define('Vzabote.store.UserCart', {
 			return this.add(data);
 		else
 			return null;
+	},
+	
+	/**
+	 * Проверяет - существует элемент item  в сторе или нет
+	 * Поиск дубликатов происходит по полю id
+	 * @param item Instance модели Product
+	 * @return bool true - если существует, иначе false
+	 */
+	existProduct: function(item){
+		if (this.findExact('id', item.get('id')) == -1){
+			return false;
+		}else{
+			return true;
+		}
 	}
 
 });

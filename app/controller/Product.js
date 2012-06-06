@@ -21,6 +21,11 @@ Ext.define('Vzabote.controller.Product',{
    }],
    init: function(){
 	   
+	   this.mon(Ext.getStore('UserCart'), 'add', function(store, item, index, eOpts){
+		   console.log(store, item, index, eOpts);
+		   
+	   },this);
+	   
    },
    index: function(query){
        if(query){
@@ -65,24 +70,52 @@ Ext.define('Vzabote.controller.Product',{
                         productsData: {
                             itemclick: function(me,item,node,index,e){
                                 var el = Ext.get(e.getTarget());
+                                var duration = 1650;
+                                var id = item.get('id');
+                                
                                 if(el.hasCls('loupe')){
                                      this.showProductPopup(node,item);
                                 }
                                 
-                                // Добавление товара в корзину
                                 var uStore = Ext.getStore('UserCart');
-            					uStore.addItem(item.raw, {
-            						dublicate: 'id'		// Товар не будет добавлен, если в сторе уже есть товар с таким id
-            					});
-            					
-            					// Обновляем индикатор в header
-            					// this.getViewportTopPanel().update({});
-            					Vzabote.bc.updateNav();
+                                
+                                // Если такой элемент отсутствует в сторе, то можно его добавить
+                                if (!uStore.existProduct(item)){
+                                    
+                                	// Добавление товара в корзину
+                                    uStore.addItem(item.raw, {
+                						dublicate: 'id'		// Товар не будет добавлен, если в сторе уже есть товар с таким id
+                					});
+                					
+                					// Создаем копию изображения товара и показываем анимацию ее перемещения в корзину
+                					domImg = this.createAnimateImg(item, node);
+                					domDestEl = this.destAnimateImg();
+                					
+                					// Анимация: перемещение и уменьшение элемента
+                					domImg.shift({
+                						x:domDestEl.getX()+domDestEl.getWidth()/2,
+                						y:domDestEl.getY()+domDestEl.getHeight()/2,
+                						width:20,
+                						height:20,
+                						duration: duration
+                					});
+                					
+                					// Удаление временного DOM-элемента с задержкой(после анимации)
+                					imgRemove = new Ext.util.DelayedTask(function(domImg){
+                						domImg.remove();
+                    					// Обновляем индикатор в header
+                    					Vzabote.bc.updateNav();
+                					}, this, [domImg]).delay(duration+50);
+                					
+                					// Добавляем класс по которому на продукте будет отображаться надпись - добавлено
+                					Ext.get(node).addCls('this-added');                                	
+                					
+                                }
                                 
                             },
                             scope: this
                         },
-                        cartcontentitemclick: function(me,item,node,index,e){
+                        cartcontentitemclick: function(me,item,node,index,e){ 
                                 var el = Ext.get(e.getTarget());
                                 if(el.hasCls('loupe')){
                                      this.showProductPopup(node,item);
@@ -247,5 +280,79 @@ Ext.define('Vzabote.controller.Product',{
    },
    stopAnimation: function(){
        this.productsView.stopAnimation();
+   },
+   
+   
+   /**
+    * Используется для анимации добавления товара в корзину.
+    * Создает копию изображения, которое является дочерним элементом node.
+    * @param item Instance модели. Из него берется ссылка на изображение
+    * @param node dom элемента, содержащего изображение. Нужен для получения 
+    * координат, ширины и высоты для нового изображения
+    * 
+    */
+   createAnimateImg: function(item, node){
+	   
+		//--------------- Получаем параметры выбранного элемента
+		// div-элемент в котором лежит изображение
+		domEl = Ext.get(node);
+		// Слой с изображением
+		imgEl=Ext.DomQuery.selectNode('#imgProd', domEl.dom);
+		// DOM слоя с изображением
+		domImgEl=Ext.get(imgEl);
+	
+		//--Параметры исходного изображения
+	
+		srcW = domImgEl.getWidth();
+		srcH = domImgEl.getHeight();
+		srcX = domImgEl.getX();
+		srcY = domImgEl.getY();
+	
+	
+	
+		//--------------- Создание временного элемента
+	
+		// Получаем body
+		body = Ext.DomQuery.selectNode('.x-body');
+		// Получаем id от body
+		bodyId = body.getAttribute('id');
+	
+		// Для id создаем элемент c нужными параметрами
+		newEl = Ext.DomHelper.append(bodyId, {
+								id: 'animate-product-img-id'+item.get('id'),
+								src: item.get('image'),
+								width: srcW,
+								height: srcH,
+								tag: 'img',
+								children: [],
+								cls: 'animate-product-img-cls'+item.get('id'),
+								html: '',
+							}, true);
+		
+		
+		// Задаем дополнительные параметры
+		newEl.setOpacity(0.6)
+		
+		newEl.setX(srcX);
+		newEl.setY(srcY);
+	
+		newEl.setWidth(srcW+30);
+		newEl.setHeight(srcH+30);
+	   
+		return newEl;
+   },
+   
+   /**
+    * Используется для анимации добавления товара в корзину.
+    * Вернет Dom объект на координаты которого нужно перемещать 
+    * лого товара при добавлении этого товара в корзину.
+    */
+   destAnimateImg: function(){
+	   
+	   tab = Ext.DomQuery.selectNode('a#list-tab');
+	   domTab = Ext.get(tab);
+	   return domTab;
+
    }
+   
 });
