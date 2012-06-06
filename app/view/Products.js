@@ -240,7 +240,7 @@ Ext.define('Vzabote.view.Products',{
        this.stopAnimation();
        var carts = this.cartsDataView.dataView;
         Vzabote.util.onEventOrNow(carts,'viewready','viewReady',undefined,function(){
-            this.cartsY = - carts.getEl().getY() - carts.getEl().down('.scrollable-dataview-item').getHeight()/3;
+            this.cartsY = - carts.getEl().getY();
             var activeItem = this.cardPanel.getEl(),
               newY = this.cartsY;
               
@@ -337,9 +337,9 @@ Ext.define('Vzabote.view.Products',{
        this.brandsFilter.setText(text);
    },
    isAnimationActive: function(){
-       return (this.cartsPanel.getActiveAnimation()||this.cartsPanel.getEl().getActiveAnimation()
-                ||this.productsDataPanel.getActiveAnimation()||this.productsDataPanel.getEl().getActiveAnimation()
-                ||this.cartContent.getEl().getActiveAnimation()||this.cardPanel.getEl().getActiveAnimation());
+       return (this.cartsPanel.getActiveAnimation()||(this.cartsPanel.getEl()&&this.cartsPanel.getEl().getActiveAnimation())
+                ||this.productsDataPanel.getActiveAnimation()||(this.productsDataPanel.getEl()&&this.productsDataPanel.getEl().getActiveAnimation())
+                ||(this.cartContent.getEl()&&this.cartContent.getEl().getActiveAnimation())||this.cardPanel.getEl().getActiveAnimation());
 
    }
 });

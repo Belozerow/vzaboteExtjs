@@ -326,12 +326,12 @@ Ext.define('Vzabote.controller.Product',{
 								tag: 'img',
 								children: [],
 								cls: 'animate-product-img-cls'+item.get('id'),
-								html: '',
+								html: ''
 							}, true);
 		
 		
 		// Задаем дополнительные параметры
-		newEl.setOpacity(0.6)
+		newEl.setOpacity(0.6);
 		
 		newEl.setX(srcX);
 		newEl.setY(srcY);
