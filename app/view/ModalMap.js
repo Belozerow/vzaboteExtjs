@@ -1,11 +1,10 @@
 Ext.define('Vzabote.view.ModalMap',{
-    extend: 'Ext.panel.Panel',
+    extend: 'Vzabote.view.ModalPanel',
     alias: 'widget.modalmap',
     id: 'modalmap',
     floating: true,
     left: 0,
     top: 0,
-    modal: true,
     layout: {
         type: 'vbox',
         align: 'stretch'
@@ -17,7 +16,6 @@ Ext.define('Vzabote.view.ModalMap',{
         },this);
         this.callParent();
         this.findForm = Ext.create('Ext.form.Panel',{
-            dock: 'top',
             height: 125,
             items: [Ext.apply({
                 xtype: 'container'
@@ -32,8 +30,8 @@ Ext.define('Vzabote.view.ModalMap',{
                 },
                 scope: this
             }]
-        })
-        this.addDocked(this.findForm);
+        });
+        this.add(this.findForm);
         this.gmap = this.add({
                 xtype: 'gmappanel',
                 id: 'mymap',
@@ -43,9 +41,8 @@ Ext.define('Vzabote.view.ModalMap',{
                     lng: -76.64323
                 }
         });
-        this.addDocked({
+        this.add({
             xtype: 'container',
-            dock: 'bottom',
             height: 100,
             items: {
                 xtype: 'button',

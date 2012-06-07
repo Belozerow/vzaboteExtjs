@@ -22,16 +22,18 @@ Ext.define('Vzabote.view.ModalPanel',{
         },this);
     },
     addHandlers: function(){
-        
         var keyMap = this.getKeyMap();
         keyMap.on(Ext.EventObject.ESC, this.closePanel, this);
         this.mon(this.getEl(),'click',function(e){
+            var close = true;
             this.items.each(function(item){
-                if(!e.within(item.getEl())){
-                    this.closePanel();
+                if(e.within(item.getEl())){
+                    close = false;
                     return false;
-                }                    
+                }
             },this);
+            if(close)
+                this.closePanel();
         },this);
     },
     closePanel: function(){
