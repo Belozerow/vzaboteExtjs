@@ -9,24 +9,26 @@ templates.products = {
         text: 'В список покупок'
     },
     dataview: {
-        itemTpl: '<a href="#/products/{id}"><div class="images producttypes-image" style="background: url({image}); background-repeat: no-repeat;"></div>'+
+        itemTpl: new Ext.XTemplate('<a href="{[this.getUrl(values)]}"><div class="images producttypes-image" style="background: url(<tpl if="image">{image}</tpl><tpl if="!image">resources/imunitet.png</tpl>); background-repeat: no-repeat;"></div>'+
                  '<div class="title">{name}</div>'+
-                 '</a>'
+                 '</a>',{
+                     getUrl: function(values){
+                         return Vzabote.bc.products.url + '/' + values.id;
+                     }
+                 })
     },
     products: {
          itemTpl:
         	 	 new Ext.XTemplate(
 	        	 	 '<div class="images product-image {[this.existInCart(values)]}" id="imgProd" style="background: url({image}); background-repeat: no-repeat;"></div>'+
 	                 '<div class="loupe"></div>'+
-	                 '<div class="title">{name}</div>'+
+	                 '<div class="title">{name}{title}</div>'+
 	                 '<div class="cart-price">{minprice} - {maxprice}<b class="rub">a</b></div>'+
 	                 '<div>{offerscount} предложений</div>',
 	                 {
 	        	 		 existInCart: function(v){
-	        	 			 
-	        	 			 if (Ext.getStore('UserCart').findRecord('id', v.id) != null)
+	        	 			 if (Ext.getStore('UserCart').findRecord('id', v.id) !== null)
 	        	 				 return 'this-added';
-	        	 			 
 	        	 			 return '';
 	        	 		 }
 	                 }
@@ -42,10 +44,8 @@ templates.products = {
                  '<div>{offerscount} предложений</div>',
                  {
         	 		existInCart: function(v){
-       	 			 
-       	 			 if (Ext.getStore('UserCart').findRecord('id', v.id) != null)
+       	 			 if (Ext.getStore('UserCart').findRecord('id', v.id) !== null)
        	 				 return 'this-added';
-       	 			 
        	 			 return '';
        	 		 	}
                  })
@@ -61,7 +61,7 @@ templates.products = {
         itemTpl:
                 new Ext.XTemplate('<div class="cart-style cart-style-{[this.getCartId(values)]}">'+
                     '<div class="prodcarts">'+
-                        '<a href="#/products/carts/{id}">'+
+                        '<a href="{[this.getUrl(values)]}">'+
                         '<tpl if="custom">'+
                             '<div class="cart-custom-image{[this.getCustomCartClass(values)]}"><div class="star"></div></div>'+
                         '</tpl>'+
@@ -87,6 +87,9 @@ templates.products = {
                             this.customNum++;
                             return '-odd';
                         }
+                    },
+                    getUrl: function(values){
+                         return Vzabote.bc.products.url + '/carts/' + values.id;
                     }
                 })
     },
@@ -100,5 +103,8 @@ templates.products = {
     },
     brandfilter: {
         text: 'Любые бренды'
+    },
+    searchtitle: {
+        html: 'Поиск лекарств'
     }
 }

@@ -28,7 +28,20 @@ Ext.define('Vzabote.view.Products',{
        },templates.products.dataview));
        
        this.add(this.productTypesPanel);
-       
+       // this.searchPanel = Ext.create('Ext.container.Container',{
+//            
+           // items: [Ext.apply({xtype: 'container'},templates.products.searchtitle),
+                // {
+                    // xtype: 'textfield',
+                    // emptyText: 'Введите название лекарства...',
+                    // width: 250
+                // },{
+                    // xtype: 'button',
+                    // text: 'Поиск'
+                // }
+           // ]
+       // });
+       // this.add(this.searchPanel)
        this.productsDataPanel = Ext.create('Ext.container.Container',{
            layout: {
                type: 'vbox',
@@ -173,7 +186,8 @@ Ext.define('Vzabote.view.Products',{
                     this.productsDataPanel.getEl().slideIn(null,{
                         duration: this.animDuration,
                         callback: function(){
-                            this.productsY = -this.productTypesPanel.getDataViewHeight()/2;
+                            // this.productsY = -this.productTypesPanel.getDataViewHeight()/2;
+                            this.productsY = this.viewportHeader.getEl().getY()+this.viewportHeader.getHeight()/2-this.productTypesPanel.getDataViewHeight()/2;
                             var activeItem = this.cardPanel.getEl(),
                                 newY = this.productsY;
                             this.prevY = activeItem.getY();
@@ -240,7 +254,8 @@ Ext.define('Vzabote.view.Products',{
        this.stopAnimation();
        var carts = this.cartsDataView.dataView;
         Vzabote.util.onEventOrNow(carts,'viewready','viewReady',undefined,function(){
-            this.cartsY = - carts.getEl().getY();
+            this.cartsY = this.viewportHeader.getEl().getY()+this.viewportHeader.getHeight()/2-carts.getEl().getY();
+            // this.cartsY = - carts.getEl().getY();
             var activeItem = this.cardPanel.getEl(),
               newY = this.cartsY;
               
@@ -290,6 +305,7 @@ Ext.define('Vzabote.view.Products',{
                                   this.cartIsShown = false;
                                   this.enableCartsDataView();
                                   this.cartContent.setHeight(0);
+                                  this.navPanel.updateButtons();
                               },
                               scope: this
                         });

@@ -130,7 +130,8 @@ Ext.define('Vzabote.view.ScrollableDataView',{
     },
     hideLoadingPanel: function(){
         this.dataView.show();
-        this.loadingPanel.hide();
+        if(this.loadingPanel)
+            this.loadingPanel.hide();
     },
     onScrollerClick: function(e,node){
         var scroller = this.scrollEl;

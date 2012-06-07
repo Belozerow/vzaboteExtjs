@@ -29,8 +29,9 @@ Ext.define('Vzabote.controller.Product',{
    },
    index: function(query){
        if(query){
+           this.category = query.category;
            Vzabote.bc.setItem('products',{
-               url: '#/products',
+               url: '#/products/'+this.category,
                back: {url: '#/index', text: 'На главную'},
                forward: {url: '#/cart', text: 'Список покупок'}
            });
@@ -45,11 +46,26 @@ Ext.define('Vzabote.controller.Product',{
        if(cardPanel.layout.getActiveItem().xtype!='products'){
            
             this.getController('Viewport').closeAllWindows();
-            
-            var store = this.store = Ext.getStore('ProductTypes');
+            var store;
             this.productsStore = Ext.getStore('Products');
             this.cartsStore = Ext.getStore('Carts');
-            
+            switch(this.category){
+                case 'food':
+                    store = this.store = Ext.getStore('ProductTypes');
+                    this.cartsStore.clearFilter();
+                    break;
+                case 'med':
+                    store = this.store = Ext.getStore('MedTypes');
+                    this.cartsStore.clearFilter();
+                    this.cartsStore.filter('custom',true);
+                    this.productsStore = Ext.getStore('MedProducts');
+                    break;
+                case 'gas':
+                    store = this.store = Ext.getStore('ProductTypes');
+                    this.cartsStore.clearFilter();
+                    this.cartsStore.filter('custom',true);
+                    break;
+            }
             
             if(store.getCount() === 0){
                 this.mon(store,'load',function(){
@@ -66,6 +82,8 @@ Ext.define('Vzabote.controller.Product',{
                     cartsStore: this.cartsStore,
                     parentHeight: this.getCardPanel().getHeight(),
                     cardPanel: this.getCardPanel(),
+                    category: this.category,
+                    viewportHeader: this.getViewportTopPanel(),
                     listeners: {
                         productsData: {
                             itemclick: function(me,item,node,index,e){
@@ -147,14 +165,18 @@ Ext.define('Vzabote.controller.Product',{
        }
    },
    product: function(query){
+       this.category = query.category;
        Vzabote.bc.setItem('products',{
-           back: {url: '#/products', text: 'Продукты'},
+           back: {url: '#/products/'+this.category, text: 'Продукты'},
            forward: {url: '#/cart', text: 'Список покупок'},
-           url: '#/products'
+           url: '#/products/'+this.category
        });
        if(!this.productsView||this.productsView.isDestroyed){
            this.index(false);
-       }       
+       }  
+       if(this.category == 'med'){
+           this.productsStore.search(query.id);
+       }     
        Vzabote.util.onEventOrNow(this.store,'load',this.store.isLoading,true,function(){
            this.productsView.updateSliderInfo({name: this.store.getById(query.id).get('name')});
        },this,{single: true});
@@ -168,10 +190,11 @@ Ext.define('Vzabote.controller.Product',{
    },
    
    carts: function(query){
+       this.category = query.category;
        Vzabote.bc.setItem('products',{
-           back: {url: '#/products', text: 'Продукты'},
+           back: {url: '#/products/'+this.category, text: 'Продукты'},
            forward: {url: '#/cart', text: 'Список покупок'},
-           url: '#/products'
+           url: '#/products/'+this.category
         });
         if(!this.productsView||this.productsView.isDestroyed){
             this.index(false);

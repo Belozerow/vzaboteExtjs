@@ -1,7 +1,13 @@
 templates.mainpage = {
     categoryitem: {
         //name, subname, categoryitems {name,price,pricechange}
-        tpl: '<a href="#/products"><img src="{image}" style="max-width: 220px; max-height: 1000px;" class="category-image"/></a>'+
+        tpl: '<a href="'+
+                '<tpl switch=\"id\">'+
+                    '<tpl case=\"0\">#/products/food'+
+                    '<tpl case=\"1\">#/products/med'+
+                    '<tpl case=\"2\">#/products/gas'+
+                '</tpl>'+
+             '"><img src="{image}" style="max-width: 220px; max-height: 1000px;" class="category-image"/></a>'+
              '<div class="category-name">{name}</div>'+
              '<div class="category-sub-name">{subname}</div>'+
              '<a href="#/index" class="info-icon"></a>'+
