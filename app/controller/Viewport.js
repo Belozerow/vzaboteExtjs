@@ -21,12 +21,22 @@ Ext.define('Vzabote.controller.Viewport',{
                         }                        
                     },this);
                }
-            } 
+            },
+            '#viewport-addshop-button': {
+                click: function(){
+                    this.showAddShopModal();
+                }
+            }
        });
    },
    closeAllWindows: function(){
        while(Ext.WindowMgr.front){
             Ext.WindowMgr.front.close();
        } 
+   },
+   showAddShopModal: function(){
+       this.addShopModal = Ext.create('Vzabote.view.AddShop',{
+       });
+       this.addShopModal.show();
    }
 });
