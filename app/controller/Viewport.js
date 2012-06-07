@@ -37,7 +37,6 @@ Ext.define('Vzabote.controller.Viewport',{
    showAddShopModal: function(){
        this.addShopModal = Ext.create('Vzabote.view.AddShop',{
        });
-       
        this.addShopModal.show();
    }
 });

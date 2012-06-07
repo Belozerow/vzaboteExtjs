@@ -27,3 +27,6 @@ Vzabote.util = {
             
     }
 };
+Ext.apply(Ext.form.field.VTypes,{
+    emailText: 'Электронная почта должна быть в формате: "user@example.com"'
+});
