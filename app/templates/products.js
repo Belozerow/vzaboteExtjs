@@ -33,11 +33,22 @@ templates.products = {
                  )
     },
     cartcontent: {
-         itemTpl:'<div class="images product-image" style="background: url({image}); background-repeat: no-repeat;"></div>'+
-                 '<div class="loupe">Лупа</div>'+
+         itemTpl:
+        	 new Ext.XTemplate(
+        	 	 '<div class="images product-image {[this.existInCart(values)]}" id="imgProd" style="background: url({image}); background-repeat: no-repeat;"></div>'+
+                 '<div class="loupe"></div>'+
                  '<div>{name}</div>'+
                  '<div>{minprice} - {maxprice}<b class="rub">a</b></div>'+
-                 '<div>{offerscount} предложений</div>'
+                 '<div>{offerscount} предложений</div>',
+                 {
+        	 		existInCart: function(v){
+       	 			 
+       	 			 if (Ext.getStore('UserCart').findRecord('id', v.id) != null)
+       	 				 return 'this-added';
+       	 			 
+       	 			 return '';
+       	 		 	}
+                 })
     },
     title: {
         html: '<div class="block-title">Продукты</div>'
