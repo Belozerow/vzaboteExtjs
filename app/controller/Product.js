@@ -112,6 +112,24 @@ Ext.define('Vzabote.controller.Product',{
                                 if(el.hasCls('cart-info')){
                                      this.showCartInfoPopup(el,item);
                                 }
+                                
+                                // Добавить готовую корзину в пользовательскую целиком
+                                if (el.hasCls('add')){
+
+                                	var products = item.products();
+                                	products.each(function(record){
+                                		var userCart = Ext.getStore('UserCart');
+                                		// Если такого продукта нет в сторе - добавляем его
+                                		if (!userCart.existProduct(record)){
+                                    		var item = {};
+                                    		Ext.apply(item, record.raw);
+                                    		userCart.add(Ext.ModelMgr.create(record.raw, "Vzabote.model.Product"));
+                                		}
+                                		
+                                	}, this);
+                                	
+                                	Vzabote.bc.updateNav();
+                                }
                             },
                             scope: this
                         },
