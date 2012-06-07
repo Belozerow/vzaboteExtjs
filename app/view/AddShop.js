@@ -42,7 +42,7 @@ Ext.define('Vzabote.view.AddShop',{
                 xtype: 'button',
                 text: 'Отправить заявку',
                 handler: function(){
-                    this.submit();
+                    this.form.submit();
                 },
                 scope: this
             }

@@ -25,13 +25,21 @@ Ext.define('Vzabote.view.ModalPanel',{
         
         var keyMap = this.getKeyMap();
         keyMap.on(Ext.EventObject.ESC, this.closePanel, this);
+        this.mon(this.getEl(),'click',function(e){
+            this.items.each(function(item){
+                if(!e.within(item.getEl())){
+                    this.closePanel();
+                    return false;
+                }                    
+            },this);
+        },this);
     },
     closePanel: function(){
         Ext.getBody().unmask();
         this.close();
     },
     initSizes: function(){
-        var height = Math.max(Ext.getCmp('viewport').cards.getHeight()+Ext.getCmp('header').getHeight(),Ext.Element.getViewHeight()),
+        var height = Ext.Element.getViewHeight(),
             width = Ext.Element.getViewWidth();
         this.setWidth(width);
         this.setHeight(height);

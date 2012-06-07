@@ -16,19 +16,28 @@ Ext.define('Vzabote.view.ModalMap',{
             this.refreshSize();
         },this);
         this.callParent();
-        this.addDocked({
-            xtype: 'container',
+        this.findForm = Ext.create('Ext.form.Panel',{
             dock: 'top',
-            height: 125
-        });
-        this.add({
+            height: 125,
+            items: [Ext.apply({
+                xtype: 'container'
+            },templates.modal.map),{
+                xtype: 'textfield',
+                emptyText: 'Введите адрес точки на карте'
+            },{
+                xtype: 'button',
+                text: 'Добавить точку',
+                handler: function(){
+                    console.log('add');
+                },
+                scope: this
+            }]
+        })
+        this.addDocked(this.findForm);
+        this.gmap = this.add({
                 xtype: 'gmappanel',
                 id: 'mymap',
                 flex: 1,
-                //zoomLevel: 14,
-                //gmapType: 'map',
-                //mapConfOpts: ['enableScrollWheelZoom','enableDoubleClickZoom','enableDragging'],
-                //mapControls: ['GSmallMapControl','GMapTypeControl'],
                 setCenter: {
                     lat: 39.26940,
                     lng: -76.64323
@@ -37,7 +46,11 @@ Ext.define('Vzabote.view.ModalMap',{
         this.addDocked({
             xtype: 'container',
             dock: 'bottom',
-            height: 100
+            height: 100,
+            items: {
+                xtype: 'button',
+                text: 'OK'
+            }
         });
     },
     refreshSize: function(){
