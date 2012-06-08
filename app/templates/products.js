@@ -55,12 +55,6 @@ templates.products = {
          titleTpl: {
             tpl: '<div class="block-title">{title}</div>'
          }
-    },  
-    title: {
-        html: '<div class="block-title">Продукты</div>'
-    },
-    cartsTitle: {
-        html: '<div class="block-title">Продуктовые корзины</div>'
     },
     cart: {
         //name,custom,info,image, minprice, maxprice

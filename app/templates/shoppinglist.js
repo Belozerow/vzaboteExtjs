@@ -19,7 +19,10 @@ templates.shoppingList = {
                      }
                  }
 
-        )
+        ),
+        titleTpl: {
+            tpl: '<div class="block-title">{title}</div>'
+        }
     },
     products: {
          itemTpl:'<div style="background: url({image});height: 150px; width: 150px; background-size: contain; background-repeat: no-repeat;"></div>'+

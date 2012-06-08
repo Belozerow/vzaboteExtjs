@@ -16,7 +16,8 @@ Ext.define('Vzabote.view.ShoppingList',{
         this.cartList = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
             store: this.store,
             cardParent: this,
-            id: 'shoppingList-productstypes'
+            id: 'shoppingList-productstypes',
+            scrollableName: 'Список покупок'
         },templates.shoppingList.dataview));
 
         this.add(this.cartList);
