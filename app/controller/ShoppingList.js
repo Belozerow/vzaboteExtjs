@@ -8,8 +8,8 @@ Ext.define('Vzabote.controller.ShoppingList',{
        selector: '#cardpanel'
    },
    {
-       ref: 'shoppingListScroller',
-       selector: '#shoppingList-productstypes'
+       ref: 'shopsList',
+       selector: '#shopsList'
    }],
    init: function(){
        this.control({

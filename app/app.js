@@ -15,14 +15,16 @@ Ext.application({
                  'Login',
                  'Product', 
                  'ShoppingList',
-                 'Breadcrumb'
+                 'Breadcrumb',
+                 'ShopChoice'
                  ],
     models: ['Category',
             'CategoryInfo',
             'ProductType',
             'Cart',
             'Product',
-            'Brand'
+            'Brand',
+            'Shop'
     ],
     stores: ['Categories',
             'CategoryInfo',
@@ -30,7 +32,8 @@ Ext.application({
             'Carts',
             'Products',
             'Brands',
-            'UserCart'
+            'UserCart',
+            'Shops'
     ],
     launch: function(){
         Ext.Loader.setPath('Vzabote','app');
