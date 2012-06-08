@@ -203,20 +203,21 @@ Ext.define('Vzabote.view.Products',{
                             var activeItem = this.cardPanel.getEl(),
                                 newY = this.productsY;
                             this.prevY = activeItem.getY();
-                            activeItem.animate({
-                                  to: {y: newY},
-                                  duration: this.animDuration,
-                                  listeners: {
-                                      afteranimate: function(){
-                                         this.productsIsShown = true;
-                                         this.navPanel.updateButtons();
-                                         this.doLayout();
-                                         this.isProductsAnimation = false;
-                                         callback.apply(scope);
-                                      },
-                                      scope: this
-                                  }
-                            });
+                            if(this.isVisible())
+                                activeItem.animate({
+                                      to: {y: newY},
+                                      duration: this.animDuration,
+                                      listeners: {
+                                          afteranimate: function(){
+                                             this.productsIsShown = true;
+                                             this.navPanel.updateButtons();
+                                             this.doLayout();
+                                             this.isProductsAnimation = false;
+                                             callback.apply(scope);
+                                          },
+                                          scope: this
+                                      }
+                                });
                         },
                         scope: this                        
                     });

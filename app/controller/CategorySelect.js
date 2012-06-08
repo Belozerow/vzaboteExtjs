@@ -40,6 +40,9 @@ Ext.define('Vzabote.controller.CategorySelect',{
        });
    },
    index: function(query){
+       Vzabote.bc.setItem('home',{
+           url: '#/index'
+       });
        var cardPanel = this.getCardPanel();
        if(cardPanel.layout.getActiveItem().xtype!='mainpage'){
            this.getController('Viewport').closeAllWindows();

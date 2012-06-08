@@ -260,7 +260,7 @@ Ext.define('Vzabote.controller.Product',{
         
    },
    showCategoryHintPopup: function(){
-       if(!(this.productsView.isAnimationActive())&&!this.productsView.productsIsShown&&!this.productsView.cartIsShown&&!this.productsView.isDestroyed){
+       if(!(this.productsView.isAnimationActive())&&!this.productsView.productsIsShown&&!this.productsView.cartIsShown&&this.productsView.isVisible()){
            this.productsView.mon(this.getProductTypesSlider().dataView,'show',function(){
                 var element = this.getProductTypesSlider().getEl().down('.producttypes-image');
                 if(this.infoPopup)
@@ -276,7 +276,7 @@ Ext.define('Vzabote.controller.Product',{
    },
    showProductHintPopup: function(){
        //TODO привязать к store.load
-       if(!this.infoProductPopup){
+       if(!this.infoProductPopup&&this.productsView.isVisible()){
            var element = this.getProductsSlider().getEl().down('.product-image');
            this.infoProductPopup = Ext.create('widget.simplepopup',Ext.apply({
                ownerEl: element,

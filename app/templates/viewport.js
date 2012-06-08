@@ -3,26 +3,26 @@ templates.viewport = {
         tpl:
         	new Ext.XTemplate(
         		'<nav>'+
-    				'<a id="home-tab" class="home-tab nav-tab" href="{home.url}"></a>'+
+    				'<a id="home-tab" class="home-tab nav-tab<tpl if="this.isActive(\'home\')"> active</tpl>" href="{home.url}"></a>'+
     				'<tpl if="products.url">'+
-    				    '<a id="choose-tab" class="choose-tab nav-tab" href="{products.url}">Выбор товаров</a>'+
+    				    '<a id="choose-tab" class="choose-tab nav-tab<tpl if="this.isActive(\'products\')"> active</tpl>" href="{products.url}">Выбор товаров</a>'+
 				    '</tpl>'+
 				    '<tpl if="!products.url">'+
-                        '<div id="choose-tab" class="choose-tab nav-tab">Выбор товаров</div>'+
+                        '<div id="choose-tab" class="choose-tab nav-tab<tpl if="this.isActive(\'products\')"> active</tpl>">Выбор товаров</div>'+
                     '</tpl>'+
                     
                     '<tpl if="cart.url">'+
-                        '<a id="list-tab" class="list-tab nav-tab" href="{cart.url}">Список покупок <tpl if="this.getCountProductInCart()"><div class="badge">{[this.getCountProductInCart()]}</div></tpl></a>'+
+                        '<a id="list-tab" class="list-tab nav-tab<tpl if="this.isActive(\'cart\')"> active</tpl>" href="{cart.url}">Список покупок <tpl if="this.getCountProductInCart()"><div class="badge">{[this.getCountProductInCart()]}</div></tpl></a>'+
                     '</tpl>'+
                     '<tpl if="!cart.url">'+
-                        '<div id="list-tab" class="list-tab nav-tab">Список покупок <tpl if="this.getCountProductInCart()"><div class="badge">{[this.getCountProductInCart()]}</div></tpl></div>'+
+                        '<div id="list-tab" class="list-tab nav-tab<tpl if="this.isActive(\'cart\')"> active</tpl>">Список покупок <tpl if="this.getCountProductInCart()"><div class="badge">{[this.getCountProductInCart()]}</div></tpl></div>'+
                     '</tpl>'+
                     
     				'<tpl if="shops.url">'+
-                        '<a id="shops-tab" class="shops-tab nav-tab" href="{shops.url}">Выбор магазина</a>'+
+                        '<a id="shops-tab" class="shops-tab nav-tab<tpl if="this.isActive(\'shops\')"> active</tpl>" href="{shops.url}">Выбор магазина</a>'+
                     '</tpl>'+
                     '<tpl if="!shops.url">'+
-                        '<div id="shops-tab" class="shops-tab nav-tab">Выбор магазина</div>'+
+                        '<div id="shops-tab" class="shops-tab nav-tab<tpl if="this.isActive(\'shops\')"> active</tpl>">Выбор магазина</div>'+
                     '</tpl>'+
     			'</nav>',
     			{
@@ -31,6 +31,9 @@ templates.viewport = {
         				if (UserCart){
         					return UserCart.getCount();
         				}
+        			},
+        			isActive: function(name){
+        			    return Vzabote.bc.getActive()==name;
         			}
     			})
     },
