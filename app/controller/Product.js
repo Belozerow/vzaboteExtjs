@@ -49,6 +49,7 @@ Ext.define('Vzabote.controller.Product',{
             var store;
             this.productsStore = Ext.getStore('Products');
             this.cartsStore = Ext.getStore('Carts');
+            this.brandsStore = Ext.getStore('Brands');
             switch(this.category){
                 case 'food':
                     store = this.store = Ext.getStore('ProductTypes');
@@ -151,6 +152,13 @@ Ext.define('Vzabote.controller.Product',{
                             },
                             scope: this
                         },
+                        popularBrands: {
+                            itemclick: function(me,item){
+                                Ext.getStore('Brands').setSelecedItem(item);
+                                this.productsView.setBrandText(templates.products.brandfilter.text);
+                            },
+                            scope: this
+                        },
                         scope: this
                     }
                 });
@@ -158,7 +166,7 @@ Ext.define('Vzabote.controller.Product',{
                     this.stopAnimation();
                     this.productsView.productsIsShown =  false;
                     this.productsView.cartIsShown = false;
-                    this.productsView.destroy();                    
+                    this.productsView.destroy();
                 },this);
             }
             cardPanel.layout.setActiveItem(this.productsView);
@@ -180,13 +188,22 @@ Ext.define('Vzabote.controller.Product',{
        Vzabote.util.onEventOrNow(this.store,'load',this.store.isLoading,true,function(){
            this.productsView.updateSliderInfo({name: this.store.getById(query.id).get('name')});
        },this,{single: true});
-       Vzabote.util.onEventOrNow(this.getProductTypesSlider().dataView,'viewready','viewReady',undefined,function(){
+       
+       if(!this.store.isLoading()){
            this.getProductTypesSlider().disableDataView(query.id);
-           this.productsView.showProducts(function(){
+       }
+       else{
+           this.getProductTypesSlider().on('viewready',function(){
+               if(this.productsView.isProductsAnimation||this.productsView.productsIsShown)
+                    this.getProductTypesSlider().disableDataView(query.id);
+           },this,{single: true});
+       }
+       
+       this.productsView.showProducts(function(){
+           Vzabote.util.onEventOrNow(this.productsStore,'load',this.productsStore.isLoading,true,function(){
                this.showProductHintPopup();
            },this);
        },this);
-              
    },
    
    carts: function(query){
@@ -288,13 +305,11 @@ Ext.define('Vzabote.controller.Product',{
        this.brandsPopup = Ext.create('widget.brandspopup',Ext.apply({
            ownerEl: element,
            alignPosition: 'tr-br',
-           store: Ext.getStore('Brands'),
+           store: this.brandsStore,
+           startFrom: 2,
            listeners: {
                itemclick: function(me,item,node,index,e){
-                   Ext.getStore('Brands').each(function(storeitem){
-                       storeitem.set('selected',false);
-                   });
-                   item.set('selected',true);
+                   Ext.getStore('Brands').setSelecedItem(item);
                    this.productsView.setBrandText(item.get('name'));
                    this.brandsPopup.close();
                },

@@ -9,6 +9,7 @@ Ext.define('Vzabote.view.Products',{
    animDuration: 300,
    fadeDuration: 300,
    productsHeight: 440,
+   brandsPopularCount: 3,
    saveStateAfterLayout: function(){
         var activeItem = this.cardPanel.getEl();
         if(this.productsIsShown){
@@ -76,6 +77,16 @@ Ext.define('Vzabote.view.Products',{
            id: 'products-brandfilter'
        },templates.products.brandfilter));
        
+       //Выводим один store в два разных dataview
+       this.popularBrands = Ext.create('Ext.view.View',{
+           tpl: new Ext.XTemplate('<tpl for=".">'+
+                '<tpl if="xindex &lt; '+(this.brandsPopularCount+1)+'">'+
+                    templates.products.brands.tpl+
+                '</tpl>'+
+             '</tpl>'),
+           store: Ext.getStore('Brands'),
+           itemSelector: '.brand-item'
+       });
        this.productsFilters = Ext.create('Ext.container.Container',{
            layout: {
                type: 'hbox',
@@ -99,7 +110,7 @@ Ext.define('Vzabote.view.Products',{
                    align: 'middle',
                    pack: 'center'
                },
-               items: this.brandsFilter
+               items: [this.popularBrands,this.brandsFilter]
            }
            
            ]
@@ -178,6 +189,7 @@ Ext.define('Vzabote.view.Products',{
    },
    showProducts: function(callback,scope){
        this.stopAnimation();
+       this.isProductsAnimation = true;
        this.cartsPanel.getEl().fadeOut({
             duration: this.fadeDuration,
             callback: function(){
@@ -199,6 +211,7 @@ Ext.define('Vzabote.view.Products',{
                                          this.productsIsShown = true;
                                          this.navPanel.updateButtons();
                                          this.doLayout();
+                                         this.isProductsAnimation = false;
                                          callback.apply(scope);
                                       },
                                       scope: this
@@ -216,6 +229,7 @@ Ext.define('Vzabote.view.Products',{
    hideProducts: function(callback,scope){
         if(this.productsIsShown){
             this.stopAnimation();
+            this.isProductsAnimation = true;
             var activeItem = this.cardPanel.getEl();
             this.suspendLayout = true;
             activeItem.animate({
@@ -233,11 +247,15 @@ Ext.define('Vzabote.view.Products',{
                                         duration: this.fadeDuration,
                                         callback: function(){
                                                 this.productsIsShown = false;
-                                                this.productTypesPanel.enableDataView();
+                                                // Vzabote.util.onEventOrNow(this.store,'load',this.store.isLoading,true,function(){
+                                                    this.productTypesPanel.enableDataView();
+                                                    // this.doLayout();
+                                                // },this);                                                
                                                 this.navPanel.updateButtons();
                                                 this.suspendLayout = false;
                                                 this.doLayout();
-                                                this.productTypesPanel.fadeInScrollBar();                                                
+                                                this.productTypesPanel.fadeInScrollBar();
+                                                this.isProductsAnimation = false;                                                
                                         },
                                         scope: this
                                     });
@@ -253,7 +271,7 @@ Ext.define('Vzabote.view.Products',{
    showCartContent: function(cart){
        this.stopAnimation();
        var carts = this.cartsDataView.dataView;
-        Vzabote.util.onEventOrNow(carts,'viewready','viewReady',undefined,function(){
+       Vzabote.util.onEventOrNow(carts,'viewready','viewReady',undefined,function(){
             this.cartsY = this.viewportHeader.getEl().getY()+this.viewportHeader.getHeight()/2-carts.getEl().getY();
             // this.cartsY = - carts.getEl().getY();
             var activeItem = this.cardPanel.getEl(),
@@ -262,6 +280,7 @@ Ext.define('Vzabote.view.Products',{
             this.prevY = activeItem.getY();
             this.cartContent.bindStore(cart.products(),true);
             this.cartContent.setHeight(this.productsHeight);
+            this.isCartAnination = true;
             this.cartContent.getEl().slideIn(null,{
                 duration: this.animDuration,
                 listeners: {
@@ -279,6 +298,7 @@ Ext.define('Vzabote.view.Products',{
                                 this.cartIsShown = true;
                                 this.navPanel.updateButtons();
                                 // this.doLayout();
+                                this.isCartAnination = false;
                           },
                           scope: this
                       }
@@ -291,10 +311,11 @@ Ext.define('Vzabote.view.Products',{
    hideCartContent: function(){
        if(this.cartIsShown){
            this.stopAnimation();
+           
            var activeItem = this.cardPanel.getEl();
            if(this.cartContent&&!this.cartContent.isDestroyed){
-
-                // this.cardPanel.doLayout();
+                this.isCartAnination = true;
+                
                 this.cartContent.getEl().slideOut(null,{
                     duration: this.animDuration,
                     callback: function(){
@@ -306,6 +327,7 @@ Ext.define('Vzabote.view.Products',{
                                   this.enableCartsDataView();
                                   this.cartContent.setHeight(0);
                                   this.navPanel.updateButtons();
+                                  this.isCartAnination = false;
                               },
                               scope: this
                         });

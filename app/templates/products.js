@@ -102,7 +102,11 @@ templates.products = {
         //cls: 'slider'
     },
     brandfilter: {
-        text: 'Любые бренды'
+        text: 'Ещё'
+    },
+    brands: {
+        //потом надо перенести все в css
+        tpl: '<div class="brand-item<tpl if=\"selected\"> brand-item-selected</tpl>" style="float:left;"><img src="{image}" style="width:50px;height:50px;"/></div>'
     },
     searchtitle: {
         html: 'Поиск лекарств'

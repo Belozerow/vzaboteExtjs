@@ -65,6 +65,12 @@ Ext.define('Vzabote.view.ScrollableDataView',{
                   '</div>',
             width: 500
         });
+        
+        this.loadingPanel = Ext.create('Ext.container.Container',Ext.apply({
+             hidden: true
+        },templates.scrollabledataview.empty));
+        this.add(this.loadingPanel);
+        
         this.scroller = Ext.create('Ext.panel.Panel',{
             // height: 50,
             dock: 'bottom',
@@ -100,11 +106,10 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         this.add(this.spacer);
         if(this.store)
             this.bindStore(this.store);
+            
+        
         if(this.store && this.store.isLoading()||!this.store){
-            this.dataView.hide();
-            this.loadingPanel = Ext.create('Ext.container.Container',Ext.apply({
-            },templates.scrollabledataview.empty));
-            this.add(this.loadingPanel);
+            this.showLoadingPanel();   
         }
     },
     bindStore: function(store,refresh){
@@ -112,21 +117,25 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             this.mun(this.store,'load',this.refresh,this);
             this.mun(this.store,'datachanged',this.refresh,this);
             this.mun(this.store,'load',this.hideLoadingPanel,this);
+            this.mun(this.store,'beforeload',this.showLoadingPanel,this);
         }
         this.store = store;
         if(store){
             this.mon(this.store,'load',this.hideLoadingPanel,this);
             this.mon(this.store,'load',this.refresh,this);
             this.mon(this.store,'datachanged',this.refresh,this);       
+            this.mon(this.store,'beforeload',this.showLoadingPanel,this);
             this.dataView.bindStore(this.store);
             if(!this.store.isLoading()){
-                this.dataView.show();
-                if(this.loadingPanel)
-                    this.loadingPanel.hide();
+                this.hideLoadingPanel();
             }
             if(refresh)
                 this.refresh();   
         }
+    },
+    showLoadingPanel: function(){
+        this.dataView.hide();
+        this.loadingPanel.show();
     },
     hideLoadingPanel: function(){
         this.dataView.show();
@@ -246,7 +255,7 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             }                
             else{
                 if(!this.scrollBarIsHidden)
-                    this.scroller.show()
+                    this.scroller.show();
                 this.scrollWidth = (this.getWidth()*this.scrollerEl.getWidth())/this.dataView.getWidth();
             }
                 
@@ -415,8 +424,5 @@ Ext.define('Vzabote.view.ScrollableDataView',{
         if(sdd)
             sddHeight = sdd.getHeight();
         return Math.max(lpHeight,sddHeight);
-    },
-    getFirstVisibleItems: function(){
-        return this.store.getRange(0,parseInt(this.getWidth()/this.itemElWidth));
     }
-})
+});

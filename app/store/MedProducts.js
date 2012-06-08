@@ -8,7 +8,7 @@ Ext.define('Vzabote.store.MedProducts',{
         reader: { type:'json', root: 'values' }
     },
     search: function(id){
-        this.clearFilter();
+        this.clearFilter(true);
         this.filter(
             [{
                 property: 'commercgroup', value: id

@@ -44,8 +44,12 @@ templates.popups = {
         text: 'Добавить в список'
     },
     brands: {
-        itemTpl: '<div class="brand-item <tpl if=\"selected\">brand-item-selected</tpl>"><img src="{image}"/>'+
-                 '<div>{name}</div></div>'
+        tpl:
+            '<div class="brand-item <tpl if=\"selected\">brand-item-selected</tpl>"><img src="{image}"/>'+
+             '<div>{name}</div></div>',
+        //чтобы работал itemclick
+        emptyTpl: '<div class="brand-item" style="display:none;"></div>'
+            
     },
     countChangePopup: {
         html: 'Выберите количество товара, которое собираетесь купить.'
