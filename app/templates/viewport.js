@@ -42,5 +42,5 @@ templates.viewport = {
     },
     login: {
         text: '<div class="login"></div>'   
-    }
+    }    
 }

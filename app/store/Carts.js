@@ -1,7 +1,9 @@
 Ext.define('Vzabote.store.Carts',{
     extend: 'Ext.data.Store',
     model: 'Vzabote.model.Cart',
-    // requires: 'Vzabote.model.Cart',
+    hasCustom: function(){
+        return this.find('custom',true) != -1;
+    },
     data: [
         {id: 1, name: 'Пост', custom: true, info: 'Поститься!Поститься!Поститься!Поститься!', image: 'resources/cart.png', minprice: 1248, maxprice: 1731.5, products:[ 
             {id: 1, name: 'Фарш', image: 'resources/products/farsh.png', minprice: 100.1, maxprice: 221.4, offerscount: 12},
@@ -73,5 +75,5 @@ Ext.define('Vzabote.store.Carts',{
             {id: 11, name: 'Гуляш', image: 'resources/products/gulyash.png', minprice: 100.1, maxprice: 221.4, offerscount: 12},
             {id: 12, name: 'Вырезка', image: 'resources/products/vyrezka.png', minprice: 100.1, maxprice: 221.4, offerscount: 12}
         ]}
-    ]   
+    ]
 });
