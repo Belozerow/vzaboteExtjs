@@ -108,8 +108,12 @@ Ext.define('Vzabote.controller.Product',{
                                 if (!uStore.existProduct(item) && el.hasCls('product-image')){
                                 	// Добавляем продукт в стор и показываем анимацию
                                 	this.addAnimateProduct(uStore, item, node, duration);
+                                	
+                                	//popup с предупреждением о малом количестве предложений
+                                	if(item.get('offerscount')<=3){
+                                        this.showAddCartWarnPopup(Ext.get(node).down('.offerscount'),item.get('offerscount'));
+                                    }
                                 }
-                                
                             },
                             scope: this
                         },
@@ -469,6 +473,18 @@ Ext.define('Vzabote.controller.Product',{
 		// Добавляем класс по которому на продукте будет отображаться надпись - добавлено
 		Ext.get(node).addCls('this-added');                                	
 		
+   },
+   showAddCartWarnPopup: function(element,count){
+       if(this.cartWarnPopup)
+            this.cartWarnPopup.close();       
+       this.cartWarnPopup = Ext.create('widget.simplepopup',Ext.apply({
+           ownerEl: element,
+           id: 'products-carts-info-popup',
+           cls: 'info-popup',
+           data: {count: count},
+           alignPosition: 't-b'
+       },templates.popups.cartwarn));
+       this.cartWarnPopup.show();  
    }
    
 });

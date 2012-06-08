@@ -37,8 +37,8 @@ templates.popups = {
     productPopup: {
         tpl: '<img src="{image}"/>'+
              '<div>{name}</div>'+
-             '<div>{minprice} - {maxprice}</div>'+
-             '<div>{offerscount}</div>'
+             '<div>{[Vzabote.util.price(values.minprice)]} - {[Vzabote.util.price(values.maxprice)]}</div>'+
+             '<div>{offerscount} {[Vzabote.util.offer(values.offerscount)]}</div>'
     },
     productPopupButton: {
         text: 'Добавить в список'
@@ -53,5 +53,12 @@ templates.popups = {
     },
     countChangePopup: {
         html: 'Выберите количество товара, которое собираетесь купить.'
+    },
+    cartwarn: {
+        tpl: '<div>При добавлении этого товара<br/>'+
+                'останется <b>только {count} {[Vzabote.util.shop(values.count)]}</b>,<br/>'+
+                'где можно купить <b>все товары<br/>'+
+                'из списка</b> сразу.'+
+             '</div>'
     }
 }

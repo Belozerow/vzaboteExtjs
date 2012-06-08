@@ -25,6 +25,24 @@ Vzabote.util = {
                 callback.call(scope);
         }
             
+    },
+    declination: function(number,titles){
+        var decCases = [2,0,1,1,1,2],
+        decCache = [];
+        if(!decCache[number]) decCache[number] = number % 100 > 4 && number % 100 < 20 ? 2 : decCases[Math.min(number % 10, 5)];
+            return titles[decCache[number]];
+    },
+    offer: function(number){
+        return Vzabote.util.declination(number,['предложение', 'предложения', 'предложений']);     
+    },
+    shop: function(number){
+        return Vzabote.util.declination(number,['магазин', 'магазина', 'магазинов']);     
+    },
+    price: function(price){
+        return (price)?price.toFixed(1).toString().replace('.',','):0;
+    },
+    product: function(number){
+        return Vzabote.util.declination(number,['товар', 'товара', 'товаров']);
     }
 };
 Ext.apply(Ext.form.field.VTypes,{

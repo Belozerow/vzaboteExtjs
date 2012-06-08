@@ -13,7 +13,7 @@ templates.mainpage = {
              '<a href="#/index" class="info-icon"></a>'+
              '<ul class="list">'+
              '<tpl for="categoryitems">'+
-             	'<li><span class="name">{name}</span> <span class="price">{price} <b class="rub">a</b><b class="price-change-{pricechange}"></b></span></li>'+
+             	'<li><span class="name">{name}</span> <span class="price">{[Vzabote.util.price(values.price)]} <b class="rub">a</b><b class="price-change-{pricechange}"></b></span></li>'+
              '</tpl>'+
              '</ul>'
     },

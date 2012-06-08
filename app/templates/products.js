@@ -11,7 +11,7 @@ templates.products = {
     dataview: {
         itemTpl: new Ext.XTemplate('<a href="{[this.getUrl(values)]}"><div class="images producttypes-image" style="background: url(<tpl if="image">{image}</tpl><tpl if="!image">resources/imunitet.png</tpl>); background-repeat: no-repeat;"></div>'+
                  '<div class="title">{name}</div>'+
-                 '<div class="price">{minprice} - {maxprice}<b class="rub">a</b></div>'+
+                 '<div class="price">{[Vzabote.util.price(values.minprice)]} - {[Vzabote.util.price(values.maxprice)]}<b class="rub">a</b></div>'+
                  '<div class="measure">/л</div>'+
                  '</a>',{
                      getUrl: function(values){
@@ -28,8 +28,8 @@ templates.products = {
 	        	 	 '<div class="images product-image {[this.existInCart(values)]}" id="imgProd" style="background: url({image}); background-repeat: no-repeat;"></div>'+
 	                 '<div class="loupe"></div>'+
 	                 '<div class="title">{name}{title}</div>'+
-	                 '<div class="cart-price">{minprice} - {maxprice}<b class="rub">a</b></div>'+
-	                 '<div>{offerscount} предложений</div>',
+	                 '<div class="cart-price">{[Vzabote.util.price(values.minprice)]} - {[Vzabote.util.price(values.maxprice)]}<b class="rub">a</b></div>'+
+	                 '<div class="offerscount">{offerscount} {[Vzabote.util.offer(values.offerscount)]}</div>',
 	                 {
 	        	 		 existInCart: function(v){
 	        	 			 if (Ext.getStore('UserCart').findRecord('id', v.id) !== null)
@@ -45,8 +45,8 @@ templates.products = {
         	 	 '<div class="images product-image {[this.existInCart(values)]}" id="imgProd" style="background: url({image}); background-repeat: no-repeat;"></div>'+
                  '<div class="loupe"></div>'+
                  '<div>{name}</div>'+
-                 '<div>{minprice} - {maxprice}<b class="rub">a</b></div>'+
-                 '<div>{offerscount} предложений</div>',
+                 '<div>{[Vzabote.util.price(values.minprice)]} - {[Vzabote.util.price(values.maxprice)]}<b class="rub">a</b></div>'+
+                 '<div>{offerscount} {[Vzabote.util.offer(values.offerscount)]}</div>',
                  {
         	 		existInCart: function(v){
        	 			 if (Ext.getStore('UserCart').findRecord('id', v.id) !== null)
@@ -75,7 +75,7 @@ templates.products = {
                         '<div class="add" id="add-button">Добавить в список</div>'+
                     '</div>'+
                     '<div class="cart-name">{name}</div>'+
-                    '<div class="cart-price">{minprice} - {maxprice}<b class="rub">a</b></div>'+
+                    '<div class="cart-price">{[Vzabote.util.price(values.minprice)]} - {[Vzabote.util.price(values.maxprice)]}<b class="rub">a</b></div>'+
                 '</div>',{
                     cartNum: 0,
                     customNum: 0,
@@ -100,7 +100,7 @@ templates.products = {
     },
     sliderinfo: {
         tpl: '<div class="slider-title">{name}</div>'+
-             '<div class="slider-values">Показывать цены: <b>{minprice} - {maxprice}</b> Р / <span>{measure}</span></div>'
+             '<div class="slider-values">Показывать цены: <b>{[Vzabote.util.price(values.minprice)]} - {[Vzabote.util.price(values.maxprice)]}</b> Р / <span>{measure}</span></div>'
     },
     slider: {
         width: 350
