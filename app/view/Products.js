@@ -227,7 +227,7 @@ Ext.define('Vzabote.view.Products',{
         });
    },
    hideProducts: function(callback,scope){
-        if(this.productsIsShown){
+        if(this.productsIsShown||this.isProductsAnimation){
             this.stopAnimation();
             this.isProductsAnimation = true;
             var activeItem = this.cardPanel.getEl();
@@ -247,15 +247,14 @@ Ext.define('Vzabote.view.Products',{
                                         duration: this.fadeDuration,
                                         callback: function(){
                                                 this.productsIsShown = false;
-                                                // Vzabote.util.onEventOrNow(this.store,'load',this.store.isLoading,true,function(){
-                                                    this.productTypesPanel.enableDataView();
-                                                    // this.doLayout();
-                                                // },this);                                                
+                                                this.productTypesPanel.enableDataView();
                                                 this.navPanel.updateButtons();
                                                 this.suspendLayout = false;
                                                 this.doLayout();
                                                 this.productTypesPanel.fadeInScrollBar();
-                                                this.isProductsAnimation = false;                                                
+                                                this.isProductsAnimation = false;
+                                                if(callback)
+                                                    callback.apply(scope||this);                                                
                                         },
                                         scope: this
                                     });
@@ -267,6 +266,8 @@ Ext.define('Vzabote.view.Products',{
               }
             });   
         }
+        else if(callback)
+            callback.apply(scope||this);
    },
    showCartContent: function(cart){
        this.stopAnimation();
@@ -308,8 +309,8 @@ Ext.define('Vzabote.view.Products',{
             });   
         },this,{single: true});
    },
-   hideCartContent: function(){
-       if(this.cartIsShown){
+   hideCartContent: function(callback,scope){
+       if(this.cartIsShown||this.isCartAnination){
            this.stopAnimation();
            
            var activeItem = this.cardPanel.getEl();
@@ -328,6 +329,8 @@ Ext.define('Vzabote.view.Products',{
                                   this.cartContent.setHeight(0);
                                   this.navPanel.updateButtons();
                                   this.isCartAnination = false;
+                                  if(callback)
+                                    callback.apply(scope||this);
                               },
                               scope: this
                         });
@@ -336,6 +339,10 @@ Ext.define('Vzabote.view.Products',{
                 });
            }
        }
+       else if(callback){
+           callback.apply(scope||this);
+       }
+           
    },
    stopAnimation: function(){
        if(this.cartsPanel.getActiveAnimation()){

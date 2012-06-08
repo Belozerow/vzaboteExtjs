@@ -11,6 +11,8 @@ templates.products = {
     dataview: {
         itemTpl: new Ext.XTemplate('<a href="{[this.getUrl(values)]}"><div class="images producttypes-image" style="background: url(<tpl if="image">{image}</tpl><tpl if="!image">resources/imunitet.png</tpl>); background-repeat: no-repeat;"></div>'+
                  '<div class="title">{name}</div>'+
+                 '<div class="price">{minprice} - {maxprice}<b class="rub">a</b></div>'+
+                 '<div class="measure">/л</div>'+
                  '</a>',{
                      getUrl: function(values){
                          return Vzabote.bc.products.url + '/' + values.id;

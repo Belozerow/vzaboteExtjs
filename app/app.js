@@ -32,7 +32,8 @@ Ext.application({
             'Brands',
             'UserCart',
             'MedTypes',
-            'MedProducts'
+            'MedProducts',
+            'GasTypes'
     ],
     launch: function(){
         Ext.Loader.setPath('Vzabote','app');
