@@ -35,6 +35,12 @@ Ext.define('Vzabote.view.ScrollableDataView',{
                     this.dragEnd(0);
             },this);
         }
+        this.containerTitle = this.add(Ext.apply({
+            xtype: 'container',
+            data: {
+                title: this.scrollableName
+            }
+        },this.titleTpl));
         this.dataView = this.add({
             xtype: 'dataview',
             store: this.store,
@@ -132,6 +138,9 @@ Ext.define('Vzabote.view.ScrollableDataView',{
             if(refresh)
                 this.refresh();   
         }
+    },
+    updateContainerTitle: function(title){
+        this.containerTitle.update({title: title});
     },
     showLoadingPanel: function(){
         this.dataView.hide();

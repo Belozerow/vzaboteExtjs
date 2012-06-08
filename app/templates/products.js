@@ -15,7 +15,10 @@ templates.products = {
                      getUrl: function(values){
                          return Vzabote.bc.products.url + '/' + values.id;
                      }
-                 })
+                 }),
+        titleTpl: {
+            tpl: '<div class="block-title">{title}</div>'
+        }
     },
     products: {
          itemTpl:
@@ -48,8 +51,11 @@ templates.products = {
        	 				 return 'this-added';
        	 			 return '';
        	 		 	}
-                 })
-    },
+                 }),
+         titleTpl: {
+            tpl: '<div class="block-title">{title}</div>'
+         }
+    },  
     title: {
         html: '<div class="block-title">Продукты</div>'
     },
@@ -91,7 +97,10 @@ templates.products = {
                     getUrl: function(values){
                          return Vzabote.bc.products.url + '/carts/' + values.id;
                     }
-                })
+                }),
+        titleTpl: {
+           tpl: '<div class="block-title">{title}</div>'
+        }
     },
     sliderinfo: {
         tpl: '<div class="slider-title">{name}</div>'+

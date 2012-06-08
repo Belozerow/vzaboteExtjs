@@ -21,11 +21,12 @@ Ext.define('Vzabote.view.Products',{
    },
    initComponent: function(){
        this.callParent();
-       this.add(Ext.apply({},templates.products.title));
+       // this.add(Ext.apply({},templates.products.title));
        this.productTypesPanel = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
            store: this.store,
            cardParent: this,
-           id: 'products-productstypes'
+           id: 'products-productstypes',
+           scrollableName: (this.category == 'med')?'Лекарства':(this.category=='gas')?'Топливо':'Продукты'
        },templates.products.dataview));
        
        this.add(this.productTypesPanel);
@@ -135,7 +136,8 @@ Ext.define('Vzabote.view.Products',{
                    store: this.cartsStore,
                    cardParent: this,
                    bubbleEvents: ['itemclick'],
-                   hideScrollerOnEmpty: true
+                   hideScrollerOnEmpty: true,
+                   scrollableName: this.category=='products'?'Продовольственные корзины':'Списки покупок'
        },templates.products.cart));
        this.cartsPanel = Ext.create('Ext.container.Container',{
            xtype: 'panel',
@@ -145,8 +147,6 @@ Ext.define('Vzabote.view.Products',{
                align: 'stretch'
            },
            items: [
-                Ext.apply({
-                },templates.products.cartsTitle),
                 this.cartsDataView
            ]
        });
@@ -175,7 +175,7 @@ Ext.define('Vzabote.view.Products',{
             cardParent: this,
             id: 'products-cart-content',
             height: 0,
-            // hidden: true,
+            scrollableName: 'Список покупок',
             listeners: {
                itemclick: function(me,item,node,index,e){
                    this.fireEvent('cartcontentitemclick',me,item,node,index,e);

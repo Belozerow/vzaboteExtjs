@@ -18,6 +18,9 @@ Ext.define('Vzabote.controller.Product',{
    },{
        ref: 'cartsDataView',
        selector: '#products-carts'
+   },{
+       ref: 'cartContent',
+       selector: '#products-cart-content'
    }],
    init: function(){
 	   
@@ -235,6 +238,7 @@ Ext.define('Vzabote.controller.Product',{
             this.index(false);
         }            
         var cart = Ext.getStore('Carts').getById(parseInt(query.id));
+        this.getCartContent().updateContainerTitle(cart.get('name'));
         Vzabote.util.onEventOrNow(this.getCartsDataView().dataView,'viewready','viewReady',undefined,function(){
            this.productsView.disableCartsDataView(cart);
            this.productsView.showCartContent(cart);
