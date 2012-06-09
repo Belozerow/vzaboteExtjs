@@ -220,13 +220,13 @@ Ext.define('Vzabote.controller.Product',{
        
        if(!this.store.isLoading()){
            Vzabote.util.onEventOrNow(this.getProductTypesSlider().dataView,'viewready','viewReady',undefined,function(){
-               this.getProductTypesSlider().disableDataView(queryId);
+               this.getProductTypesSlider().disableDataView(queryId,Vzabote.bc.getItem('products').back.url);
            },this);           
        }
        else{
            this.getProductTypesSlider().on('viewready',function(){
                if(this.productsView.isProductsAnimation||this.productsView.productsIsShown)
-                    this.getProductTypesSlider().disableDataView(queryId);
+                    this.getProductTypesSlider().disableDataView(queryId,Vzabote.bc.getItem('products').back.url);
            },this,{single: true});
        }
        if(this.productsView&&this.productsView.getEl()){

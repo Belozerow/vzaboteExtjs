@@ -387,9 +387,15 @@ Ext.define('Vzabote.view.ScrollableDataView',{
     enableScroller: function(){
         this.scrollerIsActive = true;
     },
-    disableDataView: function(elementId){
+    disableDataView: function(elementId,wrapHref){
         this.stopAnimation();
-        this.dataView.getTargetEl().mask();
+        this.maskEl = this.dataView.getTargetEl().mask();
+        if(wrapHref){
+            this.maskEl.wrap({
+                tag: 'a',
+                href: wrapHref
+            })
+        }        
         if(!this.store.isLoading()){
             this.activeElement = Ext.get(this.dataView.getNode(this.store.getById(elementId)));
             this.activeElement.addCls('scrollable-dataview-item-selected');    

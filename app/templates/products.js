@@ -29,7 +29,7 @@ templates.products = {
 	                 '<div class="loupe"></div>'+
 	                 '<div class="title">{name}{title}</div>'+
 	                 '<div class="cart-price">{[Vzabote.util.price(values.minprice)]} - {[Vzabote.util.price(values.maxprice)]}<b class="rub">a</b></div>'+
-	                 '<div class="offerscount">{offerscount} {[Vzabote.util.offer(values.offerscount)]}</div>',
+	                 '<div class="offerscount <tpl if=\"offerscount &lt; 4\">few</tpl>">{offerscount} {[Vzabote.util.offer(values.offerscount)]}</div>',
 	                 {
 	        	 		 existInCart: function(v){
 	        	 			 if (Ext.getStore('UserCart').findRecord('id', v.id) !== null)
@@ -46,7 +46,7 @@ templates.products = {
                  '<div class="loupe"></div>'+
                  '<div>{name}</div>'+
                  '<div>{[Vzabote.util.price(values.minprice)]} - {[Vzabote.util.price(values.maxprice)]}<b class="rub">a</b></div>'+
-                 '<div>{offerscount} {[Vzabote.util.offer(values.offerscount)]}</div>',
+                 '<div class="offerscount <tpl if=\"offerscount &lt; 4\">few</tpl>">{offerscount} {[Vzabote.util.offer(values.offerscount)]}</div>',
                  {
         	 		existInCart: function(v){
        	 			 if (Ext.getStore('UserCart').findRecord('id', v.id) !== null)
