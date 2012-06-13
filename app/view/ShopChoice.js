@@ -56,9 +56,38 @@ Ext.define('Vzabote.view.ShopChoice',{
         this.reserveProducts = Ext.create('Ext.button.Button', {
         	id: 'button-reserve-products',
         	text: 'Забронировать товары',
+        	flex: 1,
         	handler: function(){
         		alert('Бронируем товары!');
         	}
+        });
+        
+        this.sendPrintList = Ext.create('Ext.button.Button', {
+        	id: 'send-print-list',
+        	text: 'Отправить, распечатать список...',
+        	flex: 1,
+        	handler: function(){
+        		alert('Отправляем и печатаем список');
+        	}
+        });
+        
+        
+        // Блок с кнопками под списком товаров
+        this.buttons = Ext.create('Ext.container.Container', {
+            layout: {
+                type: 'hbox',
+                align: 'stretch'
+            },
+        	id: 'buttons-box-id',
+        	cls: 'buttons-box-cls',
+        	items: [
+				this.reserveProducts,
+				{
+					xtype: 'tbspacer',
+					flex: 3
+				},
+				this.sendPrintList
+        	]
         });
         
         // Въюха body
@@ -68,7 +97,7 @@ Ext.define('Vzabote.view.ShopChoice',{
             items: [
                     this.shopType,
                     this.shopsList,
-                    this.reserveProducts
+                    this.buttons
             ]
         });
 
