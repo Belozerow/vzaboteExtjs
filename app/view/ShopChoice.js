@@ -36,8 +36,22 @@ Ext.define('Vzabote.view.ShopChoice',{
             values: [3],
         },templates.shopchoice.slider));
         
-        this.add(this.slider);
+        //this.add(this.slider);
 
+        // Блок со слайдером. Также включает категории магазинов
+        this.sliderBlock = Ext.create('Ext.container.Container', {
+        	layout: {
+        		type: 'hbox',
+        		align: 'stretch'
+        	},
+        	id: 'slider-block',
+        	items: [
+        	    this.slider
+        	]
+        });
+        
+        this.add(this.sliderBlock);
+        
         // типы магазинов
         this.shopType = Ext.create('Ext.view.View', Ext.apply({
         	store: Ext.getStore('ShopTypes'),
