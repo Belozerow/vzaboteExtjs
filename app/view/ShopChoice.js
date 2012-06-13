@@ -17,7 +17,7 @@ Ext.define('Vzabote.view.ShopChoice',{
         				text: 'Купить по пути домой?',
         				renderTo: 'button-choice-way-id',
         				handler: function(){
-        					alert('qwewqe');
+        					alert('Покупаем по пути домой');
         				}
         			});
         		}
@@ -52,18 +52,23 @@ Ext.define('Vzabote.view.ShopChoice',{
             id: 'shopsList'
         },templates.shopchoice.dataviewList));
         
+        // Кнопка "Забронировать товары"
+        this.reserveProducts = Ext.create('Ext.button.Button', {
+        	id: 'button-reserve-products',
+        	text: 'Забронировать товары',
+        	handler: function(){
+        		alert('Бронируем товары!');
+        	}
+        });
         
         // Въюха body
         this.shopChoiceMain = Ext.create('Ext.container.Container', {
-            layout: {
-                type: 'vbox',
-                align: 'stretch'
-            },
             cls: 'shop-choice-main',
             id: 'shop-choice-main-id',
             items: [
                     this.shopType,
-                    this.shopsList
+                    this.shopsList,
+                    this.reserveProducts
             ]
         });
 
