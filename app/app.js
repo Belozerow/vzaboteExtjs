@@ -16,7 +16,7 @@ Ext.application({
                  'Product', 
                  'ShoppingList',
                  'Breadcrumb',
-                 'ModalMap'
+                 'ModalMap',
                  'Auth'
                  ],
     models: ['Category',
