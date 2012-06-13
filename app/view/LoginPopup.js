@@ -34,7 +34,9 @@ Ext.define('Vzabote.view.LoginPopup',{
                 flex: 1
             },templates.login.authtitle),Ext.apply({
                 xtype: 'button',
-                id: 'loginpopup-logout-button'
+                id: 'loginpopup-logout-button',
+                href: this.authUrl,
+                hrefTarget: '_self'
             },templates.login.logout),Ext.apply({
                 xtype: 'button',
                 id: 'loginpopup-login-button'
@@ -49,7 +51,7 @@ Ext.define('Vzabote.view.LoginPopup',{
                 value: '+7 863 321 43 32'
             },{
                 emptyText: 'Новый пароль?',
-                name: 'password',
+                name: 'password'
             },{
                 name: 'hide-password',
                 xtype: 'checkbox',

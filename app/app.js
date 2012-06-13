@@ -15,7 +15,8 @@ Ext.application({
                  'Login',
                  'Product', 
                  'ShoppingList',
-                 'Breadcrumb'
+                 'Breadcrumb',
+                 'Auth'
                  ],
     models: ['Category',
             'CategoryInfo',
