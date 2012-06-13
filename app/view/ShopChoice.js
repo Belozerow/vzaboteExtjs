@@ -10,15 +10,16 @@ Ext.define('Vzabote.view.ShopChoice',{
         this.callParent();
 
         this.elTitle = Ext.create('Ext.container.Container', Ext.apply({
-        	id: 'header-panel',
+        	id: 'shop-choice-header',
         	listeners: {
         		afterrender: function(me, opt){
         			Ext.create('Ext.Button', {
         				text: 'Купить по пути домой?',
-        				renderTo: 'button-choice-way-id',
+        				id: 'button-id-id',
+        				renderTo: 'button-choice-way-id'/*,
         				handler: function(){
         					alert('Покупаем по пути домой');
-        				}
+        				}*/
         			});
         		}
         	}
@@ -27,7 +28,7 @@ Ext.define('Vzabote.view.ShopChoice',{
         this.add(this.elTitle);
         
         
-        // слайдер в header
+        // слайдер под header'ом
         this.slider = Ext.create('Vzabote.view.JntSlider',Ext.apply({
         	minValue: 1,
             maxValue: 10,
@@ -70,20 +71,14 @@ Ext.define('Vzabote.view.ShopChoice',{
         this.reserveProducts = Ext.create('Ext.button.Button', {
         	id: 'button-reserve-products',
         	text: 'Забронировать товары',
-        	flex: 1,
-        	handler: function(){
-        		alert('Бронируем товары!');
-        	}
+        	flex: 1
         });
         
         // Кнопка "Отправить, распечатать список..."
         this.sendPrintList = Ext.create('Ext.button.Button', {
         	id: 'send-print-list',
         	text: 'Отправить, распечатать список...',
-        	flex: 1,
-        	handler: function(){
-        		alert('Отправляем и печатаем список');
-        	}
+        	flex: 1
         });
         
         

@@ -15,18 +15,25 @@ Ext.define('Vzabote.controller.ShopChoice',{
        this.control({
             '#shopsList': {
                 itemclick: function(me,item,node,index,e){
-                    /*sls = this.getShoppingListScroller(); 
-                    if(Ext.get(e.getTarget()).hasCls('dec-button'))
-                    {
-                        if (item.data.amount > 0) item.data.amount -= item.data.amount_modificaton_step;
-                    }
-                    if (Ext.get(e.getTarget()).hasCls('inc-button'))
-                    {
-                         item.data.amount += item.data.amount_modificaton_step;
-                    }
-                    sls.dataView.refreshNode(index);*/
+                	console.log('controller shopChoice %o %o %o %o %o',me,item,node,index,e);
                 }
-            }
+            },
+            
+            '#buttons-box-id #button-reserve-products': {
+            	click: function(){
+            		alert('Бронируем товары!');
+            	}
+            },
+            
+            '#buttons-box-id #send-print-list': {
+            	click: function(){
+            		alert('Отправляем и печатаем список');
+            	}
+            },
+            
+            
+       
+       
        });
    },
 
