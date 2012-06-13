@@ -5,11 +5,13 @@ Ext.define('Vzabote.view.ModalMap',{
     floating: true,
     left: 0,
     top: 0,
+    city: "Челябинск",
     layout: {
         type: 'vbox',
         align: 'stretch'
     },
     initComponent: function(){
+        this.points = [];
         this.refreshSize();
         Ext.EventManager.onWindowResize(function(){
             this.refreshSize();
@@ -21,33 +23,51 @@ Ext.define('Vzabote.view.ModalMap',{
                 xtype: 'container'
             },templates.modal.map),{
                 xtype: 'textfield',
+                id: 'address_field',
                 emptyText: 'Введите адрес точки на карте'
             },{
                 xtype: 'button',
                 text: 'Добавить точку',
                 handler: function(){
-                    console.log('add');
+                    //this.addWaypoint(this.findForm.getComponent("address_field").getValue());
+                    this.gmap.addWaypoint(this.findForm.getComponent("address_field").getValue(), this.city)
                 },
                 scope: this
             }]
         });
         this.add(this.findForm);
+        this.routePanel = Ext.create('Ext.form.Panel',{
+            id: 'route',
+            items: []
+        });
+        this.add(this.routePanel);
         this.gmap = this.add({
-                xtype: 'gmappanel',
+                xtype: 'map',
                 id: 'mymap',
+                gmapType: 'map',
+                zoomLevel: 16,
                 flex: 1,
                 setCenter: {
                     lat: 39.26940,
                     lng: -76.64323
                 }
         });
+        
+        Ext.util.Observable.capture(this.gmap, function(name, d2, d3){
+            //console.log(name, d2, d3);
+            if (name == "mapready")
+            {
+                this.gmap.showMyPoint();
+            }
+        }, this);
+        
         this.add({
             xtype: 'container',
             height: 100,
             items: {
                 xtype: 'button',
                 text: 'OK'
-            }
+            } 
         });
     },
     refreshSize: function(){
