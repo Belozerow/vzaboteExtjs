@@ -26,17 +26,17 @@ Ext.define('Vzabote.view.ShopChoice',{
         
         this.add(this.elTitle);
         
-        /*
+        
         // слайдер в header
         this.slider = Ext.create('Vzabote.view.JntSlider',Ext.apply({
         	minValue: 1,
             maxValue: 10,
             increment: 1,
             useTips: false,
-            values: [1, 10]
-        },templates.products.slider));
+            values: [3],
+        },templates.shopchoice.slider));
         
-        this.add(this.slider);*/
+        this.add(this.slider);
 
         // типы магазинов
         this.shopType = Ext.create('Ext.view.View', Ext.apply({
@@ -62,6 +62,7 @@ Ext.define('Vzabote.view.ShopChoice',{
         	}
         });
         
+        // Кнопка "Отправить, распечатать список..."
         this.sendPrintList = Ext.create('Ext.button.Button', {
         	id: 'send-print-list',
         	text: 'Отправить, распечатать список...',

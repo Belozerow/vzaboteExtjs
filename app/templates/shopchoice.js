@@ -21,5 +21,14 @@ templates.shopchoice = {
                 '<div class="name">{name}</div>'
 	},
 	
+    sliderinfo: {
+        tpl: '<div class="slider-title">{name}</div>'+
+             '<div class="slider-values">Показывать цены: <b>{minprice} - {maxprice}</b> Р / <span>{measure}</span></div>'
+    },
+	
+	slider: {
+        width: 350
+    },
+	
 		
 };
