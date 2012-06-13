@@ -13,9 +13,8 @@ Ext.define('Vzabote.view.ShopChoice',{
         	id: 'header-panel',
         	listeners: {
         		afterrender: function(me, opt){
-        			console.log(me, opt);
         			Ext.create('Ext.Button', {
-        				text: 'text button',
+        				text: 'Купить по пути домой?',
         				renderTo: 'button-choice-way-id',
         				handler: function(){
         					alert('qwewqe');
