@@ -3,26 +3,29 @@ Ext.define('Vzabote.controller.CategorySelect',{
    refs: [{
        ref: 'cardPanel',
        selector: '#cardpanel'
+   },
+   {
+       ref: 'categoriesPanel',
+       selector: '#mainpage-categoriespanel'
    }],
    init: function(){
        this.control({
           '#mainpage-categoriespanel > container': {
-             afterlayout:function(me){
-                 if(me.index === 0){
-                     this.showPopup(me);
-                 }
-             },
-             afterrender: function(me){
+              afterrender: function(me){
                  me.getTargetEl().on('click',function(e,node){
                      var el = Ext.get(e.getTarget());
-                     if(el.hasCls('category-image')){
-                         console.log('category-select');
-                     } 
                      if(el.hasCls('info-icon')){
                          this.showInfoPopup(el,me.index);
                      }
                  },this);
-             }
+              }
+          },
+          '#mainpage-categoriespanel': {
+              afterrender: function(me){
+                  this.mon(me,'afterlayout',function(){
+                      this.showPopup(me);
+                  },this,{single: true});
+              }
           },
           'pricestat container': {
               afterrender: function(me){
@@ -37,6 +40,9 @@ Ext.define('Vzabote.controller.CategorySelect',{
        });
    },
    index: function(query){
+       Vzabote.bc.setItem('home',{
+           url: '#/index'
+       });
        var cardPanel = this.getCardPanel();
        if(cardPanel.layout.getActiveItem().xtype!='mainpage'){
            this.getController('Viewport').closeAllWindows();
@@ -68,22 +74,11 @@ Ext.define('Vzabote.controller.CategorySelect',{
    },
    showPopup: function(element){
        if(!this.popup){
-           var tpl = '';
-           switch(element.index){
-                case 0:
-                    tpl = templates.popups.productSelect;
-                    break;
-                case 1:
-                    tpl = templates.popups.medSelect;  
-                    break;
-                case 2:
-                    tpl = templates.popups.gasSelect;
-                    break;
-           }
+          
            this.popup = Ext.create('widget.simplepopup',Ext.apply({
               id: 'hint-popup',
               ownerEl: element.getEl().down('.category-name')
-           },tpl));
+           },templates.popups.productSelect));
            this.popup.show();
        } 
        else

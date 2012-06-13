@@ -16,7 +16,8 @@ Ext.define('Vzabote.view.ShoppingList',{
         this.cartList = Ext.create('Vzabote.view.ScrollableDataView',Ext.apply({
             store: this.store,
             cardParent: this,
-            id: 'shoppingList-productstypes'
+            id: 'shoppingList-productstypes',
+            scrollableName: 'Список покупок'
         },templates.shoppingList.dataview));
 
         this.add(this.cartList);
@@ -81,8 +82,8 @@ Ext.define('Vzabote.view.ShoppingList',{
     updateInTotal: function(){
         this.reCount();
         this.inTotal.query('#shoppingList-intotal-info')[0].update( {
-            minprice: this.minprice.toFixed(2),
-            maxprice: this.maxprice.toFixed(2),
+            minprice: this.minprice,
+            maxprice: this.maxprice,
             count: this.count
         });
     }

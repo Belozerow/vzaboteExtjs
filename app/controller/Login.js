@@ -52,6 +52,7 @@ Ext.define('Vzabote.controller.Login',{
        if(this.loginPopup) 
             this.loginPopup.close();
        this.loginPopup = Ext.create('widget.loginpopup',{
+           authUrl: this.getController('Auth').getAuthUrl()
        });
        this.loginPopup.show();
    },

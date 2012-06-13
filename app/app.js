@@ -17,6 +17,7 @@ Ext.application({
                  'ShoppingList',
                  'Breadcrumb',
                  'ModalMap'
+                 'Auth'
                  ],
     models: ['Category',
             'CategoryInfo',
@@ -31,7 +32,10 @@ Ext.application({
             'Carts',
             'Products',
             'Brands',
-            'UserCart'
+            'UserCart',
+            'MedTypes',
+            'MedProducts',
+            'GasTypes'
     ],
     launch: function(){
         Ext.Loader.setPath('Vzabote','app');

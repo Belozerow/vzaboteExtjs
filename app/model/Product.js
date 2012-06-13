@@ -3,6 +3,7 @@ Ext.define('Vzabote.model.Product',{
     fields: [
              {name: 'id'},
              {name: 'name', type: 'string'},
+             /*temp*/{name: 'title'},
              {name: 'image', type: 'imag'},
              {name: 'minprice',type: 'float'},
              {name: 'maxprice',type: 'float'},

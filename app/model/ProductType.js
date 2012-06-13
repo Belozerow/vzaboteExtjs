@@ -6,7 +6,9 @@ Ext.define('Vzabote.model.ProductType',{
              {name: 'icon', type: 'string'},
              {name: 'resource_uri',type:'string'},
              {name: 'cat_id', type: 'int'},
-             {name: 'id'}
+             {name: 'id', type: 'int'},
+             {name: 'maxprice', type: 'float', defaultValue: 0.0},
+             {name: 'minprice', type: 'float', defaultValue: 0.0}
     ],
     proxy: {
         type: 'scripttag',

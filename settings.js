@@ -1,3 +1,3 @@
 VzaboteSettings = {
-    serviceUrl: 'http://v-zabote.ru'
+    serviceUrl: 'http://d.v-zabote.ru'
 }

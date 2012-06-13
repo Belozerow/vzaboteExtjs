@@ -7,6 +7,7 @@ Ext.define('Vzabote.view.ModalPanel',{
     height: Ext.Element.getViewHeight(),
     width: Ext.Element.getViewWidth(),
     floating: true,
+    closeOnClick: true,
     style: {
         'position': 'absolute',
         'left': '0px',
@@ -24,16 +25,18 @@ Ext.define('Vzabote.view.ModalPanel',{
     addHandlers: function(){
         var keyMap = this.getKeyMap();
         keyMap.on(Ext.EventObject.ESC, this.closePanel, this);
-        this.mon(this.getEl(),'click',function(e){
-            var close = true;
-            this.items.each(function(item){
-                if(e.within(item.getEl())){
-                    close = false;
-                    return false;
-                }
-            },this);
-            if(close)
-                this.closePanel();
+        this.mon(this.getEl(),'mouseup',function(e){
+            if(this.closeOnClick){
+                var close = true;
+                this.items.each(function(item){
+                    if(e.within(item.getEl())){
+                        close = false;
+                        return false;
+                    }
+                },this);
+                if(close)
+                    this.closePanel();
+            }
         },this);
     },
     closePanel: function(){

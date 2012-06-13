@@ -8,9 +8,70 @@ Ext.define('Vzabote.view.LoginPopup',{
     layout: {
         type: 'vbox',
         align: 'stretch'   
-    },    
+    },
+    authorized: true,
     initComponent: function(){
         this.callParent();
+        if(this.authorized){
+            this.authorizedView();
+        }
+        else{
+            this.notAuthorizedView();
+        }
+        this.on('show',function(){
+            this.alignTo(Ext.getBody(),'tr-tr');
+        },this);
+        
+    },
+    authorizedView: function(){
+        this.addDocked({
+            xtype: 'container',
+            layout: {
+                type: 'hbox',
+                align: 'stretch'
+            },
+            items: [Ext.apply({
+                flex: 1
+            },templates.login.authtitle),Ext.apply({
+                xtype: 'button',
+                id: 'loginpopup-logout-button',
+                href: this.authUrl,
+                hrefTarget: '_self'
+            },templates.login.logout),Ext.apply({
+                xtype: 'button',
+                id: 'loginpopup-login-button'
+            },templates.viewport.login)]
+        });
+        this.userChangeForm = Ext.create('Ext.form.Panel',{
+            defaultType: 'textfield',
+            items: [{
+                disabled: true,
+                value: 'user@example.com'
+            },{
+                value: '+7 863 321 43 32'
+            },{
+                emptyText: 'Новый пароль?',
+                name: 'password'
+            },{
+                name: 'hide-password',
+                xtype: 'checkbox',
+                boxLabel: 'Скрывать ввод пароля'
+            }]
+        });
+        this.add(this.userChangeForm);
+        
+        this.cartsList = Ext.create('Ext.view.View',Ext.apply({
+            store: Ext.getStore('Carts'),
+            itemSelector: '.loginpopup-cart-item'
+        },templates.login.carts));        
+        this.add(this.cartsList);
+        
+        this.add(Ext.apply({
+            xtype: 'button',
+            id: 'loginpopup-close-button'
+        },templates.login.close));
+    },
+    notAuthorizedView: function(){
         this.add({
             xtype: 'panel',
             id: 'loginpopup-tabpanel',
@@ -61,12 +122,15 @@ Ext.define('Vzabote.view.LoginPopup',{
                     {
                         name: 'email',
                         xtype: 'textfield',
-                        emptyText: 'Электронная почта'
+                        emptyText: 'Электронная почта',
+                        vtype: 'email',
+                        allowBlank: false
                     },{
                         name: 'password',
                         xtype: 'textfield',
                         // inputType: 'password', 
-                        emptyText: 'Пароль'                       
+                        emptyText: 'Пароль',
+                        allowBlank: false                       
                     },
                     {
                         name: 'hide-password',
@@ -112,12 +176,15 @@ Ext.define('Vzabote.view.LoginPopup',{
                     {
                         name: 'email',
                         xtype: 'textfield',
-                        emptyText: 'Электронная почта'
+                        emptyText: 'Электронная почта',
+                        vtype: 'email',
+                        allowBlank: false
                     },{
                         name: 'password',
                         xtype: 'textfield',
                         // inputType: 'password', 
-                        emptyText: 'Пароль'                        
+                        emptyText: 'Пароль',
+                        allowBlank: false                        
                     },
                     {
                         name: 'hide-password',
@@ -139,11 +206,6 @@ Ext.define('Vzabote.view.LoginPopup',{
         
         this.cardPanel.add(this.loginCardItem);
         this.cardPanel.add(this.regCardItem);
-        
-        this.on('show',function(){
-            this.alignTo(Ext.getBody(),'tr-tr');
-        },this);
-        
     }
     
 });
