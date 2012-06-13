@@ -38,33 +38,16 @@ Ext.define('Vzabote.controller.ShopChoice',{
            url: '#/shops'
        });
        var cardPanel = this.getCardPanel();
-       if(cardPanel.layout.getActiveItem().xtype!='shopsList'){
+       if(cardPanel.layout.getActiveItem().xtype!='shopChoice'){
             this.getController('Viewport').closeAllWindows();
             var store = Ext.getStore('Shops');
             
-            if(!this.shopsListView||this.shopsListView.isDestroyed){
-                this.shopsListView = Ext.create('Vzabote.view.ShopChoice',{
-                    store: store,
-                    animDuration: this.animDuration,
-                    listeners: {
-                        cartList: {
-                            itemclick: function(me,item,node,index,e){
-                                /*
-                            	var el = Ext.get(e.getTarget());
-                                if(el.hasCls('loupe')){
-                                     this.showProductPopup(node,item);
-                                }
-                                */
-                            },
-                            scope: this
-                        },
-
-//                        activate: this.onViewActivate,
-                        scope: this
-                    }
+            if(!this.shopsView||this.shopsView.isDestroyed){
+                this.shopsView = Ext.create('Vzabote.view.ShopChoice',{
+                    store: store
                 });
             }
-            cardPanel.layout.setActiveItem(this.shopsListView);
+            cardPanel.layout.setActiveItem(this.shopsView);
        }
    }
    
