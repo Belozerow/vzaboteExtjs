@@ -15,6 +15,7 @@ Ext.define('Vzabote.view.ModalMap',{
         this.refreshSize();
         Ext.EventManager.onWindowResize(function(){
             this.refreshSize();
+            this.gmap.onResize();
         },this);
         this.callParent();
         this.findForm = Ext.create('Ext.form.Panel',{
