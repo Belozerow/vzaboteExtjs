@@ -32,6 +32,31 @@ Ext.define('Vzabote.view.ModalMap',{
                 handler: function(){
                     //this.addWaypoint(this.findForm.getComponent("address_field").getValue());
                     this.gmap.addWaypoint(this.findForm.getComponent("address_field").getValue(), this.city)
+                    this.gmap.displayRoute();
+                },
+                scope: this
+            },
+            {
+                xtype: 'button',
+                text: 'Пешкарус',
+                handler: function(){
+                    this.gmap.changeTravelMode("WALKING");
+                },
+                scope: this
+            },
+            {
+                xtype: 'button',
+                text: 'Тачила',
+                handler: function(){
+                    this.gmap.changeTravelMode("DRIVING");
+                },
+                scope: this
+            },
+            {
+                xtype: 'button',
+                text: 'ОЧИСТИТЬ',
+                handler: function(){
+                    this.gmap.clearRoute();
                 },
                 scope: this
             }]
@@ -55,10 +80,11 @@ Ext.define('Vzabote.view.ModalMap',{
         });
         
         Ext.util.Observable.capture(this.gmap, function(name, d2, d3){
-            //console.log(name, d2, d3);
             if (name == "mapready")
             {
                 this.gmap.showMyPoint();
+                //this.gmap.addWaypoint("Воровского 10", this.city);
+                //this.gmap.addWaypoint("Ленина 30", this.city);
             }
         }, this);
         
