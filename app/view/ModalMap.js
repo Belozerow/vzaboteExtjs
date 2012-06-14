@@ -75,8 +75,12 @@ Ext.define('Vzabote.view.ModalMap',{
             height: 100,
             items: {
                 xtype: 'button',
-                text: 'OK'
-            } 
+                text: 'OK',
+                handler: function(){
+                    this.close();
+                },
+                scope: this
+            },
         });
     },
     refreshSize: function(){
