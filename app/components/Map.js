@@ -8,6 +8,9 @@ Ext.define('Vzabote.view.Map',{
         this.callParent(arguments);
         this.directionsService = new google.maps.DirectionsService();
         this.directionsDisplay = new google.maps.DirectionsRenderer();
+        this.on('mapready', function(){
+            this.setButtons();
+        });
     },
     
     showMyPoint: function(){
@@ -60,6 +63,27 @@ Ext.define('Vzabote.view.Map',{
     clearRoute: function(){
         this.waypoints = [];
         this.directionsDisplay.setMap(null);
-    }
+    },
+    setButtons: function(){
+	    var walking = this.getCustomButton('Пешком');
+	    me = this;
+	    this.customButton(walking,function(){
+            me.changeTravelMode('WALKING');
+		});
+	    var driving = this.getCustomButton('На машине');
+	    this.customButton(driving,function(){
+            me.changeTravelMode('DRIVING');
+		});
+    },
+	getCustomButton: function(text){
+		var controlUI = document.createElement('DIV');
+		controlUI.innerHTML = '<div class="x-button-label">'+text+'</div>';
+		controlUI.className = "x-button x-button-dark";
+		return controlUI;
+	},
+	customButton: function(controlUI,fn){
+		google.maps.event.addDomListener(controlUI, 'click', fn);
+	    this.getMap().controls[google.maps.ControlPosition.TOP_RIGHT].push(controlUI);
+	}
 });
 
