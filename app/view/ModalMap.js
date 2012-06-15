@@ -11,7 +11,7 @@ Ext.define('Vzabote.view.ModalMap',{
         align: 'stretch'
     },
     initComponent: function(){
-        this.points = [];
+        console.log('init view');
         this.refreshSize();
         Ext.EventManager.onWindowResize(function(){
             this.refreshSize();
@@ -25,23 +25,17 @@ Ext.define('Vzabote.view.ModalMap',{
             },templates.modal.map),{
                 xtype: 'textfield',
                 id: 'address_field',
-                emptyText: 'Введите адрес точки на карте'
+                //emptyText: 'Введите адрес точки на карте'
+                emptyText:  'Воровского 10'
             },{
                 xtype: 'button',
                 text: 'Добавить точку',
-                handler: function(){
-                    this.gmap.addWaypoint(this.findForm.getComponent("address_field").getValue(), this.city)
-                    this.gmap.displayRoute();
-                },
-                scope: this
+                id: 'modalmap-addwaypoint'
             },
             {
                 xtype: 'button',
                 text: 'Удалить маршрут',
-                handler: function(){
-                    this.gmap.clearRoute();
-                },
-                scope: this
+                id: 'modalmap-clear'
             }]
         });
         this.add(this.findForm);
@@ -56,6 +50,8 @@ Ext.define('Vzabote.view.ModalMap',{
                 gmapType: 'map',
                 zoomLevel: 16,
                 flex: 1,
+                waypoints:this.waypoints,
+                travelMode: this.travelMode,
                 setCenter: {
                     lat: 39.26940,
                     lng: -76.64323
@@ -75,9 +71,10 @@ Ext.define('Vzabote.view.ModalMap',{
             height: 100,
             items: {
                 xtype: 'button',
+                id: 'modalmap-ok',
                 text: 'OK',
                 handler: function(){
-                    this.close();
+
                 },
                 scope: this
             },

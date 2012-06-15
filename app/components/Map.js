@@ -1,10 +1,9 @@
 Ext.define('Vzabote.view.Map',{
     extend: 'Ext.ux.GMapPanel',
     alias: 'widget.map',
-    travelmode: "DRIVING",
-    
+
     initComponent: function(){
-        this.waypoints = [];
+        console.log('init map');
         this.callParent(arguments);
         this.directionsService = new google.maps.DirectionsService();
         this.directionsDisplay = new google.maps.DirectionsRenderer();
@@ -18,6 +17,8 @@ Ext.define('Vzabote.view.Map',{
         navigator.geolocation.getCurrentPosition(function(position) {
             me.initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
             me.addMarker(me.initialLocation, me.setCenter, false, true);
+            if (me.waypoints.length!=0)
+                me.displayRoute(me.waypoints);
         }, function() {
                 console.log("No location found");
             });
@@ -25,28 +26,27 @@ Ext.define('Vzabote.view.Map',{
     
     addWaypoint: function(point, city){
             this.waypoints.push({
-                location: point + ', ' + city,
+                location: point,
                 stopover:true
             });
     },
     
     displayRoute: function(){
-        if (this.waypoints.length == 0) 
+        points = [];
+        Ext.apply(points, this.waypoints, [])
+        if (points.length == 0) 
             return;
         this.directionsDisplay.setMap(this.getMap());
         
-        points = [];
-        Ext.apply(points, this.waypoints, [])
-
         var request = {
             origin: this.initialLocation,
             destination: points.pop().location,
             waypoints: points,
             optimizeWaypoints: true,
-            travelMode: google.maps.TravelMode[this.travelmode]
+            travelMode: google.maps.TravelMode[this.travelMode]
         };
         
-        var me = this;
+        me = this;
         this.directionsService.route(request, function(response, status) {
             if (status == google.maps.DirectionsStatus.OK) {
                 me.directionsDisplay.setDirections(response);
@@ -56,7 +56,7 @@ Ext.define('Vzabote.view.Map',{
     
     changeTravelMode: function(mode){
         if (mode in {"DRIVING":'', "WALKING":''})
-            this.travelmode = mode;
+            this.travelMode = mode;
         if (this.waypoints.length > 0) this.displayRoute();
     },
     
@@ -77,7 +77,7 @@ Ext.define('Vzabote.view.Map',{
     },
 	getCustomButton: function(text){
 		var controlUI = document.createElement('DIV');
-		controlUI.innerHTML = '<div class="x-button-label">'+text+'</div>';
+		controlUI.innerHTML = '<div id="pasha" class="x-button-label">'+text+'</div>';
 		controlUI.className = "x-button x-button-dark";
 		return controlUI;
 	},
