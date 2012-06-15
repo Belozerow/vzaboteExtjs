@@ -31,7 +31,11 @@ Ext.define('Vzabote.controller.ShopChoice',{
             	}
             },
             
-            
+            '#button-shop-way': {
+            	click: function(){
+            		alert('Купить по пути домой?');
+            	}
+            }
        
        
        });

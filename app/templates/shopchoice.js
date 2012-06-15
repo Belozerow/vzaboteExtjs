@@ -1,7 +1,7 @@
 templates.shopchoice = {
 
 	header: {
-		html: '<h1 class="title">Выбор магазина</h1><div class="button-choice-way-cls" id="button-choice-way-id"></div>'
+		html: '<h1 class="title">Выбор магазина</h1>'
 	},
 		
 	shoptype: {

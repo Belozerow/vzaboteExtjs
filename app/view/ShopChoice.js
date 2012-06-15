@@ -9,24 +9,32 @@ Ext.define('Vzabote.view.ShopChoice',{
     initComponent: function(){
         this.callParent();
 
+        // Заголовок
         this.elTitle = Ext.create('Ext.container.Container', Ext.apply({
-        	id: 'shop-choice-header',
-        	listeners: {
-        		afterrender: function(me, opt){
-        			Ext.create('Ext.Button', {
-        				text: 'Купить по пути домой?',
-        				id: 'button-id-id',
-        				renderTo: 'button-choice-way-id'/*,
-        				handler: function(){
-        					alert('Покупаем по пути домой');
-        				}*/
-        			});
-        		}
-        	}
+        	id: 'shop-choice-header'
         }, templates.shopchoice.header));
         
-        this.add(this.elTitle);
+        // Кнопка "Купить по пути домой?"
+        this.buttonShopWay = Ext.create('Ext.button.Button', {
+        	id: 'button-shop-way',
+        	text: 'Купить по пути домой?'
+        });
+                
+        // Header страницы
+        this.headArea = Ext.create('Ext.container.Container', {
+        	layout: {
+        		type: 'hbox',
+        		align: 'stretch'
+        	},
+        	id: 'shop-chioce-head-id',
+        	cls: 'shop-chioce-head-cls',
+        	items: [
+        	   this.elTitle,
+        	   this.buttonShopWay
+        	]
+        });
         
+        this.add(this.headArea);
         
         // слайдер под header'ом
         this.slider = Ext.create('Vzabote.view.JntSlider',Ext.apply({
