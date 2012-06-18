@@ -35,6 +35,12 @@ Ext.define('Vzabote.controller.ShopChoice',{
             	click: function(){
             		alert('Купить по пути домой?');
             	}
+            },
+            
+            '#button-etc-categories': {
+            	click: function(){
+            		alert('Еще..');
+            	}
             }
        
        

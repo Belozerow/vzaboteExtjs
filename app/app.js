@@ -25,7 +25,8 @@ Ext.application({
             'Product',
             'Brand',
             'Shop',
-            'ShopType'
+            'ShopType',
+            'ShopCategory'
     ],
     stores: ['Categories',
             'CategoryInfo',
@@ -35,7 +36,8 @@ Ext.application({
             'Brands',
             'UserCart',
             'Shops',
-            'ShopTypes'
+            'ShopTypes',
+            'ShopCategories'
     ],
     launch: function(){
         Ext.Loader.setPath('Vzabote','app');

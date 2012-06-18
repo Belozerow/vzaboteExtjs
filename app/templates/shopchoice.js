@@ -3,7 +3,21 @@ templates.shopchoice = {
 	header: {
 		html: '<h1 class="title">Выбор магазина</h1>'
 	},
-		
+
+    sliderinfo: {
+        tpl: '<div class="slider-title">{name}</div>'+
+             '<div class="slider-values">Показывать цены: <b>{minprice} - {maxprice}</b> Р / <span>{measure}</span></div>'
+    },
+	
+	slider: {
+        width: 350
+    },
+	
+    categories: {
+    	tpl: '<div class="image">{image}</div>' +
+    			 '<div class="name">{name}</div>'
+    },
+
 	shoptype: {
 		itemTpl: 
 			'<div class="collection">' + 
@@ -21,14 +35,6 @@ templates.shopchoice = {
                 '<div class="name">{name}</div>'
 	},
 	
-    sliderinfo: {
-        tpl: '<div class="slider-title">{name}</div>'+
-             '<div class="slider-values">Показывать цены: <b>{minprice} - {maxprice}</b> Р / <span>{measure}</span></div>'
-    },
-	
-	slider: {
-        width: 350
-    },
-	
+
 		
 };
